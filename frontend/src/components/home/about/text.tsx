@@ -34,7 +34,6 @@ const AboutText = () => {
 
             <ParagraphWithNewlines text={data}/>
 
-
             <div className="bg-navy-blue px-4 py-2 rounded-full flex items-center justify-center w-fit font-inter font-semibold text-yellow-500">
                 Read More
             </div>

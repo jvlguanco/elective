@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Carousel from "../../components/carousel";
 import Compilation from "../../components/home/about/pictures";
 import AboutText from "../../components/home/about/text";
@@ -10,10 +12,41 @@ const images = [
 ];
 
 const Home = () => {
+    const [image, setImage] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get('http://localhost:5000/image/background')
+        .then((response) => {
+            setImage(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching image:', error);
+        });
+    }, []);
+
+    // const [images, setImages] = useState([]);
+
+    // useEffect(() => {
+    //     axios
+    //     .get('http://localhost:5000/images/background')
+    //     .then((response) => {
+    //         setImages(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error fetching images:', error);
+    //     });
+    // }, []);
+
+    // console.log(image)
+
     return (
         <div>
             <div className="relative w-full h-screen overflow-hidden">
-                <img src="./images/image3.jpg" alt="" className='h-full w-full object-cover absolute' />
+                {image && (
+                    <img src={`data:image/*;base64,${image.data}`}alt="" className='h-full w-full object-cover absolute' />
+                )}
+
                 <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-0"></div>
 
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-between z-10 pt-52 pb-28">
