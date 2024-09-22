@@ -27,9 +27,9 @@ const Navbar = () => {
 
 
   return (
-    <nav className={`fixed w-full top-0 px-4 py-2 flex justify-between items-center transition-colors duration-300 ${navbarClass}`}>
+    <nav className={`fixed w-full top-0 px-4 py-2 flex justify-between items-center transition-colors duration-300 ${navbarClass} z-20`}>
       <div className="flex gap-4 items-center">
-        <img src="./images/Logo.png" alt="Logo" className="h-20" />
+        <img src="./images/Logo.png" alt="Logo" className="h-20 w-20" />
         <div>
           <h1 className={`font-serif text-lg font-semibold ${titleHome}`}>PAMANTASAN NG LUNGSOD NG MAYNILA</h1>
           <h3 className={`text-sm ${otherHome}`}>University of the City of Manila</h3>

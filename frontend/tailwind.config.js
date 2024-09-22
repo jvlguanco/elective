@@ -9,6 +9,9 @@ export default {
       height: {
         billboard: '700px',
       },
+      colors:{
+        'custom-blue': '#09244B'
+      },
     },
   },
   plugins: [],
