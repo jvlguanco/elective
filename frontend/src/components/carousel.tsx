@@ -35,19 +35,6 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
             className="object-contain h-full"
           />
         </div>
-
-        <button
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-100 p-2 rounded-full"
-          onClick={goToPrevious}
-        >
-          Prev
-        </button>
-        <button
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-100 p-2 rounded-full"
-          onClick={goToNext}
-        >
-          Next
-        </button>
       </div>
 
       <div className="mt-4 flex justify-center space-x-4">
