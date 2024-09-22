@@ -20,8 +20,8 @@ const Home = () => {
                         <img src="./images/Logo.png" alt="" className="h-72 w-72"/>
                         <div className="flex items-center justify-center flex-col text-white gap-1">
                             <h1 className="text-2xl font-serif font-medium">PAMANTASAN NG LUNGSOD NG MAYNILA</h1>
-                            <h2 className="text-lg font-normal">University of the City of Manila</h2>
-                            <h3 className="text-base font-thin">Karunungan, Kaunlaran and Kadakilaan</h3>
+                            <h2 className="text-lg font-light font-inter">University of the City of Manila</h2>
+                            <h3 className="text-base font-thin font-inter">Karunungan, Kaunlaran and Kadakilaan</h3>
                         </div>
                     </div>
 

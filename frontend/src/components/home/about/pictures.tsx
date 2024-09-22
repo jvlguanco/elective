@@ -1,6 +1,6 @@
 const Compilation = () => {
     return (
-        <div className="w-2/3 flex items-center justify-center relative">
+        <div className="w-2/3 flex items-center justify-center relative h-[550px]">
 
             <img src="./images/designs/Frame.png" alt="Background" className="absolute w-32 h-32 object-cover top-0 left-40 z-[-1]" />
 

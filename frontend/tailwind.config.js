@@ -10,7 +10,11 @@ export default {
         billboard: '700px',
       },
       colors:{
-        'custom-blue': '#09244B'
+        'custom-blue': '#0068FF'
+      },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+        istok: ['Istok Web', 'sans-serif'],
       },
     },
   },
