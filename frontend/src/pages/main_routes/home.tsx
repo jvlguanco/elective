@@ -36,7 +36,10 @@ const Home = () => {
                 <AboutText/>
             </div>
 
-            <Carousel images={images}/>
+            <div className="mt-10">
+                <Carousel images={images}/>
+            </div>
+            
         </div>
     )
 }
