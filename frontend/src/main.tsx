@@ -7,7 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App.tsx';
-import Navbar from './components/navbar.tsx'
+import Navbar from './components/navbar2.tsx'
 import Home from './pages/main_routes/home.tsx'
 import About from './pages/main_routes/about.tsx';
 import Academics from './pages/main_routes/academics.tsx';
@@ -19,6 +19,7 @@ import './index.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -26,7 +27,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/admissions" element={<Admission />} />
         <Route path="/announcements" element={<Announcement />} />
       </Routes>
-      <Navbar />
+
 
       <Routes>
         

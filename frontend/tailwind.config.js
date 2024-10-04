@@ -11,7 +11,8 @@ export default {
       },
       colors:{
         'custom-blue': '#0068FF',
-        'navy-blue' : '#09244B'
+        'navy-blue' : '#09244B',
+        'custom-yellow' : '#AB840D'
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],

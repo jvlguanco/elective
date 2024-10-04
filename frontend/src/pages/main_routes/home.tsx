@@ -11,24 +11,9 @@ const images = [
 ];
 
 const Home = () => {
-    // const [images, setImages] = useState([]);
-
-    // useEffect(() => {
-    //     axios
-    //     .get('http://localhost:5000/images/background')
-    //     .then((response) => {
-    //         setImages(response.data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error fetching images:', error);
-    //     });
-    // }, []);
-
-    // console.log(image)
-
     return (
         <div>
-            <Hero />
+            {/* <Hero />
             
             <div className="flex w-full mt-10">
                 <Compilation/>
@@ -49,7 +34,7 @@ const Home = () => {
 
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.2120588157472!2d120.97792359975215!3d14.58698902520677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ca2336770053%3A0x1b731714778d3506!2sPamantasan%20ng%20Lungsod%20ng%20Maynila!5e0!3m2!1sen!2sph!4v1726987523267!5m2!1sen!2sph" width="50%" height="450" loading="lazy"></iframe>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
