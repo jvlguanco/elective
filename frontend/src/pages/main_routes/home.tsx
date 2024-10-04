@@ -1,7 +1,7 @@
 import Carousel from "../../components/carousel";
 import Compilation from "../../components/home/about/pictures";
 import AboutText from "../../components/home/about/text";
-import AnnouncementSection from "../../components/home/announcement";
+import AnnouncementSection from "../../components/home/announcement2";
 import Hero from "../../components/home/hero_section";
 
 const images = [
