@@ -27,7 +27,7 @@ const TopBar = () => {
                     
                     {isStudentDropdownOpen && (
                     <div
-                        className="absolute top-full mt-1 bg-gray-800 shadow-lg rounded w-72 text-white flex flex-col"
+                        className="absolute top-full mt-1 bg-gray-800 shadow-lg rounded w-72 text-white flex flex-col z-10"
                         onClick={() => setIsStudentDropdownOpen(false)}
                     >
                         <NavLink to="/student/crs" className="px-4 py-2 hover:bg-red-700">
@@ -62,7 +62,7 @@ const TopBar = () => {
                     
                     {isFacultyDropdownOpen && (
                     <div
-                        className="absolute top-full mt-1 bg-gray-800 shadow-lg rounded w-72 text-white flex flex-col"
+                        className="absolute top-full mt-1 bg-gray-800 shadow-lg rounded w-72 text-white flex flex-col z-10"
                         onClick={() => setIsFacultyDropdownOpen(false)}
                     >
                         <NavLink to="/faculty/crs" className="px-4 py-2 hover:bg-red-700">

@@ -3,7 +3,7 @@ import EventIcon from '@mui/icons-material/Event';
 const AnnouncementSection = () => {
     return(
         <div className="px-12 mt-10 flex gap-12 justify-between items-center h-fit">
-            <div className="w-1/2 px-6 h-[625px]">
+            <div className="w-1/2 h-[625px]">
                 <h1 className="font-inter text-navy-blue font-bold text-[28px]">
                     LATEST NEWS
                 </h1>
