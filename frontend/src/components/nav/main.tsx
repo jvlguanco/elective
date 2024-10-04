@@ -23,25 +23,25 @@ const MainNav = () => {
                 </li>
 
                 <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                    <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         About
                     </NavLink>
                 </li>
 
                 <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                    <NavLink to="/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         Academics
                     </NavLink>
                 </li>
 
                 <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                    <NavLink to="/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         Admissions
                     </NavLink>
                 </li>
 
                 <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                    <NavLink to="/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         Announcements
                     </NavLink>
                 </li>
