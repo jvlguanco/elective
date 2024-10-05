@@ -8,14 +8,13 @@ import {
 import './index.css'
 import Navbar from './components/navbar';
 import Home from './pages/home';
+import Sidebar from './components/sidebar';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-      </Routes>
+      <Sidebar/>
     </BrowserRouter>
   </StrictMode>,
 )
