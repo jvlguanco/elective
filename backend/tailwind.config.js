@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        billboard: '700px',
+      },
+      colors:{
+        'custom-blue': '#0068FF',
+        'navy-blue' : '#09244B',
+        'custom-yellow' : '#AB840D'
+      },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+        istok: ['Istok Web', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const MainNav = () => {
+const Navbar = () => {
     return (
-        <div className='w-full h-fit flex justify-between items-center bg-white'>
+        <div className='w-full h-fit flex justify-between items-center bg-white border-b-2 border-black'>
             <div className="flex gap-4 items-center px-8 py-2">
                 <img src="./images/Logo.png" alt="Logo" className="h-16 w-16" />
                 <div>
@@ -47,4 +47,4 @@ const MainNav = () => {
     );
 }
 
-export default MainNav
+export default Navbar
