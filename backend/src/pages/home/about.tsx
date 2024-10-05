@@ -27,6 +27,14 @@ const AboutEdit = () => {
             });
     };
 
+    const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContent(e.target.value);
+        // Reset the message when the user starts typing
+        if (message) {
+            setMessage('');
+        }
+    };
+
     return (
         <div className="w-full flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Edit About Message at Home Page</h2>
@@ -35,7 +43,7 @@ const AboutEdit = () => {
                 <textarea
                     className="w-full h-96 p-2 border rounded mb-4 overflow-y-auto"
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={handleContentChange}
                 ></textarea>
                 <button
                     type="submit"

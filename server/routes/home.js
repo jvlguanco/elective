@@ -13,7 +13,6 @@ router.get('/about', (req, res) => {
 });
 
 router.put('/about', (req, res) => {
-    console.log(req.body)
     const { content } = req.body;
     const query = 'UPDATE about_home SET message = ? WHERE id = 1';
     db.query(query, [content], (err, results) => {
