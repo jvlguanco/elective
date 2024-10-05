@@ -18,7 +18,7 @@ const AboutText = () => {
     const [data, setData] = useState<string>('');
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/home')
+        axios.get('http://localhost:5000/home/about')
           .then(response => {
             setData(response.data[0]['message']);
           })

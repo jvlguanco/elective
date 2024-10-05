@@ -8,6 +8,7 @@ export default {
     extend: {
       height: {
         billboard: '700px',
+        'screen-minus-82': 'calc(100vh - 82px)',
       },
       colors:{
         'custom-blue': '#0068FF',
