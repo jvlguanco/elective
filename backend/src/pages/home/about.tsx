@@ -39,7 +39,7 @@ const AboutEdit = () => {
 
     const handleUpload = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (photos && photos.length != 4) {
+        if (photos && photos.length == 4) {
           const formData = new FormData();
           for (let i = 0; i < photos.length; i++) {
             formData.append('photos', photos[i]);

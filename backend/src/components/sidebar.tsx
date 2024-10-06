@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import AboutEdit from '../pages/home/about';
+import HeroEdit from '../pages/home/hero';
 
 const routes = {
     '/': ['About', 'Hero'],
@@ -13,6 +14,7 @@ const routes = {
 
 const sidebarItemContent = {
     About: <AboutEdit/>,
+    Hero: <HeroEdit/>,
 };
 
 const Sidebar = () => {
