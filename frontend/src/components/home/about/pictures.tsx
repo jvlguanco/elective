@@ -1,4 +1,23 @@
+import { useEffect, useState } from 'react';
+
 const Compilation = () => {
+    const [filePaths, setFilePaths] = useState<string[]>([]);
+    const location = "AboutCollage"
+
+    useEffect(() => {
+        const fetchPhotos = async () => {
+          try {
+            const response = await fetch(`http://localhost:5000/home/photos/${location}`);
+            const data = await response.json();
+            setFilePaths(data.map((item: { file_path: string }) => item.file_path));
+          } catch (error) {
+            console.error('Error fetching photos:', error);
+          }
+        };
+    
+        fetchPhotos();
+    }, [location]);
+
     return (
         <div className="w-2/3 flex items-center justify-center relative h-[550px]">
 
@@ -7,19 +26,19 @@ const Compilation = () => {
             <div className="flex flex-col gap-1">
                 <div className="flex gap-1 h-56">
                     <div className="w-2/3">
-                        <img src="./images/image3.jpg" alt="description" className="object-cover h-full w-full" />
+                        <img src={`http://localhost:5000/${filePaths[0]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                     <div className="w-1/3">
-                        <img src="./images/image3.jpg" alt="description" className="object-cover h-full w-full" />
+                        <img src={`http://localhost:5000/${filePaths[1]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                 </div>
 
                 <div className="flex gap-1 h-56">
                     <div className="w-1/2">
-                        <img src="./images/image3.jpg" alt="description" className="object-cover h-full w-full" />
+                        <img src={`http://localhost:5000/${filePaths[2]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                     <div className="w-1/2">
-                        <img src="./images/image3.jpg" alt="description" className="object-cover h-full w-full" />
+                        <img src={`http://localhost:5000/${filePaths[3]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                 </div>
             </div>
