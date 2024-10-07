@@ -3,18 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import AboutEdit from '../pages/home/about';
 import HeroEdit from '../pages/home/hero';
+import PostAnnouncement from '../pages/announcement/post';
 
 const routes = {
     '/': ['About', 'Hero'],
     '/about': ['Team', 'History', 'Mission'],
     '/academics': ['Programs', 'Courses', 'Faculty'],
     '/admissions': ['Apply', 'Deadlines', 'Fees'],
-    '/announcement': ['Events', 'News', 'Updates'],
+    '/announcement': ['Create Post', 'View Highlighted Posts', 'View Other Posts'],
 };
 
 const sidebarItemContent = {
     About: <AboutEdit/>,
     Hero: <HeroEdit/>,
+    'Create Post': <PostAnnouncement/>
 };
 
 const Sidebar = () => {
@@ -45,7 +47,7 @@ const Sidebar = () => {
                             className={`p-4 cursor-pointer ${activeItem === item ? 'text-red-500 font-bold' : 'text-black'}`}
                             onClick={() => handleItemClick(item)}
                         >
-                            {item} Section
+                            {item}{location.pathname != '/announcement' ? ' Section' : ''}
                         </li>
                     ))}
                 </ul>

@@ -94,6 +94,28 @@ const AboutEdit = () => {
         }
     }, [message]);
 
+    const [feedData, setFeedData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchFacebookFeed = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/facebook/feed');
+            setFeedData(response.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching Facebook feed:', error);
+            setError('Failed to load feed');
+            setLoading(false);
+        }
+        };
+
+        fetchFacebookFeed();
+    }, []);
+
+    console.log(feedData)
+
     return (
         <div className="w-full flex flex-col">
             <h2 className="text-2xl font-bold mb-4">Edit About Message at Home Page</h2>

@@ -1,5 +1,6 @@
 const multer = require('multer');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -9,11 +10,12 @@ const storage = multer.diskStorage({
       } else if (file.mimetype.startsWith('video/')) {
         cb(null, 'uploads/videos');
       } else {
-        cb(new Error('Unsupported file type'), false);
+        cb(null, 'uploads/files');
       }
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
+      const uniqueSuffix = uuidv4();
+      cb(null, uniqueSuffix + path.extname(file.originalname));
     }
   });
 const upload = multer({
