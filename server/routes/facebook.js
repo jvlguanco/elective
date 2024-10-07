@@ -31,52 +31,68 @@ router.get('/feed', async (req, res) => {
 
 router.post('/post', upload.array('images'), async (req, res) => {
     try {
-      const { title, body } = req.body;
-      const images = req.files;
-      console.log(images)
-  
-      const imageIds = [];
-      for (const image of images) {
-        const form = new FormData();
-        form.append('access_token', PAGE_ACCESS_TOKEN);
-        form.append('published', 'false');
+        const { title, body, postType, endDate } = req.body;
+        const images = req.files;
+    
+        const imageIds = [];
+        for (const image of images) {
+            const form = new FormData();
+            form.append('access_token', PAGE_ACCESS_TOKEN);
+            form.append('published', 'false');
 
-        const file_path = path.join(__dirname, '..', image.path)
-        const fileStream = fs.createReadStream(file_path);
+            const file_path = path.join(__dirname, '..', image.path);
+            const fileStream = fs.createReadStream(file_path);
 
-        form.append('source', fileStream, {
-          filename: image.originalname,
-          contentType: image.mimetype,
-        });
-        
-  
-        const response = await axios.post(
-          `https://graph.facebook.com/v21.0/${PAGE_ID}/photos`,
-          form,
-          { headers: form.getHeaders() }
+            form.append('source', fileStream, {
+                filename: image.originalname,
+                contentType: image.mimetype,
+            });
+            
+            const response = await axios.post(
+                `https://graph.facebook.com/v21.0/${PAGE_ID}/photos`,
+                form,
+                { headers: form.getHeaders() }
+            );
+    
+            imageIds.push(response.data.id);
+            fs.unlinkSync(file_path);
+        }
+    
+        const attachedMedia = imageIds.map((id) => ({ media_fbid: id }));
+        const postData = {
+            message: `${title}\n\n${body}`,
+            attached_media: attachedMedia,
+            access_token: PAGE_ACCESS_TOKEN,
+        };
+    
+        const postResponse = await axios.post(
+            `https://graph.facebook.com/v21.0/${PAGE_ID}/feed`,
+            postData
         );
-  
-        imageIds.push(response.data.id);
 
-        fs.unlinkSync(file_path)
-      }
-  
-      const attachedMedia = imageIds.map((id) => ({ media_fbid: id }));
-      const postData = {
-        message: `${title}\n\n${body}`,
-        attached_media: attachedMedia,
-        access_token: PAGE_ACCESS_TOKEN,
-      };
-  
-      const postResponse = await axios.post(
-        `https://graph.facebook.com/v21.0/${PAGE_ID}/feed`,
-        postData
-      );
-  
-      res.json({ success: true, postId: postResponse.data.id });
+        const post_id = postResponse.data.id;
+        let query = '';
+        let values = [];
+
+        if (endDate) {
+            query = 'INSERT INTO posts (post_id, type, end_date) VALUES (?, ?, ?)';
+            values = [post_id, postType, endDate];
+        } else {
+            query = 'INSERT INTO posts (post_id, type) VALUES (?, ?)';
+            values = [post_id, postType];
+        }
+        
+        db.query(query, values, (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Failed to save new file paths to database.');
+            }
+
+            res.json({ success: true, postId: post_id });
+        });
     } catch (error) {
-      console.error(error.response ? error.response.data : error.message);
-      res.status(500).json({ success: false, error: error.message });
+        console.error(error.response ? error.response.data : error.message);
+        res.status(500).json({ success: false, error: error.message });
     }
 });
 
