@@ -23,7 +23,7 @@ const NormalPostTable = () => {
     const itemsPerPage = 7;
 
     useEffect(() => {
-        axios.get('http://localhost:5000/facebook/normal-post')
+        axios.get('http://localhost:5000/facebook/time-post')
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);

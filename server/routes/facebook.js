@@ -29,7 +29,33 @@ const PAGE_ID = process.env.PAGE_ID;
 //     }
 // });
 router.get('/normal-post', async (req, res) => {
-    const query = "SELECT post_id FROM `posts` WHERE type = 'normal'"
+    const query = "SELECT post_id FROM `posts` WHERE type = 'normal' ORDER BY id DESC"
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        const token = PAGE_ACCESS_TOKEN;
+
+        res.json({ data: result, token });
+    });
+});
+
+router.get('/highlighted-post', async (req, res) => {
+    const query = "SELECT post_id FROM `posts` WHERE type = 'highlight' ORDER BY id DESC"
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        const token = PAGE_ACCESS_TOKEN;
+
+        res.json({ data: result, token });
+    });
+});
+
+router.get('/time-post', async (req, res) => {
+    const query = "SELECT post_id, end_date FROM `posts` WHERE type = 'time-restricted' ORDER BY id DESC"
     db.query(query, (err, result) => {
         if (err) {
             return res.status(500).send(err);

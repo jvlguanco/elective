@@ -5,6 +5,8 @@ import AboutEdit from '../pages/home/about';
 import HeroEdit from '../pages/home/hero';
 import PostAnnouncement from '../pages/announcement/post';
 import NormalPostTable from '../pages/announcement/normal';
+import HighlightedPostTable from '../pages/announcement/highlighted';
+import TimePostTable from '../pages/announcement/time';
 
 const routes = {
     '/': ['About', 'Hero'],
@@ -19,6 +21,8 @@ const sidebarItemContent = {
     Hero: <HeroEdit/>,
     'Create Post': <PostAnnouncement/>,
     'View Normal Post': <NormalPostTable/>,
+    'View Highlighted Posts': <HighlightedPostTable/>,
+    'View Time-Restricted Posts' : <TimePostTable/>
 };
 
 const Sidebar = () => {

@@ -92,7 +92,7 @@ const PostAnnouncement = () => {
                 <div className="mb-4">
                     <label className="text-lg font-semibold text-gray-600 mb-2 block">Post Type</label>
                     <div className="flex space-x-6">
-                        {['Normal', 'Highlighted', 'Time-Restricted'].map((type) => (
+                        {['Normal', 'Highlight', 'Time-Restricted'].map((type) => (
                             <label key={type} className="flex items-center space-x-2 text-gray-700 cursor-pointer">
                                 <input
                                     type="radio"

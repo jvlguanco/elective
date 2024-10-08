@@ -13,7 +13,7 @@ interface PostId {
     post_id: string;
 }
 
-const NormalPostTable = () => {
+const HighlightedPostTable = () => {
     const [postIds, setPostIds] = useState<PostId[] | null>(null);
     const [postDetails, setPostDetails] = useState<PostData[] | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -23,7 +23,7 @@ const NormalPostTable = () => {
     const itemsPerPage = 7;
 
     useEffect(() => {
-        axios.get('http://localhost:5000/facebook/normal-post')
+        axios.get('http://localhost:5000/facebook/highlighted-post')
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);
@@ -146,4 +146,4 @@ const NormalPostTable = () => {
     );
 };
 
-export default NormalPostTable;
+export default HighlightedPostTable;
