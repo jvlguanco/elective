@@ -19,10 +19,12 @@ const HighlightedPostTable = () => {
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [isLoadingPostIds, setIsLoadingPostIds] = useState(true);
     const [isLoadingPostDetails, setIsLoadingPostDetails] = useState(true);
+    const [isDeletingPost, setIsDeletingPost] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 7;
 
-    useEffect(() => {
+    const fetchPostIds = () => {
+        setIsLoadingPostIds(true);
         axios.get('http://localhost:5000/facebook/highlighted-post')
             .then((response) => {
                 setPostIds(response.data.data);
@@ -30,9 +32,13 @@ const HighlightedPostTable = () => {
                 setIsLoadingPostIds(false);
             })
             .catch((error) => {
-                console.error('Error fetching about data:', error);
+                console.error('Error fetching post IDs:', error);
                 setIsLoadingPostIds(false);
             });
+    };
+
+    useEffect(() => {
+        fetchPostIds();
     }, []);
 
     useEffect(() => {
@@ -68,11 +74,25 @@ const HighlightedPostTable = () => {
         window.open(post_url, '_blank');
     };
 
-    const handleDelete = (postId: string) => {
-        console.log(`Deleting post with ID: ${postId}`);
+    const handleDelete = async (postId: string) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+        if (!confirmDelete) return;
+
+        setIsDeletingPost(true);
+
+        try {
+            await axios.delete(`http://localhost:5000/facebook/delete/${postId}`);
+            alert("Post deleted successfully.");
+            fetchPostIds();
+        } catch (error) {
+            alert("Error deleting post.");
+            console.error('Error deleting post:', error);
+        } finally {
+            setIsDeletingPost(false);
+        }
     };
 
-    if (isLoadingPostIds || isLoadingPostDetails) {
+    if (isLoadingPostIds || isLoadingPostDetails || isDeletingPost) {
         return <div className="text-center py-6 text-gray-500">Loading...</div>;
     }
 
@@ -113,6 +133,7 @@ const HighlightedPostTable = () => {
                                 <button
                                     className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-150"
                                     onClick={() => handleDelete(post.id)}
+                                    disabled={isDeletingPost}
                                 >
                                     Delete
                                 </button>

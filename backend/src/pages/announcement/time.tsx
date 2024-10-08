@@ -22,11 +22,13 @@ const TimePostTable = () => {
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [isLoadingPostIds, setIsLoadingPostIds] = useState(true);
     const [isLoadingPostDetails, setIsLoadingPostDetails] = useState(true);
+    const [isDeletingPost, setIsDeletingPost] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const currentDate = new Date();
     const itemsPerPage = 7;
 
-    useEffect(() => {
+    const fetchPostIds = () => {
+        setIsLoadingPostIds(true);
         axios.get('http://localhost:5000/facebook/time-post')
             .then((response) => {
                 setPostIds(response.data.data);
@@ -36,10 +38,13 @@ const TimePostTable = () => {
             .catch((error) => {
                 console.error('Error fetching about data:', error);
                 setIsLoadingPostIds(false);
-            });
+        });
+    };
+
+    useEffect(() => {
+        fetchPostIds();
     }, []);
 
-    
     useEffect(() => {
         if (postIds && accessToken) {
             const fetchPosts = async () => {
@@ -48,7 +53,7 @@ const TimePostTable = () => {
                         `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url&access_token=${accessToken}`
                     ).then((response) => ({
                         ...response.data,
-                        end_date: post.end_date
+                        end_date: new Date(post.end_date)
                     }))
                 );
     
@@ -77,11 +82,25 @@ const TimePostTable = () => {
         window.open(post_url, '_blank');
     };
 
-    const handleDelete = (postId: string) => {
-        console.log(`Deleting post with ID: ${postId}`);
+    const handleDelete = async (postId: string) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+        if (!confirmDelete) return;
+
+        setIsDeletingPost(true);
+
+        try {
+            await axios.delete(`http://localhost:5000/facebook/delete/${postId}`);
+            alert("Post deleted successfully.");
+            fetchPostIds(); // Re-fetch the posts to update the list
+        } catch (error) {
+            alert("Error deleting post.");
+            console.error('Error deleting post:', error);
+        } finally {
+            setIsDeletingPost(false);
+        }
     };
 
-    if (isLoadingPostIds || isLoadingPostDetails) {
+    if (isLoadingPostIds || isLoadingPostDetails || isDeletingPost) {
         return <div className="text-center py-6 text-gray-500">Loading...</div>;
     }
 
@@ -115,7 +134,8 @@ const TimePostTable = () => {
                                     : 1}
                             </td>
                             <td className="px-6 py-4 border-b text-center text-gray-700">{format(post.end_date, "MMMM d, yyyy")}</td>
-                            <td className="px-6 py-4 border-b text-center text-gray-700">{currentDate > post.end_date ? 'Expired' : 'Ongoing'}</td>
+                            <td className="px-6 py-4 border-b text-center text-gray-700">{currentDate > post.end_date ? 'Expired' : 'Ongoing'}
+                            </td>
                             <td className="px-6 py-4 border-b text-center">
                                 <button
                                     className="bg-blue-500 text-white px-3 py-1 mr-2 rounded hover:bg-blue-600 transition duration-150"
@@ -126,6 +146,7 @@ const TimePostTable = () => {
                                 <button
                                     className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-150"
                                     onClick={() => handleDelete(post.id)}
+                                    disabled={isDeletingPost}
                                 >
                                     Delete
                                 </button>

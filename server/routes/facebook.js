@@ -67,6 +67,38 @@ router.get('/time-post', async (req, res) => {
     });
 });
 
+router.delete('/delete/:id', async (req, res) => {
+    const postId = req.params.id;
+    const query = "DELETE FROM posts WHERE post_id = ?";
+    
+    try {
+        await axios.delete(`https://graph.facebook.com/v21.0/${postId}`, {
+            params: { access_token: PAGE_ACCESS_TOKEN },
+        });
+
+        db.query(query, [postId], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: "Database error", details: err });
+            }
+            
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ error: "Post not found in the database." });
+            }
+
+            res.status(200).json({ message: "Post deleted successfully." });
+        });
+    } catch (error) {
+        if (error.response) {
+            return res.status(error.response.status).json({
+                error: "Failed to delete post from Facebook",
+                details: error.response.data,
+            });
+        } else {
+            return res.status(500).json({ error: "Failed to delete post", details: error.message });
+        }
+    }
+});
+
 router.post('/post', upload.array('images'), async (req, res) => {
     try {
         const { title, body, postType, endDate } = req.body;
