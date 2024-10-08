@@ -62,6 +62,8 @@ router.post('/post', upload.array('images'), async (req, res) => {
         const postData = {
             message: `${title}\n\n${body}`,
             attached_media: attachedMedia,
+            published: true,
+            audience: "public",
             access_token: PAGE_ACCESS_TOKEN,
         };
     

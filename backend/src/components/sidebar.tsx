@@ -10,7 +10,7 @@ const routes = {
     '/about': ['Team', 'History', 'Mission'],
     '/academics': ['Programs', 'Courses', 'Faculty'],
     '/admissions': ['Apply', 'Deadlines', 'Fees'],
-    '/announcement': ['Create Post', 'View Highlighted Posts', 'View Other Posts'],
+    '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
 };
 
 const sidebarItemContent = {
