@@ -13,20 +13,32 @@ const FormData = require('form-data');
 const PAGE_ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const PAGE_ID = process.env.PAGE_ID;
 
-router.get('/feed', async (req, res) => {
-    const url = `https://graph.facebook.com/v21.0/${PAGE_ID}/feed`;
+// router.get('/feed', async (req, res) => {
+//     const url = `https://graph.facebook.com/v21.0/${PAGE_ID}/feed`;
   
-    try {
-      const response = await axios.get(url,
-        {
-            params: { access_token: PAGE_ACCESS_TOKEN },
+//     try {
+//       const response = await axios.get(url,
+//         {
+//             params: { access_token: PAGE_ACCESS_TOKEN },
+//         }
+//       );
+//       res.status(200).json(response.data);
+//     } catch (error) {
+//       console.error('Error fetching data from Facebook API:', error);
+//       res.status(500).json({ error: 'Failed to fetch data from Facebook API' });
+//     }
+// });
+router.get('/normal-post', async (req, res) => {
+    const query = "SELECT post_id FROM `posts` WHERE type = 'normal'"
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
         }
-      );
-      res.status(200).json(response.data);
-    } catch (error) {
-      console.error('Error fetching data from Facebook API:', error);
-      res.status(500).json({ error: 'Failed to fetch data from Facebook API' });
-    }
+
+        const token = PAGE_ACCESS_TOKEN;
+
+        res.json({ data: result, token });
+    });
 });
 
 router.post('/post', upload.array('images'), async (req, res) => {

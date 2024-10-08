@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import AboutEdit from '../pages/home/about';
 import HeroEdit from '../pages/home/hero';
 import PostAnnouncement from '../pages/announcement/post';
+import NormalPostTable from '../pages/announcement/normal';
 
 const routes = {
     '/': ['About', 'Hero'],
@@ -16,7 +17,8 @@ const routes = {
 const sidebarItemContent = {
     About: <AboutEdit/>,
     Hero: <HeroEdit/>,
-    'Create Post': <PostAnnouncement/>
+    'Create Post': <PostAnnouncement/>,
+    'View Normal Post': <NormalPostTable/>,
 };
 
 const Sidebar = () => {
