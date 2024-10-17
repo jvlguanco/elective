@@ -46,7 +46,7 @@ const NormalPostTable = () => {
             const fetchPosts = async () => {
                 const requests = postIds.map((post) => {
                     return axios.get(
-                        `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url&access_token=${accessToken}`
+                        `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
                     );
                 });
 

@@ -28,6 +28,35 @@ const PAGE_ID = process.env.PAGE_ID;
 //       res.status(500).json({ error: 'Failed to fetch data from Facebook API' });
 //     }
 // });
+
+router.get('/all-post', async (req, res) => {
+    const query = "SELECT post_id FROM posts WHERE (type != 'time-restricted') OR (type = 'time-restricted' AND end_date > CURRENT_DATE) ORDER BY id DESC LIMIT 1"
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        const token = PAGE_ACCESS_TOKEN;
+
+        res.json({ data: result, token });
+    });
+});
+
+router.get('/announcement-post', async (req, res) => {
+    const query = "SELECT post_id FROM (SELECT post_id, id FROM posts WHERE type = 'time-restricted' AND end_date >= NOW() UNION ALL SELECT post_id, id FROM posts WHERE type = 'highlight') AS combined_posts ORDER BY id DESC LIMIT 3"
+
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        const token = PAGE_ACCESS_TOKEN;
+
+        res.json({ data: result, token });
+    });
+});
+
+
 router.get('/normal-post', async (req, res) => {
     const query = "SELECT post_id FROM `posts` WHERE type = 'normal' ORDER BY id DESC"
     db.query(query, (err, result) => {
@@ -106,26 +135,34 @@ router.post('/post', upload.array('images'), async (req, res) => {
     
         const imageIds = [];
         for (const image of images) {
-            const form = new FormData();
-            form.append('access_token', PAGE_ACCESS_TOKEN);
-            form.append('published', 'false');
-
             const file_path = path.join(__dirname, '..', image.path);
-            const fileStream = fs.createReadStream(file_path);
+            try {
+                const form = new FormData();
+                form.append('access_token', PAGE_ACCESS_TOKEN);
+                form.append('published', 'false');
 
-            form.append('source', fileStream, {
-                filename: image.originalname,
-                contentType: image.mimetype,
-            });
-            
-            const response = await axios.post(
-                `https://graph.facebook.com/v21.0/${PAGE_ID}/photos`,
-                form,
-                { headers: form.getHeaders() }
-            );
-    
-            imageIds.push(response.data.id);
-            fs.unlinkSync(file_path);
+                const fileStream = fs.createReadStream(file_path);
+                form.append('source', fileStream, {
+                    filename: image.originalname,
+                    contentType: image.mimetype,
+                });
+
+                const response = await axios.post(
+                    `https://graph.facebook.com/v21.0/${PAGE_ID}/photos`,
+                    form,
+                    { headers: form.getHeaders() }
+                );
+
+                imageIds.push(response.data.id);
+            } catch (error) {
+                console.error(`Failed to upload image: ${image.originalname}`, error);
+            } finally {
+                fs.unlink(file_path, (err) => {
+                    if (err) {
+                        console.error(`Failed to delete file: ${file_path}`, err);
+                    }
+                });
+            }
         }
     
         const attachedMedia = imageIds.map((id) => ({ media_fbid: id }));

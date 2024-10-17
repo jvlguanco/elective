@@ -50,7 +50,7 @@ const TimePostTable = () => {
             const fetchPosts = async () => {
                 const requests = postIds.map((post) =>
                     axios.get(
-                        `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url&access_token=${accessToken}`
+                        `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
                     ).then((response) => ({
                         ...response.data,
                         end_date: new Date(post.end_date)
