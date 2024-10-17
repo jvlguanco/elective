@@ -47,7 +47,7 @@ const Announcement = () => {
     }
 
     return (
-        <div className="flex w-full flex-col bg-gray-100">
+        <div className="flex w-full flex-col">
             <div className="mt-4 w-full h-fit px-96 py-4 flex justify-evenly items-center">
                 {navTitles.map((item, index) => (
                     <span
