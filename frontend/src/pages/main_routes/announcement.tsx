@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import LatestAnnouncements from '../../components/announcement/latest';
 
 const display = {
-    Latest: <div>Latest Announcements</div>,
+    Latest: <LatestAnnouncements/>,
     Highlighted: <div>Highlighted Announcements</div>,
     Special: <div>Special Announcements</div>,
 }
@@ -46,7 +47,7 @@ const Announcement = () => {
     }
 
     return (
-        <div className="flex w-full flex-col">
+        <div className="flex w-full flex-col bg-gray-100">
             <div className="mt-4 w-full h-fit px-96 py-4 flex justify-evenly items-center">
                 {navTitles.map((item, index) => (
                     <span

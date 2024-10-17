@@ -123,7 +123,7 @@ const AnnouncementSection = () => {
     
                     <div className='flex gap-4 items-center justify-center'>
                         <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                        <p className="font-[18px]">{format(postDetails[0].created_time, "MMMM d, yyyy")}</p>
+                        <p className="text-[15px]">{format(postDetails[0].created_time, "MMMM d, yyyy")}</p>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@ const AnnouncementSection = () => {
 
                                     <div className="flex justify-end items-center gap-2">
                                         <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                                        <p className="font-[18px]">{format(post.created_time, "MMMM d, yyyy")}</p>
+                                        <p className="text-[16px]">{format(post.created_time, "MMMM d, yyyy")}</p>
                                     </div>
                                 </div>
                             </div>
