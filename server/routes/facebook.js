@@ -9,25 +9,8 @@ const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 
-
 const PAGE_ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const PAGE_ID = process.env.PAGE_ID;
-
-// router.get('/feed', async (req, res) => {
-//     const url = `https://graph.facebook.com/v21.0/${PAGE_ID}/feed`;
-  
-//     try {
-//       const response = await axios.get(url,
-//         {
-//             params: { access_token: PAGE_ACCESS_TOKEN },
-//         }
-//       );
-//       res.status(200).json(response.data);
-//     } catch (error) {
-//       console.error('Error fetching data from Facebook API:', error);
-//       res.status(500).json({ error: 'Failed to fetch data from Facebook API' });
-//     }
-// });
 
 router.get('/all-post', async (req, res) => {
     const query = "SELECT post_id FROM posts WHERE (type != 'time-restricted') OR (type = 'time-restricted' AND end_date > CURRENT_DATE) ORDER BY id DESC LIMIT 1"

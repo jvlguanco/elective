@@ -12,7 +12,7 @@ import Home from './pages/main_routes/home.tsx'
 import About from './pages/main_routes/about.tsx';
 import Academics from './pages/main_routes/academics.tsx';
 import Admission from './pages/main_routes/admission.tsx';
-import Announcement from '@mui/icons-material/Announcement';
+import Announcement from './pages/main_routes/announcement.tsx';
 import Footer from './components/footer.tsx';
 import './index.css'
 
@@ -25,12 +25,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/about" element={<About />} />
         <Route path="/academics" element={<Academics />} />
         <Route path="/admissions" element={<Admission />} />
-        <Route path="/announcements" element={<Announcement />} />
-      </Routes>
-
-
-      <Routes>
-        
+        <Route path="/announcement" element={<Announcement />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
