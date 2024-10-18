@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation  } from 'react-router-dom';
 
 const MainNav = () => {
+    const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+    const [isAdmissionDropdownOpen, setIsAdmissionDropdownOpen] = useState(false);
+    const [isAcademicDropdownOpen, setIsAcademicDropdownOpen] = useState(false);
+    const location = useLocation();
+    const currentLocation = location.pathname
+
     return (
         <div className='w-full h-fit flex justify-between items-center bg-white border-b-2 border-gray-500'>
             <div className="flex gap-4 items-center px-8 py-2">
@@ -13,31 +19,127 @@ const MainNav = () => {
             </div>
 
             <ul className="flex list-none m-0 p-0">
-                <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                <li className="mr-6 relative group">
+                    <NavLink to="/" className={(currentLocation == "/" ? 'text-red-500 font-bold' : 'text-black')} end>
                         Home
                     </NavLink>
                 </li>
 
-                <li className="mr-6">
-                    <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                <li className="mr-6 relative group"
+                    onClick={() => 
+                        {
+                            if(isAboutDropdownOpen){
+                                setIsAboutDropdownOpen(false)
+                            } else {
+                                setIsAboutDropdownOpen(true)
+                                setIsAdmissionDropdownOpen(false)
+                                setIsAcademicDropdownOpen(false)
+                            }
+                        }
+                    }
+                >
+                    <span className={`cursor-pointer ${(currentLocation.startsWith('/about') ? 'text-red-500 font-bold' : 'text-black')}`}>
                         About
-                    </NavLink>
+                    </span>
+
+                    {isAboutDropdownOpen && (
+                    <div
+                        className="absolute top-12 mt-1 bg-white w-72  flex flex-col z-10"
+                        onClick={() => setIsAboutDropdownOpen(false)}
+                    >
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/about/profile" className="block px-4 py-2">University Profile</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/about/administration" className="block px-4 py-2">Administration</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/about/offices" className="block px-4 py-2">Offices</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/about/contact" className="block px-4 py-2">Contact</NavLink>
+                        </li>
+                    </div>
+                    )}
                 </li>
 
-                <li className="mr-6">
-                    <NavLink to="/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                <li className="mr-6 relative group"
+                    onClick={() => 
+                        {
+                            if(isAcademicDropdownOpen){
+                                setIsAcademicDropdownOpen(false)
+                            } else {
+                                setIsAboutDropdownOpen(false)
+                                setIsAdmissionDropdownOpen(false)
+                                setIsAcademicDropdownOpen(true)
+                            }
+                        }
+                    }
+                >
+                    <span className={`cursor-pointer ${(currentLocation.startsWith('/academic') ? 'text-red-500 font-bold' : 'text-black')}`}>
                         Academics
-                    </NavLink>
+                    </span>
+
+                    {isAcademicDropdownOpen && (
+                    <div
+                        className="absolute top-12 mt-1 bg-white w-72  flex flex-col z-10"
+                        onClick={() => setIsAcademicDropdownOpen(false)}
+                    >
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/academic/profile" className="block px-4 py-2">University Profile</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/academic/administration" className="block px-4 py-2">Administration</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/academic/offices" className="block px-4 py-2">Offices</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/academic/contact" className="block px-4 py-2">Contact</NavLink>
+                        </li>
+                    </div>
+                    )}
                 </li>
 
-                <li className="mr-6">
-                    <NavLink to="/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                <li className="mr-6 relative group"
+                    onClick={() => 
+                        {
+                            if(isAdmissionDropdownOpen){
+                                setIsAdmissionDropdownOpen(false)
+                            } else {
+                                setIsAboutDropdownOpen(false)
+                                setIsAdmissionDropdownOpen(true)
+                                setIsAcademicDropdownOpen(false)
+                            }
+                        }
+                    }
+                >
+                    <span className={`cursor-pointer ${(currentLocation.startsWith('/admission') ? 'text-red-500 font-bold' : 'text-black')}`}>
                         Admissions
-                    </NavLink>
+                    </span>
+
+                    {isAdmissionDropdownOpen && (
+                    <div
+                        className="absolute top-12 mt-1 bg-white w-72  flex flex-col z-10"
+                        onClick={() => setIsAdmissionDropdownOpen(false)}
+                    >
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/admission/profile" className="block px-4 py-2">University Profile</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/admission/administration" className="block px-4 py-2">Administration</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/admission/offices" className="block px-4 py-2">Offices</NavLink>
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <NavLink to="/admission/contact" className="block px-4 py-2">Contact</NavLink>
+                        </li>
+                    </div>
+                    )}
                 </li>
 
-                <li className="mr-6">
+                <li className="mr-6 relative group">
                     <NavLink to="/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         Announcements
                     </NavLink>
@@ -47,4 +149,4 @@ const MainNav = () => {
     );
 }
 
-export default MainNav
+export default MainNav;

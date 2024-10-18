@@ -22,7 +22,13 @@ createRoot(document.getElementById('root')!).render(
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about">
+          <Route index element={<div>Index</div>} />
+          <Route path="profile" element={<div>Profile</div>} />
+          <Route path="administration" element={<div>Admins</div>} />
+          <Route path="offices" element={<div>Offices</div>} />
+          <Route path="contact" element={ <div>Contact</div>} />
+        </Route>
         <Route path="/academics" element={<Academics />} />
         <Route path="/admissions" element={<Admission />} />
         <Route path="/announcement" element={<Announcement />} />
