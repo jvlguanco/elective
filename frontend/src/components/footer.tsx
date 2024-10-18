@@ -7,9 +7,9 @@ const Footer = () => {
         <div className='w-1/3 flex flex-col'>
             <div className='w-full flex flex-col'>
                 <div className='w-full gap-6 flex justify-center items-center'>
-                    <img src="./images/Logo.png" alt="Logo" className="h-20 w-20" />
-                    <img src="./images/haribon.png" alt="Logo" className="h-20 w-20" />
-                    <img src="./images/bagong_pilipinas.png" alt="Logo" className="h-20 w-20" />
+                    <img src="/images/Logo.png" alt="Logo" className="h-20 w-20" />
+                    <img src="/images/haribon.png" alt="Logo" className="h-20 w-20" />
+                    <img src="/images/bagong_pilipinas.png" alt="Logo" className="h-20 w-20" />
                 </div>
                 
                 <div className='w-full flex flex-col gap-1 justify-center items-center'>

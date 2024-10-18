@@ -11,7 +11,7 @@ const MainNav = () => {
     return (
         <div className='w-full h-fit flex justify-between items-center bg-white border-b-2 border-gray-500'>
             <div className="flex gap-4 items-center px-8 py-2">
-                <img src="./images/Logo.png" alt="Logo" className="h-16 w-16" />
+                <img src="/images/Logo.png" alt="Logo" className="h-16 w-16" />
                 <div>
                     <h1 className='font-serif text-lg font-semibold text-custom-yellow'>PAMANTASAN NG LUNGSOD NG MAYNILA</h1>
                     <h3 className='text-sm'>University of the City of Manila</h3>

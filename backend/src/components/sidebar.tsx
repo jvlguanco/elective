@@ -33,10 +33,10 @@ const Sidebar = () => {
     const [activeItem, setActiveItem] = useState(items[0]);
 
     useEffect(() => {
-        const defaultItem = routes[location.pathname][0];
+        const defaultItem = items[0];
         setSelectedItem(defaultItem);
         setActiveItem(defaultItem);
-    }, [location.pathname]);
+    }, [items]);
 
     const handleItemClick = (item: string) => {
         setActiveItem(item);
