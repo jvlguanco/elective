@@ -1,7 +1,8 @@
 import EventIcon from '@mui/icons-material/Event';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import { NavLink } from 'react-router-dom';
 
 interface PostData {
     id: string;
@@ -170,9 +171,9 @@ const AnnouncementSection = () => {
                     );
                 })}
     
-                <div className='w-full mt-4'>
-                    Button Here
-                </div>
+                <NavLink to="/announcement" className="bg-navy-blue px-4 py-2 rounded-full flex items-center justify-center w-fit font-inter font-semibold text-yellow-500">
+                    View All Announcements
+                </NavLink>
             </div>
         </div>
     );    

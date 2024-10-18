@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import LatestAnnouncements from '../../components/announcement/latest';
+import HighlightedAnnouncements from '../../components/announcement/highlight';
+import TimeAnnouncements from '../../components/announcement/special';
 
 const display = {
     Latest: <LatestAnnouncements/>,
-    Highlighted: <div>Highlighted Announcements</div>,
-    Special: <div>Special Announcements</div>,
+    Highlighted: <HighlightedAnnouncements/>,
+    Special: <TimeAnnouncements/>,
 }
 
 const Announcement = () => {
