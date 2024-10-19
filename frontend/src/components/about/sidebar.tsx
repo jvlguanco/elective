@@ -8,6 +8,7 @@ import Hymn from './univ_profile/hymn';
 const routes = {
     'profile': ['Vision/Mission', 'Seal and Symbols', 'PLM History', 'University Hymn'],
     'administration': ['Board of Regents', 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans'],
+    'offices': ['Accounting Office', 'Budget Office', 'Center of University Extension Services', 'General Services Office', 'Internal Audit Office', 'Office of Graduate/Professional Studies', 'Office of Guidance & Testing Services', 'Office of NSTP', 'Office of Student Development Services', 'Office of the University Legal Counsel','Office of the University Registrar','Office of the University Secretary','Office of the VP for Research','Physical Facilities Management Office','Planning And Management Office','PLM Law Center','Procurement Office','Property & Supplies Office','Revenue Generation Office','University Health Services','University Library','University Research Center']
 };
 
 const sidebarItemContent = {
