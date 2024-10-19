@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import VissionMission from './univ_profile/vission_mission';
+import Seal from './univ_profile/seal';
+import History from './univ_profile/history';
+import Hymn from './univ_profile/hymn';
 
 const routes = {
-    'profile': ['Vision/Mission', 'Seal and Symbols', 'PLM History', ' University Hymn'],
+    'profile': ['Vision/Mission', 'Seal and Symbols', 'PLM History', 'University Hymn'],
     'administration': ['Board of Regents', 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans'],
 };
 
 const sidebarItemContent = {
     'profile': {
         'Vision/Mission': <VissionMission />,
-        'Seal and Symbols': <div>Seal and Symbols Content</div>,
-        'PLM History': <div>PLM History Content</div>,
-        'University Hymn': <div>University Hymn Content</div>,
+        'Seal and Symbols': <Seal/>,
+        'PLM History': <History/>,
+        'University Hymn': <Hymn/>,
     },
     'administration': {
         'Board of Regents': <div>Board of Regents Content</div>,
