@@ -7,22 +7,25 @@ import PostAnnouncement from '../pages/announcement/post';
 import NormalPostTable from '../pages/announcement/normal';
 import HighlightedPostTable from '../pages/announcement/highlighted';
 import TimePostTable from '../pages/announcement/time';
+import JobForm from '../pages/career/create';
 
 const routes = {
-    '/': ['About', 'Hero'],
+    '/': ['About Section', 'Hero Section'],
     '/about': ['Team', 'History', 'Mission'],
     '/academics': ['Programs', 'Courses', 'Faculty'],
     '/admissions': ['Apply', 'Deadlines', 'Fees'],
     '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
+    '/careers': ['Create Opening', 'Manage Openings']
 };
 
 const sidebarItemContent = {
-    About: <AboutEdit/>,
-    Hero: <HeroEdit/>,
+    'About Section': <AboutEdit/>,
+    'Hero Section': <HeroEdit/>,
     'Create Post': <PostAnnouncement/>,
     'View Normal Post': <NormalPostTable/>,
     'View Highlighted Posts': <HighlightedPostTable/>,
-    'View Time-Restricted Posts' : <TimePostTable/>
+    'View Time-Restricted Posts' : <TimePostTable/>,
+    'Create Opening': <JobForm/>,
 };
 
 const Sidebar = () => {
@@ -53,7 +56,7 @@ const Sidebar = () => {
                             className={`p-4 cursor-pointer ${activeItem === item ? 'text-red-500 font-bold' : 'text-black'}`}
                             onClick={() => handleItemClick(item)}
                         >
-                            {item}{location.pathname != '/announcement' ? ' Section' : ''}
+                            {item}
                         </li>
                     ))}
                 </ul>

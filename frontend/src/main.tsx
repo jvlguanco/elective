@@ -13,6 +13,7 @@ import Admission from './pages/main_routes/admission.tsx';
 import Announcement from './pages/main_routes/announcement.tsx';
 import Footer from './components/footer.tsx';
 import About from './pages/main_routes/about.tsx';
+import Career from './pages/main_routes/career.tsx';
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -31,6 +32,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/academics" element={<Academics />} />
         <Route path="/admissions" element={<Admission />} />
         <Route path="/announcement" element={<Announcement />} />
+        <Route path="/careers" element={<Career />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
