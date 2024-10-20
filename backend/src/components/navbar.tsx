@@ -44,8 +44,8 @@ const Navbar = () => {
                 </li>
 
                 <li className="mr-6">
-                    <NavLink to="/careers" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        Careers
+                    <NavLink to="/others" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                        Others
                     </NavLink>
                 </li>
             </ul>

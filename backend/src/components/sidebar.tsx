@@ -16,7 +16,7 @@ const routes = {
     '/academics': ['Programs', 'Courses', 'Faculty'],
     '/admissions': ['Apply', 'Deadlines', 'Fees'],
     '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-    '/careers': ['Create Opening', 'Manage Openings']
+    '/others': ['Create Opening', 'Manage Openings']
 };
 
 const sidebarItemContent = {
@@ -27,7 +27,7 @@ const sidebarItemContent = {
     'View Highlighted Posts': <HighlightedPostTable/>,
     'View Time-Restricted Posts' : <TimePostTable/>,
     'Create Opening': <JobForm/>,
-     'Manage Openings': <JobTable/>,
+    'Manage Openings': <JobTable/>,
 };
 
 const Sidebar = () => {

@@ -121,7 +121,7 @@ const JobTable = () => {
                                 <td className="px-4 py-2 border">{career.department}</td>
                                 <td className="px-4 py-2 border">
                                     <a
-                                        href={career.file}
+                                        href={`http://localhost:5000/${career.file}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-blue-500 underline"
