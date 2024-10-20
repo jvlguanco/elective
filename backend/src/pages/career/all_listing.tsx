@@ -116,8 +116,8 @@ const JobTable = () => {
                                 <td className="px-4 py-2 border">{career.id}</td>
                                 <td className="px-4 py-2 border">{career.title}</td>
                                 <td className="px-4 py-2 border">{career.position}</td>
-                                <td className="px-4 py-2 border">${career.min_salary}</td>
-                                <td className="px-4 py-2 border">${career.max_salary}</td>
+                                <td className="px-4 py-2 border">₱{career.min_salary}</td>
+                                <td className="px-4 py-2 border">₱{career.max_salary}</td>
                                 <td className="px-4 py-2 border">{career.department}</td>
                                 <td className="px-4 py-2 border">
                                     <a
@@ -148,26 +148,27 @@ const JobTable = () => {
                     </tbody>
                 </table>
             </div>
+            
             {careers.length > itemsPerPage && (
-                    <div className="mt-6 flex justify-center">
-                        <ReactPaginate
-                            previousLabel={'Previous'}
-                            nextLabel={'Next'}
-                            breakLabel={'...'}
-                            pageCount={Math.ceil(careers.length / itemsPerPage)}
-                            marginPagesDisplayed={2}
-                            pageRangeDisplayed={5}
-                            onPageChange={handlePageClick}
-                            containerClassName={'flex items-center space-x-1'}
-                            activeClassName={'font-bold text-blue-600'}
-                            pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
-                            pageLinkClassName="text-gray-700"
-                            activeLinkClassName="text-blue-600 font-semibold"
-                            previousClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
-                            nextClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
-                        />
-                    </div>
-                )}
+                <div className="mt-6 flex justify-center">
+                    <ReactPaginate
+                        previousLabel={'Previous'}
+                        nextLabel={'Next'}
+                        breakLabel={'...'}
+                        pageCount={Math.ceil(careers.length / itemsPerPage)}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={'flex items-center space-x-1'}
+                        activeClassName={'font-bold text-blue-600'}
+                        pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+                        pageLinkClassName="text-gray-700"
+                        activeLinkClassName="text-blue-600 font-semibold"
+                        previousClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+                        nextClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+                    />
+                </div>
+            )}
 
             {/* Edit Modal */}
             {editingCareer && (
