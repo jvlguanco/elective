@@ -8,6 +8,7 @@ import NormalPostTable from '../pages/announcement/normal';
 import HighlightedPostTable from '../pages/announcement/highlighted';
 import TimePostTable from '../pages/announcement/time';
 import JobForm from '../pages/career/create';
+import JobTable from '../pages/career/all_listing';
 
 const routes = {
     '/': ['About Section', 'Hero Section'],
@@ -26,6 +27,7 @@ const sidebarItemContent = {
     'View Highlighted Posts': <HighlightedPostTable/>,
     'View Time-Restricted Posts' : <TimePostTable/>,
     'Create Opening': <JobForm/>,
+     'Manage Openings': <JobTable/>,
 };
 
 const Sidebar = () => {
