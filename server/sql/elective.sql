@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2024 at 06:26 PM
+-- Generation Time: Oct 20, 2024 at 07:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -38,6 +38,49 @@ CREATE TABLE `about_home` (
 
 INSERT INTO `about_home` (`id`, `message`) VALUES
 (1, 'Pamantasan ng Lungsod ng Maynila (PLM) is the first and only chartered and autonomous university funded by a city government. It was created by the Congress of the Philippines by virtue of Republic Act No. 4196 or “An Act Authorizing the City of Manila to Establish and Operate the University of City of Manila” on June 19, 1965\n\nThe university first opened its gates on July 17, 1967 to 556 first-year students at its campus in the historic Intramuros district, which served as the seat of power during the Spanish occupation. Currently, about 10,000 graduate and post-graduate students grace its halls to receive PLM’s quality education.\n\nThis has been edited during class');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `annual_procurement`
+--
+
+CREATE TABLE `annual_procurement` (
+  `id` int(11) NOT NULL,
+  `title` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_update`
+--
+
+CREATE TABLE `app_update` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `career`
+--
+
+CREATE TABLE `career` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `position` text NOT NULL,
+  `min_salary` decimal(10,2) NOT NULL,
+  `max_salary` decimal(10,2) NOT NULL,
+  `department` text NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -80,9 +123,35 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `post_id`, `type`, `end_date`) VALUES
-(1, '448955944966879_122109641222545578', 'normal', NULL),
-(2, '448955944966879_122109641420545578', 'time-restricted', '2024-10-17'),
-(3, '448955944966879_122109641816545578', 'normal', NULL);
+(27, '448955944966879_122109972662545578', 'normal', NULL),
+(29, '448955944966879_122109972932545578', 'time-restricted', '2024-10-24'),
+(30, '448955944966879_122109973184545578', 'highlight', NULL),
+(31, '448955944966879_122112250094545578', 'normal', NULL),
+(32, '448955944966879_122112253664545578', 'normal', NULL),
+(33, '448955944966879_122112257018545578', 'time-restricted', '2024-11-02'),
+(34, '448955944966879_122112300722545578', 'normal', NULL),
+(35, '448955944966879_122112301424545578', 'normal', NULL),
+(41, '448955944966879_122112336500545578', 'normal', NULL),
+(42, '448955944966879_122112336596545578', 'normal', NULL),
+(43, '448955944966879_122112336818545578', 'normal', NULL),
+(44, '448955944966879_122112336938545578', 'normal', NULL),
+(45, '448955944966879_122112337172545578', 'normal', NULL),
+(46, '448955944966879_122112337322545578', 'normal', NULL),
+(47, '448955944966879_122112337436545578', 'normal', NULL),
+(48, '448955944966879_122112337538545578', 'normal', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_monitoring`
+--
+
+CREATE TABLE `project_monitoring` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `date` date NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -92,6 +161,24 @@ INSERT INTO `posts` (`id`, `post_id`, `type`, `end_date`) VALUES
 -- Indexes for table `about_home`
 --
 ALTER TABLE `about_home`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `annual_procurement`
+--
+ALTER TABLE `annual_procurement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_update`
+--
+ALTER TABLE `app_update`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `career`
+--
+ALTER TABLE `career`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -107,6 +194,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `project_monitoring`
+--
+ALTER TABLE `project_monitoring`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -115,6 +208,18 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `about_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `app_update`
+--
+ALTER TABLE `app_update`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `career`
+--
+ALTER TABLE `career`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -126,7 +231,13 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `project_monitoring`
+--
+ALTER TABLE `project_monitoring`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
