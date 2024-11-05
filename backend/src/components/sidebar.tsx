@@ -12,9 +12,9 @@ import JobTable from '../pages/career/all_listing';
 
 const routes = {
     '/': ['About Section', 'Hero Section'],
-    '/about': ['Team', 'History', 'Mission'],
-    '/academics': ['Programs', 'Courses', 'Faculty'],
-    '/admissions': ['Apply', 'Deadlines', 'Fees'],
+    '/about': ['Board of Regents', 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+    '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+    '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
     '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
     '/others': ['Create Opening', 'Manage Openings']
 };
