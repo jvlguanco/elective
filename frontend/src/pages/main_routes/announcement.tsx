@@ -14,7 +14,7 @@ const display = {
 const Announcement = () => {
     const [hasTimePost, setHasTimePost] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
-    var navTitles = ['Latest', 'Highlighted', 'Special'];
+    const [navTitles, setNavTitles] = useState(['Latest', 'Highlighted', 'Special']);
     const [selectedItem, setSelectedItem] = useState(navTitles[0]);
 
     const checkSpecialPost = () => {
@@ -34,18 +34,21 @@ const Announcement = () => {
         checkSpecialPost();
     }, []);
 
+    useEffect(() => {
+        if (!hasTimePost) {
+            setNavTitles(['Latest', 'Highlighted']);
+            setSelectedItem('Latest');
+        } else {
+            setNavTitles(['Latest', 'Highlighted', 'Special']);
+        }
+    }, [hasTimePost]);
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <p>Loading...</p>
             </div>
         );
-    }
-
-    if(!hasTimePost)
-    {
-        navTitles = ['Latest', 'Highlighted'];
-        setSelectedItem(navTitles[0]);
     }
 
     return (

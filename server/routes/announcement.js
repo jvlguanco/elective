@@ -6,7 +6,7 @@ const upload = require('../storage');
 const path = require('path');
 
 router.get('/check-time-post', (req, res) => {
-    const query = "SELECT post_id FROM posts WHERE (type != 'time-restricted') OR (type = 'time-restricted' AND end_date > CURRENT_DATE) ORDER BY id DESC LIMIT 1"
+    const query = "SELECT post_id FROM posts WHERE (type = 'time-restricted') AND (type = 'time-restricted' AND end_date > CURRENT_DATE) ORDER BY id DESC LIMIT 1"
   
     db.query(query, (error, results) => {
       if (error) {
