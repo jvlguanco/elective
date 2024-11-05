@@ -1,52 +1,83 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense  } from 'react';
 import { useLocation } from 'react-router-dom';
-import VissionMission from './univ_profile/vission_mission';
-import Seal from './univ_profile/seal';
-import History from './univ_profile/history';
-import Hymn from './univ_profile/hymn';
 
-const routes = {
-    'profile': ['Vision/Mission', 'Seal and Symbols', 'PLM History', 'University Hymn'],
-    'administration': ['Board of Regents', 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans'],
-    'offices': ['Accounting Office', 'Budget Office', 'Center of University Extension Services', 'General Services Office', 'Internal Audit Office', 'Office of Graduate/Professional Studies', 'Office of Guidance & Testing Services', 'Office of NSTP', 'Office of Student Development Services', 'Office of the University Legal Counsel','Office of the University Registrar','Office of the University Secretary','Office of the VP for Research','Physical Facilities Management Office','Planning And Management Office','PLM Law Center','Procurement Office','Property & Supplies Office','Revenue Generation Office','University Health Services','University Library','University Research Center']
+interface SidebarItem {
+    name: string;
+    component: string;
+}
+
+const sidebarData: Record<string, SidebarItem[]> = {
+    'profile': [
+        { name: 'Vision/Mission', component: 'vission_mission' },
+        { name: 'Seal and Symbols', component: 'seal' },
+        { name: 'PLM History', component: 'history' },
+        { name: 'University Hymn', component: 'hymm' },
+    ],
+    'administration': [
+        { name: 'Board of Regents', component: 'Board of Regents' },
+        { name: 'The President', component: 'The President' },
+        { name: 'Vice Presidents and Assistant Vice Presidents', component: 'Vice Presidents and Assistant Vice Presidents' },
+        { name: 'Directors and Chiefs', component: 'Directors and Chiefs' },
+        { name: 'Deans', component: 'Deans' },
+        { name: 'Organizational Chart', component: 'Organizational Chart' },
+        { name: 'Presidential Support Staff', component: 'Presidential Support Staff' },
+    ],
+    'offices': [
+        { name: 'Accounting Office', component: 'Accounting Office' },
+        { name: 'Budget Office', component: 'Budget Office' },
+        { name: 'Center of University Extension Services', component: 'Center of University Extension Services' },
+        { name: 'General Services Office', component: 'General Services Office' },
+        { name: 'Internal Audit Office', component: 'Internal Audit Office' },
+        { name: 'Office of Graduate/Professional Studies', component: 'Office of Graduate/Professional Studies' },
+        { name: 'Office of Guidance & Testing Services', component: 'Office of Guidance & Testing Services' },
+        { name: 'Office of NSTP', component: 'Office of NSTP' },
+        { name: 'Office of Student Development Services', component: 'Office of Student Development Services' },
+        { name: 'Office of the University Legal Counsel', component: 'Office of the University Legal Counsel' },
+        { name: 'Office of the University Registrar', component: 'Office of the University Registrar' },
+        { name: 'Office of the University Secretary', component: 'Office of the University Secretary' },
+        { name: 'Office of the VP for Research', component: 'Office of the VP for Research' },
+        { name: 'Physical Facilities Management Office', component: 'Physical Facilities Management Office' },
+        { name: 'Planning And Management Office', component: 'Planning And Management Office' },
+        { name: 'PLM Law Center', component: 'PLM Law Center' },
+        { name: 'Procurement Office', component: 'Procurement Office' },
+        { name: 'Property & Supplies Office', component: 'Property & Supplies Office' },
+        { name: 'Revenue Generation Office', component: 'Revenue Generation Office' },
+        { name: 'University Health Services', component: 'University Health Services' },
+        { name: 'University Library', component: 'University Library' },
+        { name: 'University Research Center', component: 'University Research Center' },
+    ],
+    'contact': [
+        { name: 'PLM Colleges', component: 'PLM Colleges' },
+        { name: 'PLM Offices', component: 'PLM Offices' },
+        { name: 'PLM Executives', component: 'PLM Executives' },
+    ],
 };
 
-const sidebarItemContent = {
-    'profile': {
-        'Vision/Mission': <VissionMission />,
-        'Seal and Symbols': <Seal/>,
-        'PLM History': <History/>,
-        'University Hymn': <Hymn/>,
-    },
-    'administration': {
-        'Board of Regents': <div>Board of Regents Content</div>,
-        'The President': <div>The President Content</div>,
-        'Vice Presidents and Assistant Vice Presidents': <div>Vice Presidents Content</div>,
-        'Directors and Chiefs': <div>Directors and Chiefs Content</div>,
-        'Deans': <div>Deans Content</div>,
-    },
+const loadComponent = (componentName: string, location: string) => {
+    return React.lazy(() => import(`./${location}/${componentName}`).catch(() => ({ default: () => <div>No content available</div> })));
 };
 
 const AboutSidebar = () => { 
     const location = useLocation();
     const routeKey = location.pathname.split('/')[2] ?? 'profile';
-    const items = routes[routeKey];
+    const items = sidebarData[routeKey] ?? [];
 
-    const [selectedItem, setSelectedItem] = useState(items[0]);
-    const [activeItem, setActiveItem] = useState(items[0]);
+    const [selectedItem, setSelectedItem] = useState<string>(items[0]?.name || '');
+    const [activeItem, setActiveItem] = useState<string>(items[0]?.name || '');
 
     useEffect(() => {
-        const defaultItem = items[0];
+        const defaultItem = items[0]?.name || '';
         setSelectedItem(defaultItem);
         setActiveItem(defaultItem);
     }, [items]);
 
-    const handleItemClick = (item: string) => {
-        setActiveItem(item);
-        setSelectedItem(item);
+    const handleItemClick = (itemName: string) => {
+        setActiveItem(itemName);
+        setSelectedItem(itemName);
     };
 
-    const content = sidebarItemContent[routeKey]?.[selectedItem] || <div>No content available</div>;
+    const selectedComponentName = items.find(item => item.name === selectedItem)?.component;
+    const SelectedComponent = selectedComponentName ? loadComponent(selectedComponentName, routeKey) : null;
 
     return(
         <div className='w-full flex'>
@@ -54,18 +85,20 @@ const AboutSidebar = () => {
                 <ul>
                     {items.map(item => (
                         <li
-                            key={item}
-                            className={`p-4  cursor-pointer ${activeItem === item ? 'text-yellow-600 font-bold border-yellow-600 border-l-4' : 'text-black border-l-2 hover:text-yellow-600'}`}
-                            onClick={() => handleItemClick(item)}
+                            key={item.name}
+                            className={`p-4  cursor-pointer ${activeItem === item.name ? 'text-yellow-600 font-bold border-yellow-600 border-l-4' : 'text-black border-l-2 hover:text-yellow-600'}`}
+                            onClick={() => handleItemClick(item.name)}
                         >
-                            {item} 
+                            {item.name} 
                         </li>
                     ))}
                 </ul>
             </div>
     
             <div className="w-4/5">
-                {content}
+                <Suspense fallback={<div>Loading...</div>}>
+                    {SelectedComponent ? <SelectedComponent /> : <div>No content available</div>}
+                </Suspense>
             </div>
         </div>
     )
