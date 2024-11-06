@@ -9,10 +9,11 @@ import HighlightedPostTable from '../pages/announcement/highlighted';
 import TimePostTable from '../pages/announcement/time';
 import JobForm from '../pages/career/create';
 import JobTable from '../pages/career/all_listing';
+import BoardOfRegents from '../pages/administration/board';
 
 const routes = {
     '/': ['About Section', 'Hero Section'],
-    '/about': ['Board of Regents', 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+    '/about': ['Board of Regents Member', 'View Board of Regent Members' , 'The President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
     '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
     '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
     '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
@@ -28,6 +29,7 @@ const sidebarItemContent = {
     'View Time-Restricted Posts' : <TimePostTable/>,
     'Create Opening': <JobForm/>,
     'Manage Openings': <JobTable/>,
+    'Board of Regents Member': <BoardOfRegents/>
 };
 
 const Sidebar = () => {
