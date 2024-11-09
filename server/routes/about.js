@@ -82,5 +82,129 @@ router.delete('/board-of-regents/:id', (req, res) => {
     });
 });
 
+router.get('/presidents', (req, res) => {
+    db.query(`SELECT * FROM president ORDER BY status DESC`, (err, results) => {
+        if (err) {
+            console.error("Error retrieving presidents:", err);
+            return res.status(500).json({ message: 'Error retrieving presidents.' });
+        }
+        const activePresident = results.find(president => president.status === 'active');
+        const formerPresidents = results.filter(president => president.status === 'inactive');
+        res.json({ activePresident, formerPresidents });
+    });
+});
+
+router.post('/presidents', upload.single('image'), (req, res) => {
+    const { name, description, status } = req.body;
+    const imagePath = req.file ? req.file.path : null;
+
+    db.beginTransaction((err) => {
+        if (err) return handleTransactionError(err, res, db, 'Transaction initiation failed.');
+
+        const updateQuery = status === 'active'
+            ? `UPDATE president SET status = 'inactive' WHERE status = 'active'`
+            : null;
+
+        const insertNewPresident = () => {
+            db.query(
+                `INSERT INTO president (name, description, image, status) VALUES (?, ?, ?, ?)`,
+                [name, description, imagePath, status || 'inactive'],
+                (insertErr) => {
+                    if (insertErr) return handleTransactionError(insertErr, res, db, 'Error inserting new president.');
+                    db.commit((commitErr) => {
+                        if (commitErr) return handleTransactionError(commitErr, res, db, 'Commit failed.');
+                        res.json({ message: 'New president added successfully.' });
+                    });
+                }
+            );
+        };
+
+        updateQuery ? db.query(updateQuery, (updateErr) => updateErr ? handleTransactionError(updateErr, res, db, 'Error updating current president.') : insertNewPresident()) : insertNewPresident();
+    });
+});
+
+router.put('/presidents/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, description, status } = req.body;
+    const imagePath = req.file ? req.file.path : undefined;
+
+    db.beginTransaction((err) => {
+        if (err) return handleTransactionError(err, res, db, 'Transaction initiation failed.');
+
+        const updateFields = [];
+        const values = [];
+
+        if (name) updateFields.push("name = ?"), values.push(name);
+        if (description) updateFields.push("description = ?"), values.push(description);
+        if (imagePath) updateFields.push("image = ?"), values.push(imagePath);
+        if (status) updateFields.push("status = ?"), values.push(status);
+        values.push(id);
+
+        const deleteOldImageAndUpdate = () => {
+            db.query('SELECT image FROM president WHERE id = ?', [id], (err, results) => {
+                if (err) return handleTransactionError(err, res, db, 'Error retrieving old image.');
+
+                const oldImagePath = results[0]?.image;
+                const fullExistingImagePath = path.join(__dirname, '../', oldImagePath);
+                if (fullExistingImagePath && imagePath) {
+                    fs.unlink(path.resolve(fullExistingImagePath), (err) => {
+                        if (err) console.error('Failed to delete old image:', err);
+                    });
+                }
+
+                updatePresident();
+            });
+        };
+
+        const updatePresident = () => {
+            db.query(`UPDATE president SET ${updateFields.join(", ")} WHERE id = ?`, values, (err) => {
+                if (err) return handleTransactionError(err, res, db, 'Error updating president.');
+                db.commit((err) => {
+                    if (err) return handleTransactionError(err, res, db, 'Commit failed.');
+                    res.json({ message: 'President updated successfully.' });
+                });
+            });
+        };
+
+        if (status === 'active') {
+            db.query(`UPDATE president SET status = 'inactive' WHERE status = 'active' AND id != ?`, [id], (err) => {
+                if (err) return handleTransactionError(err, res, db, 'Error updating active status.');
+                deleteOldImageAndUpdate();
+            });
+        } else {
+            deleteOldImageAndUpdate();
+        }
+    });
+});
+
+router.delete('/presidents/:id', (req, res) => {
+    const { id } = req.params;
+
+    // Retrieve the image path from the database
+    db.query(`SELECT image FROM president WHERE id = ?`, [id], (err, results) => {
+        if (err) {
+            console.error("Error retrieving president image:", err);
+            return res.status(500).json({ message: 'Error retrieving president image.' });
+        }
+
+        const imagePath = results[0]?.image;
+        const fullExistingImagePath = path.join(__dirname, '../', imagePath);
+
+        db.query(`DELETE FROM president WHERE id = ?`, [id], (err) => {
+            if (err) {
+                console.error("Error deleting president:", err);
+                return res.status(500).json({ message: 'Error deleting president.' });
+            }
+
+            if (fullExistingImagePath) {
+                fs.unlink(path.resolve(fullExistingImagePath), (err) => {
+                    if (err) console.error("Failed to delete president's image:", err);
+                });
+            }
+
+            res.json({ message: 'President deleted successfully.' });
+        });
+    });
+});
 
 module.exports = router;
