@@ -11,10 +11,11 @@ import JobForm from '../pages/career/create';
 import JobTable from '../pages/career/all_listing';
 import BoardOfRegents from '../pages/administration/board';
 import Presidents from '../pages/administration/president';
+import ManagementCommittee from '../pages/administration/committee';
 
 const routes = {
     '/': ['About Section', 'Hero Section'],
-    '/about': ['Board of Regents Member' , 'President', 'Vice Presidents and Assistant Vice Presidents', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+    '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
     '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
     '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
     '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
@@ -31,7 +32,8 @@ const sidebarItemContent = {
     'Create Opening': <JobForm/>,
     'Manage Openings': <JobTable/>,
     'Board of Regents Member': <BoardOfRegents/>,
-    'President': <Presidents/>
+    'President': <Presidents/>,
+    'Management Committee': <ManagementCommittee/>
 };
 
 const Sidebar = () => {

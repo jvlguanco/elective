@@ -18,14 +18,14 @@ router.get('/board-of-regents', (req, res) => {
 });
 
 router.post('/board-of-regents', upload.single('image'), (req, res) => {
-    const { name, email, title } = req.body;
+    const { name, email, title, status } = req.body;
     if (!req.file) {
         return res.status(400).json({ message: 'Image is required for new board members' });
     }
     const imagePath = req.file.path;
   
-    const query = 'INSERT INTO board (name, email, title, image) VALUES (?, ?, ?, ?)';
-    db.query(query, [name, email, title, imagePath], (err, result) => {
+    const query = 'INSERT INTO board (name, email, title, image, status) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [name, email, title, imagePath, status], (err, result) => {
       if (err) return res.status(500).send(err);
       res.json({ message: 'User added successfully!', userId: result.insertId });
     });
@@ -180,7 +180,6 @@ router.put('/presidents/:id', upload.single('image'), (req, res) => {
 router.delete('/presidents/:id', (req, res) => {
     const { id } = req.params;
 
-    // Retrieve the image path from the database
     db.query(`SELECT image FROM president WHERE id = ?`, [id], (err, results) => {
         if (err) {
             console.error("Error retrieving president image:", err);
@@ -203,6 +202,83 @@ router.delete('/presidents/:id', (req, res) => {
             }
 
             res.json({ message: 'President deleted successfully.' });
+        });
+    });
+});
+
+router.get('/management-committee', (req, res) => {
+    const query = 'SELECT * FROM management_committee';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).send(err);
+
+        const activeMembers = results.filter(member => member.status === 'active');
+        const inactiveMembers = results.filter(member => member.status === 'inactive');
+        
+        res.json({ active: activeMembers, inactive: inactiveMembers });
+    });
+});
+
+router.post('/management-committee', upload.single('image'), (req, res) => {
+    const { name, email, title, status } = req.body;
+    if (!req.file) {
+        return res.status(400).json({ message: 'Image is required for new committee members' });
+    }
+    const imagePath = req.file.path;
+  
+    const query = 'INSERT INTO management_committee (name, email, title, image, status) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [name, email, title, imagePath, status], (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.json({ message: 'Committee member added successfully!', userId: result.insertId });
+    });
+});
+
+router.put('/management-committee/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, email, title, status } = req.body;
+
+    const selectQuery = `SELECT image FROM management_committee WHERE id = ?`;
+    db.query(selectQuery, [id], (err, results) => {
+        if (err) return res.status(500).send({ error: 'Database query error', details: err });
+        if (results.length === 0) return res.status(404).json({ message: 'Committee member not found' });
+
+        const existingImage = results[0].image;
+        let imagePath = existingImage;
+
+        if (req.file) {
+            const fullExistingImagePath = path.join(__dirname, '../', existingImage);
+            if (existingImage && fs.existsSync(fullExistingImagePath)) {
+                fs.unlinkSync(fullExistingImagePath);
+            }
+            imagePath = req.file.path;
+        }
+
+        const updateQuery = `UPDATE management_committee SET name = ?, email = ?, title = ?, image = ?, status = ? WHERE id = ?`;
+        db.query(updateQuery, [name, email, title, imagePath, status, id], (err, result) => {
+            if (err) return res.status(500).send({ error: 'Database update error', details: err });
+            res.json({ message: 'Committee member updated successfully' });
+        });
+    });
+});
+
+router.delete('/management-committee/:id', (req, res) => {
+    const { id } = req.params;
+
+    const selectQuery = `SELECT image FROM management_committee WHERE id = ?`;
+    db.query(selectQuery, [id], (err, results) => {
+        if (err) return res.status(500).send(err);
+        if (results.length === 0) return res.status(404).json({ message: 'Committee member not found' });
+
+        const image = results[0].image;
+        const fullExistingImagePath = path.join(__dirname, '../', image);
+
+        if (image && fs.existsSync(fullExistingImagePath)) {
+            fs.unlinkSync(fullExistingImagePath);
+        }
+
+        const deleteQuery = `DELETE FROM management_committee WHERE id = ?`;
+        db.query(deleteQuery, [id], (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: 'Committee member deleted successfully' });
         });
     });
 });
