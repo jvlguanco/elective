@@ -283,4 +283,70 @@ router.delete('/management-committee/:id', (req, res) => {
     });
 });
 
+router.get('/dc-offices', (req, res) => {
+    const query = 'SELECT * FROM director_offices';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).send(err);
+
+        const activeOffices = results.filter(office => office.status === 'active');
+        const inactiveOffices = results.filter(office => office.status === 'inactive');
+        
+        res.json({ active: activeOffices, inactive: inactiveOffices });
+    });
+});
+
+router.post('/dc-offices', (req, res) => {
+    const { office_name, status } = req.body;
+
+    if (!office_name || !status) {
+        return res.status(400).json({ error: 'Office name and status are required' });
+    }
+
+    const query = 'INSERT INTO director_offices (office_name, status) VALUES (?, ?)';
+    
+    db.query(query, [office_name, status], (error, result) => {
+        if (error) {
+            console.error("Error adding new office:", error);
+            return res.status(500).json({ error: 'Error adding new office' });
+        }
+        res.status(201).json({ message: 'New office added successfully', id: result.insertId });
+    });
+});
+
+router.put('/dc-offices/:id', async (req, res) => {
+    const { id } = req.params;
+    const { office_name, status } = req.body;
+    try {
+        const [result] = await db.promise().query(
+            'UPDATE director_offices SET office_name = ?, status = ? WHERE id = ?',
+            [office_name, status, id]
+        );
+
+        if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'Office not found' });
+        } else {
+            res.json({ message: 'Office updated successfully' });
+        }
+    } catch (error) {
+        console.error("Error updating office:", error);
+        res.status(500).json({ message: 'Failed to update office' });
+    }
+});
+
+router.delete('/dc-offices/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await db.promise().query('DELETE FROM director_offices WHERE id = ?', [id]);
+
+        if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'Office not found' });
+        } else {
+            res.json({ message: 'Office deleted successfully' });
+        }
+    } catch (error) {
+        console.error("Error deleting office:", error);
+        res.status(500).json({ message: 'Failed to delete office' });
+    }
+});
+
 module.exports = router;
