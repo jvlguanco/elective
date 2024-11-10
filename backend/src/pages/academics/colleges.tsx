@@ -153,12 +153,15 @@ const Colleges = () => {
     };
 
     const handleDeleteCollege = (collegeId) => {
-        axios.delete(`http://localhost:5000/about/college/${collegeId}`)
-            .then(() => {
-                alert("College deleted successfully");
-                fetchColleges();
-            })
-            .catch(error => console.error("Error deleting college:", error));
+        const isConfirmed = window.confirm("Are you sure you want to delete this college?");
+        if (isConfirmed) {
+            axios.delete(`http://localhost:5000/about/college/${collegeId}`)
+                .then(() => {
+                    alert("College deleted successfully");
+                    fetchColleges();
+                })
+                .catch(error => console.error("Error deleting college:", error));
+        }
     };
 
     return (
