@@ -456,4 +456,56 @@ router.delete('/dc-members/:id', (req, res) => {
     });
 });
 
+
+router.get('/college', (req, res) => {
+    const query = 'SELECT * FROM colleges';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).send(err);
+
+        const activeCollege = results.filter(college => college.status === 'active');
+        const inactiveCollege = results.filter(college => college.status === 'inactive');
+        
+        res.json({ active: activeCollege, inactive: inactiveCollege });
+    });
+});
+
+router.post('/college', (req, res) => {
+    const { college_id, college_name, description, vision, mission, status, objectives } = req.body;
+
+    const insertCollegeQuery = `
+        INSERT INTO colleges (college_id, college_name, description, vision, mission, status)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        insertCollegeQuery,
+        [college_id, college_name, description, vision, mission, status],
+        (error, results) => {
+            if (error) {
+                console.error('Failed to add new college:', error);
+                return res.status(500).json({ message: 'Failed to add new college' });
+            }
+
+            if (objectives) {
+                const objectivesArray = objectives.split(';').map(obj => obj.trim());
+                const insertObjectivesQuery = `
+                    INSERT INTO objectives (college_id, objective)
+                    VALUES (?, ?)
+                `;
+                
+                objectivesArray.forEach(objective => {
+                    db.query(insertObjectivesQuery, [college_id, objective], (err) => {
+                        if (err) {
+                            console.error('Failed to add objective:', err);
+                        }
+                    });
+                });
+            }
+
+            res.status(200).json({ message: 'New college added successfully!' });
+        }
+    );
+});
+
+
 module.exports = router;

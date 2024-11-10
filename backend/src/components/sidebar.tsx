@@ -13,6 +13,7 @@ import BoardOfRegents from '../pages/administration/board';
 import Presidents from '../pages/administration/president';
 import ManagementCommittee from '../pages/administration/committee';
 import DirectorsAndChiefs from '../pages/administration/director';
+import Colleges from '../pages/academics/colleges';
 
 const routes = {
     '/': ['About Section', 'Hero Section'],
@@ -35,7 +36,8 @@ const sidebarItemContent = {
     'Board of Regents Member': <BoardOfRegents/>,
     'President': <Presidents/>,
     'Management Committee': <ManagementCommittee/>,
-    'Directors and Chiefs': <DirectorsAndChiefs/>
+    'Directors and Chiefs': <DirectorsAndChiefs/>,
+    'Colleges': <Colleges/>
 };
 
 const Sidebar = () => {
