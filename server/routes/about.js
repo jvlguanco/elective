@@ -349,4 +349,111 @@ router.delete('/dc-offices/:id', async (req, res) => {
     }
 });
 
+router.get('/dc-members', async (req, res) => {
+    const { office_id } = req.query;
+
+    if (!office_id) {
+        return res.status(400).json({ message: 'Office ID is required' });
+    }
+
+    try {
+        const [activeMembers] = await db.promise().query(
+            'SELECT id, name, title, email, status, image FROM directors WHERE office_id = ? AND status = ?',
+            [office_id, 'active']
+        );
+
+        const [inactiveMembers] = await db.promise().query(
+            'SELECT id, name, title, email, status, image FROM directors WHERE office_id = ? AND status = ?',
+            [office_id, 'inactive']
+        );
+
+        res.json({
+            active: activeMembers,
+            inactive: inactiveMembers,
+        });
+    } catch (error) {
+        console.error("Error fetching members:", error);
+        res.status(500).json({ message: 'Failed to fetch members' });
+    }
+});
+
+router.post('/dc-members', upload.single('image'), (req, res) => {
+    const { name, title, email, status, office_id } = req.body;
+    const image = req.file ? req.file.path : null;
+
+    const sql = 'INSERT INTO directors (name, title, email, status, office_id, image) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [name, title, email, status, office_id, image], (err, result) => {
+        if (err) {
+            console.error('Error adding member:', err);
+            return res.status(500).json({ message: 'Failed to add member' });
+        }
+        res.json({ message: 'Member added successfully' });
+    });
+});
+
+router.put('/dc-members/:id', upload.single('image'), (req, res) => {
+    const memberId = req.params.id;
+    const { name, title, email, status } = req.body;
+    const newImage = req.file ? req.file.filename : null;
+
+    const getMemberSql = 'SELECT image FROM directors WHERE id = ?';
+    db.query(getMemberSql, [memberId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error finding member:', err);
+            return res.status(404).json({ message: 'Member not found' });
+        }
+
+        const oldImage = results[0].image;
+
+        const updateSql = 'UPDATE directors SET name = ?, title = ?, email = ?, status = ?, image = ? WHERE id = ?';
+        db.query(updateSql, [name, title, email, status, newImage || oldImage, memberId], (err) => {
+            if (err) {
+                console.error('Error updating member:', err);
+                return res.status(500).json({ message: 'Failed to update member' });
+            }
+
+            if (newImage && oldImage) {
+                const oldImagePath = path.join(__dirname, '../', oldImage);
+                fs.unlink(oldImagePath, (err) => {
+                    if (err) console.error('Error deleting old image:', err);
+                });
+            }
+
+            res.json({ message: 'Member updated successfully' });
+        });
+    });
+});
+
+router.delete('/dc-members/:id', (req, res) => {
+    const memberId = req.params.id;
+
+    const getMemberSql = 'SELECT image FROM directors WHERE id = ?';
+    db.query(getMemberSql, [memberId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error finding member:', err);
+            return res.status(404).json({ message: 'Member not found' });
+        }
+
+        const image = results[0].image;
+        const deleteSql = 'DELETE FROM directors WHERE id = ?';
+        console.log(image)
+
+        db.query(deleteSql, [memberId], (err) => {
+            if (err) {
+                console.error('Error deleting member:', err);
+                return res.status(500).json({ message: 'Failed to delete member' });
+            }
+
+            if (image) {
+                const imagePath = path.join(__dirname, '../', image);
+                fs.unlink(imagePath, (err) => {
+                    if (err) console.error('Error deleting image:', err);
+                });
+            }
+
+            res.json({ message: 'Member deleted successfully' });
+        });
+    });
+});
+
 module.exports = router;
