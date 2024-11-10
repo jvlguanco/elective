@@ -458,28 +458,56 @@ router.delete('/dc-members/:id', (req, res) => {
 
 
 router.get('/college', (req, res) => {
-    const query = 'SELECT * FROM colleges';
-    db.query(query, (err, results) => {
-        if (err) return res.status(500).send(err);
-
-        const activeCollege = results.filter(college => college.status === 'active');
-        const inactiveCollege = results.filter(college => college.status === 'inactive');
+    db.query('SELECT * FROM colleges', (err, colleges) => {
+        if (err) {
+            console.error('Error retrieving colleges:', err);
+            return res.status(500).json({ error: 'Error retrieving colleges' });
+        }
         
-        res.json({ active: activeCollege, inactive: inactiveCollege });
+        db.query('SELECT * FROM objectives', (err, objectives) => {
+            if (err) {
+                console.error('Error retrieving objectives:', err);
+                return res.status(500).json({ error: 'Error retrieving objectives' });
+            }
+
+            const formattedData = {
+                active: [],
+                inactive: []
+            };
+
+            colleges.forEach(college => {
+                const collegeObjectives = objectives
+                    .filter(obj => obj.college_id === college.college_id)
+                    .map(obj => obj.objective);
+                
+                const collegeData = {
+                    ...college,
+                    objectives: collegeObjectives
+                };
+                
+                if (college.status === 'active') {
+                    formattedData.active.push(collegeData);
+                } else {
+                    formattedData.inactive.push(collegeData);
+                }
+            });
+
+            res.json(formattedData);
+        });
     });
 });
 
 router.post('/college', (req, res) => {
-    const { college_id, college_name, description, vision, mission, status, objectives } = req.body;
+    const { college_id, college_name, description, history, vision, mission, status, objectives } = req.body;
 
     const insertCollegeQuery = `
-        INSERT INTO colleges (college_id, college_name, description, vision, mission, status)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO colleges (college_id, college_name, description, history, vision, mission, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         insertCollegeQuery,
-        [college_id, college_name, description, vision, mission, status],
+        [college_id, college_name, description, history, vision, mission, status],
         (error, results) => {
             if (error) {
                 console.error('Failed to add new college:', error);
@@ -487,24 +515,79 @@ router.post('/college', (req, res) => {
             }
 
             if (objectives) {
-                const objectivesArray = objectives.split(';').map(obj => obj.trim());
-                const insertObjectivesQuery = `
-                    INSERT INTO objectives (college_id, objective)
-                    VALUES (?, ?)
-                `;
-                
-                objectivesArray.forEach(objective => {
-                    db.query(insertObjectivesQuery, [college_id, objective], (err) => {
-                        if (err) {
-                            console.error('Failed to add objective:', err);
-                        }
-                    });
+                const objectiveData = objectives.map(objective => [college_id, objective]);
+
+                db.query('INSERT INTO objectives (college_id, objective) VALUES ?', [objectiveData], (err) => {
+                    if (err) {
+                        console.error('Error adding updated objectives:', err);
+                        return res.status(500).json({ error: 'Failed to add updated objectives' });
+                    }
+
+                    res.json({ message: 'College updated successfully' });
                 });
             }
 
             res.status(200).json({ message: 'New college added successfully!' });
         }
     );
+});
+
+
+router.put('/college/:college_id', (req, res) => {
+    const { college_id } = req.params;
+    const { college_name, description, history, vision, mission, objectives, status } = req.body;
+
+    db.query(
+        'UPDATE colleges SET college_name = ?, description = ?, history = ?, vision = ?, mission = ?, status = ? WHERE college_id = ?',
+        [college_name, description, history, vision, mission, status, college_id],
+        (err) => {
+            if (err) {
+                console.error('Error updating college:', err);
+                return res.status(500).json({ error: 'Failed to update college' });
+            }
+
+            db.query('DELETE FROM objectives WHERE college_id = ?', [college_id], (err) => {
+                if (err) {
+                    console.error('Error deleting old objectives:', err);
+                    return res.status(500).json({ error: 'Failed to delete old objectives' });
+                }
+
+                if (objectives && objectives.length > 0) {
+                    const objectiveData = objectives.map(objective => [college_id, objective]);
+                    db.query('INSERT INTO objectives (college_id, objective) VALUES ?', [objectiveData], (err) => {
+                        if (err) {
+                            console.error('Error adding updated objectives:', err);
+                            return res.status(500).json({ error: 'Failed to add updated objectives' });
+                        }
+
+                        res.json({ message: 'College updated successfully' });
+                    });
+                } else {
+                    res.json({ message: 'College updated successfully' });
+                }
+            });
+        }
+    );
+});
+
+router.delete('/college/:college_id', (req, res) => {
+    const { college_id } = req.params;
+
+    db.query('DELETE FROM objectives WHERE college_id = ?', [college_id], (err) => {
+        if (err) {
+            console.error('Error deleting objectives:', err);
+            return res.status(500).json({ error: 'Failed to delete objectives' });
+        }
+
+        db.query('DELETE FROM colleges WHERE college_id = ?', [college_id], (err) => {
+            if (err) {
+                console.error('Error deleting college:', err);
+                return res.status(500).json({ error: 'Failed to delete college' });
+            }
+
+            res.json({ message: 'College deleted successfully' });
+        });
+    });
 });
 
 
