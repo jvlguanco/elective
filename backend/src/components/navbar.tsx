@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ role, onLogout }) => {
     return (
         <div className='w-full h-fit flex justify-between items-center bg-white border-b-2 border-black'>
             <div className="flex gap-4 items-center px-8 py-2">

@@ -1,11 +1,30 @@
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/navbar';
+import Sidebar from './components/sidebar';
+import Login from './components/login';
+import { roles } from './components/contants';
 
-function App() {
-  return (
-    <div>
+const App = () => {
+    const [role, setRole] = useState(null);
 
-    </div>
-  )
-}
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setRole(null);
+    };
 
-export default App
+    return (
+        <BrowserRouter>
+            {role ? (
+                <>
+                    <Navbar role={role} onLogout={handleLogout} />
+                    <Sidebar role={role} />
+                </>
+            ) : (
+                <Login setRole={setRole} />
+            )}
+        </BrowserRouter>
+    );
+};
+
+export default App;

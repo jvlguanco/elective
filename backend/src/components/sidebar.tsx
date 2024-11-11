@@ -40,7 +40,7 @@ const sidebarItemContent = {
     'Colleges': <Colleges/>
 };
 
-const Sidebar = () => {
+const Sidebar = ({role}) => {
     const location = useLocation();
     const items = routes[location.pathname];
 
