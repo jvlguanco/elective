@@ -18,35 +18,46 @@ const Navbar = ({ role, onLogout }) => {
                         Home
                     </NavLink>
                 </li>
+                
+                {role === 'admin' || role === 'others' ? (
+                    <>
+                        <li className="mr-6">
+                            <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                                About
+                            </NavLink>
+                        </li>
+                        <li className="mr-6">
+                            <NavLink to="/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                                Academics
+                            </NavLink>
+                        </li>
+                        <li className="mr-6">
+                            <NavLink to="/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                                Admissions
+                            </NavLink>
+                        </li>
+                        <li className="mr-6">
+                            <NavLink to="/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                                Announcements
+                            </NavLink>
+                        </li>
+                    </>
+                ) : null}
 
-                <li className="mr-6">
-                    <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        About
-                    </NavLink>
-                </li>
+                {role === 'admin' ? (
+                    <>
+                        <li className="mr-6">
+                            <NavLink to="/others" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                                Others
+                            </NavLink>
+                        </li>
+                    </>
+                ) : null}
 
-                <li className="mr-6">
-                    <NavLink to="/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        Academics
-                    </NavLink>
-                </li>
-
-                <li className="mr-6">
-                    <NavLink to="/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        Admissions
-                    </NavLink>
-                </li>
-
-                <li className="mr-6">
-                    <NavLink to="/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        Announcements
-                    </NavLink>
-                </li>
-
-                <li className="mr-6">
-                    <NavLink to="/others" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
-                        Others
-                    </NavLink>
+                <li>
+                    <button onClick={onLogout} className="text-red-500 font-bold pr-8">
+                        Logout
+                    </button>
                 </li>
             </ul>
         </div>

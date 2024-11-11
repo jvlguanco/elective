@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
 import Login from './components/login';
-import { roles } from './components/contants';
 
 const App = () => {
     const [role, setRole] = useState(null);

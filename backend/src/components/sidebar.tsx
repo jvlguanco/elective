@@ -16,12 +16,31 @@ import DirectorsAndChiefs from '../pages/administration/director';
 import Colleges from '../pages/academics/colleges';
 
 const routes = {
-    '/': ['About Section', 'Hero Section'],
-    '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
-    '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
-    '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
-    '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-    '/others': ['Create Opening', 'Manage Openings']
+    admin: {
+        '/': ['About Section', 'Hero Section'],
+        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+        '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
+        '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
+        '/others': ['Create Opening', 'Manage Openings']
+    },
+
+    others: {
+        '/': ['About Section', 'Hero Section'],
+        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+        '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
+        '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
+    },
+
+    career: {
+        '/': ['Create Opening', 'Manage Openings']
+    },
+
+    bid_awards: {
+        '/': ['About Section', 'Hero Section'],
+    },
+
 };
 
 const sidebarItemContent = {
@@ -42,7 +61,7 @@ const sidebarItemContent = {
 
 const Sidebar = ({role}) => {
     const location = useLocation();
-    const items = routes[location.pathname];
+    const items = routes[role]?.[location.pathname];
 
     const [selectedItem, setSelectedItem] = useState(items[0]);
     const [activeItem, setActiveItem] = useState(items[0]);
