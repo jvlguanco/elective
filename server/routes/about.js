@@ -514,7 +514,7 @@ router.post('/college', (req, res) => {
                 return res.status(500).json({ message: 'Failed to add new college' });
             }
 
-            if (objectives) {
+            if (objectives && objectives.length > 0) {
                 const objectiveData = objectives.map(objective => [college_id, objective]);
 
                 db.query('INSERT INTO objectives (college_id, objective) VALUES ?', [objectiveData], (err) => {
@@ -523,15 +523,14 @@ router.post('/college', (req, res) => {
                         return res.status(500).json({ error: 'Failed to add updated objectives' });
                     }
 
-                    res.json({ message: 'College updated successfully' });
+                    return res.json({ message: 'College and objectives added successfully' });
                 });
+            } else {
+                return res.status(200).json({ message: 'New college added successfully!' });
             }
-
-            res.status(200).json({ message: 'New college added successfully!' });
         }
     );
 });
-
 
 router.put('/college/:college_id', (req, res) => {
     const { college_id } = req.params;
@@ -590,5 +589,111 @@ router.delete('/college/:college_id', (req, res) => {
     });
 });
 
+router.get('/deans', async (req, res) => {
+    const { office_id } = req.query;
+
+    if (!office_id) {
+        return res.status(400).json({ message: 'College ID is required' });
+    }
+
+    try {
+        const [activeMembers] = await db.promise().query(
+            'SELECT id, name, title, email, status, image FROM dean WHERE college_id = ? AND status = ?',
+            [office_id, 'active']
+        );
+
+        const [inactiveMembers] = await db.promise().query(
+            'SELECT id, name, title, email, status, image FROM dean WHERE college_id = ? AND status = ?',
+            [office_id, 'inactive']
+        );
+
+        res.json({
+            active: activeMembers,
+            inactive: inactiveMembers,
+        });
+    } catch (error) {
+        console.error("Error fetching deans:", error);
+        res.status(500).json({ message: 'Failed to fetch deans' });
+    }
+});
+
+router.post('/deans', upload.single('image'), (req, res) => {
+    const { name, title, email, status, office_id } = req.body;
+    const image = req.file ? req.file.path : null;
+
+    const sql = 'INSERT INTO dean (name, title, email, status, office_id, image) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [name, title, email, status, office_id, image], (err, result) => {
+        if (err) {
+            console.error('Error adding dean:', err);
+            return res.status(500).json({ message: 'Failed to add dean' });
+        }
+        res.json({ message: 'Dean added successfully' });
+    });
+});
+
+router.put('/deans/:id', upload.single('image'), (req, res) => {
+    const memberId = req.params.id;
+    const { name, title, email, status } = req.body;
+    const newImage = req.file ? req.file.filename : null;
+
+    const getMemberSql = 'SELECT image FROM dean WHERE id = ?';
+    db.query(getMemberSql, [memberId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error finding member:', err);
+            return res.status(404).json({ message: 'Member not found' });
+        }
+
+        const oldImage = results[0].image;
+
+        const updateSql = 'UPDATE dean SET name = ?, title = ?, email = ?, status = ?, image = ? WHERE id = ?';
+        db.query(updateSql, [name, title, email, status, newImage || oldImage, memberId], (err) => {
+            if (err) {
+                console.error('Error updating member:', err);
+                return res.status(500).json({ message: 'Failed to update member' });
+            }
+
+            if (newImage && oldImage) {
+                const oldImagePath = path.join(__dirname, '../', oldImage);
+                fs.unlink(oldImagePath, (err) => {
+                    if (err) console.error('Error deleting old image:', err);
+                });
+            }
+
+            res.json({ message: 'Member updated successfully' });
+        });
+    });
+});
+
+router.delete('/deans/:id', (req, res) => {
+    const memberId = req.params.id;
+
+    const getMemberSql = 'SELECT image FROM dean WHERE id = ?';
+    db.query(getMemberSql, [memberId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error finding member:', err);
+            return res.status(404).json({ message: 'Member not found' });
+        }
+
+        const image = results[0].image;
+        const deleteSql = 'DELETE FROM dean WHERE id = ?';
+        console.log(image)
+
+        db.query(deleteSql, [memberId], (err) => {
+            if (err) {
+                console.error('Error deleting dean:', err);
+                return res.status(500).json({ message: 'Failed to delete dean' });
+            }
+
+            if (image) {
+                const imagePath = path.join(__dirname, '../', image);
+                fs.unlink(imagePath, (err) => {
+                    if (err) console.error('Error deleting image:', err);
+                });
+            }
+
+            res.json({ message: 'Dean deleted successfully' });
+        });
+    });
+});
 
 module.exports = router;

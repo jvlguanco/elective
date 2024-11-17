@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import ReactPaginate from 'react-paginate';
 
 const Colleges = () => {
     const [activeColleges, setActiveColleges] = useState([]);
@@ -14,10 +15,57 @@ const Colleges = () => {
     const [formStep, setFormStep] = useState(1);
     const [objectiveInputs, setObjectiveInputs] = useState(['']);
     const [errors, setErrors] = useState({});
+    const [deans, setDeans] = useState({ active: [], inactive: [] });
+    const itemsPerPage = 4;
+    const [activePage, setActivePage] = useState(0);
+    const [inactivePage, setInactivePage] = useState(0);
+    const [editDeanModalIsOpen, setEditDeanModalIsOpen] = useState(false);
+    const [editDean, setEditDean] = useState(null);
+    const [addDeanModalIsOpen, setAddDeanModalIsOpen] = useState(false);
+    const [newDean, setNewDean] = useState({ name: '', title: '', email: '', status: 'active', image: null });
 
     useEffect(() => {
         fetchColleges();
     }, []);
+
+    const openAddDeanModal = () => setAddDeanModalIsOpen(true);
+    const closeAddMemberModal = () => {
+        setAddDeanModalIsOpen(false);
+        setNewDean({ name: '', title: '', email: '', status: 'active', image: null });
+    };
+
+    const handleAddNewDean = () => {
+        const formData = new FormData();
+        formData.append('name', newDean.name);
+        formData.append('title', newDean.title);
+        formData.append('email', newDean.email);
+        formData.append('status', newDean.status);
+        formData.append('image', newDean.image);
+        formData.append('office_id', selectedCollegeId);
+
+        axios.post('http://localhost:5000/about/deans', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+            .then(response => {
+                alert(response.data.message);
+                fetchDean(selectedCollegeId);
+                closeAddMemberModal();
+            })
+            .catch(error => {
+                console.error("Error adding new member:", error);
+                alert('Failed to add new member');
+            });
+    };
+
+    const handleMemberInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewDean((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleImageUpload = (e) => {
+        setNewDean((prev) => ({ ...prev, image: e.target.files[0] }));
+    };
+
 
     const fetchColleges = () => {
         setLoading(true);
@@ -103,6 +151,7 @@ const Colleges = () => {
     const handleOfficeChange = (e) => {
         const collegeId = e.target.value;
         setSelectedCollegeId(collegeId);
+        fetchDean(collegeId);
     };
 
     const handleAddNewCollege = () => {
@@ -161,6 +210,82 @@ const Colleges = () => {
                     fetchColleges();
                 })
                 .catch(error => console.error("Error deleting college:", error));
+        }
+    };
+
+    const fetchDean = (collegeId) => {
+        setLoading(true);
+        axios.get(`http://localhost:5000/about/deans?office_id=${collegeId}`)
+            .then(response => {
+                setDeans(response.data);
+            })
+            .catch(error => console.error("Error fetching dean:", error))
+            .finally(() => setLoading(false));
+    };
+
+    const displayMembers = (members, page) => {
+        const start = page * itemsPerPage;
+        return members.slice(start, start + itemsPerPage);
+    };
+
+    const openEditMemberModal = (dean) => {
+        setEditDean(dean);
+        setEditDeanModalIsOpen(true);
+    };
+
+    const closeEditMemberModal = () => {
+        setEditDean(null);
+        setEditDeanModalIsOpen(false);
+    };
+
+    const handleEditMemberChange = (e) => {
+        const { name, value } = e.target;
+        setEditDean((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleEditDean = () => {
+        const formData = new FormData();
+        formData.append('name', editDean.name);
+        formData.append('title', editDean.title);
+        formData.append('email', editDean.email);
+        formData.append('status', editDean.status);
+        if (editDean.image instanceof File) {
+            formData.append('image', editDean.image);
+        }
+
+        axios.put(`http://localhost:5000/about/deans/${editDean.id}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        .then(response => {
+            alert(response.data.message);
+            fetchDean(selectedCollegeId);
+            closeEditMemberModal();
+        })
+        .catch(error => {
+            console.error("Error updating dean:", error);
+            alert('Failed to update dean');
+        });
+    };
+
+    const handleDeleteDean = (memberId) => {
+        if (window.confirm('Are you sure you want to delete this member?')) {
+            axios.delete(`http://localhost:5000/about/deans/${memberId}`)
+            .then(response => {
+                alert(response.data.message);
+                fetchDean(selectedCollegeId);
+            })
+            .catch(error => {
+                console.error("Error deleting member:", error);
+                alert('Failed to delete member');
+            });
+        }
+    };
+
+    const handlePageChange = (status, selectedItem) => {
+        if (status === 'active') {
+            setActivePage(selectedItem.selected);
+        } else {
+            setInactivePage(selectedItem.selected);
         }
     };
 
@@ -333,6 +458,118 @@ const Colleges = () => {
                 </form>
             </Modal>
 
+            <Modal
+                isOpen={addDeanModalIsOpen}
+                onRequestClose={closeAddMemberModal}
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    content: {
+                        position: 'relative',
+                        width: '500px',
+                        maxWidth: '90%',
+                        margin: '0 auto',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        background: 'white',
+                        overflow: 'hidden',
+                    },
+                }}
+                ariaHideApp={false}
+            >
+                <h2 className="text-lg font-bold mb-4">Add New Member</h2>
+                <form onSubmit={(e) => { e.preventDefault(); handleAddNewDean(); }}>
+                    <label className="block mb-2">
+                        Name:
+                        <input type="text" name="name" value={newDean.name} onChange={handleMemberInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                    </label>
+                    <label className="block mb-2">
+                        Title:
+                        <input type="text" name="title" value={newDean.title} onChange={handleMemberInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                    </label>
+                    <label className="block mb-2">
+                        Email:
+                        <input type="email" name="email" value={newDean.email} onChange={handleMemberInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                    </label>
+                    <label className="block mb-4">
+                        Status:
+                        <select name="status" value={newDean.status} onChange={handleMemberInputChange} className="border rounded px-2 py-1 w-full mt-1">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </label>
+                    <label className="block mb-4">
+                        Image:
+                        <input type="file" onChange={handleImageUpload} className="border rounded px-2 py-1 w-full mt-1" />
+                    </label>
+                    <div className="flex justify-end">
+                        <button type="button" onClick={closeAddMemberModal} className="bg-gray-300 text-black py-2 px-4 rounded mr-2">Cancel</button>
+                        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Submit</button>
+                    </div>
+                </form>
+            </Modal>
+
+            <Modal
+                isOpen={editDeanModalIsOpen}
+                onRequestClose={closeEditMemberModal}
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    content: {
+                        position: 'relative',
+                        width: '500px',
+                        maxWidth: '90%',
+                        margin: '0 auto',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        background: 'white',
+                        overflow: 'hidden',
+                    },
+                }}
+                ariaHideApp={false}
+            >
+                <h2 className="text-lg font-bold mb-4">Edit Member</h2>
+                {editDean && (
+                    <form onSubmit={(e) => { e.preventDefault(); handleEditDean(); }}>
+                        <label className="block mb-2">
+                            Name:
+                            <input type="text" name="name" value={editDean.name} onChange={handleEditMemberChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                        </label>
+                        <label className="block mb-2">
+                            Title:
+                            <input type="text" name="title" value={editDean.title} onChange={handleEditMemberChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                        </label>
+                        <label className="block mb-2">
+                            Email:
+                            <input type="email" name="email" value={editDean.email} onChange={handleEditMemberChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                        </label>
+                        <label className="block mb-4">
+                            Status:
+                            <select name="status" value={editDean.status} onChange={handleEditMemberChange} className="border rounded px-2 py-1 w-full mt-1">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </label>
+                        <label className="block mb-4">
+                            Image:
+                            <input type="file" onChange={(e) => setEditDean({ ...editDean, image: e.target.files[0] })} className="border rounded px-2 py-1 w-full mt-1" />
+                        </label>
+                        <div className="flex justify-end">
+                            <button type="button" onClick={closeEditMemberModal} className="bg-gray-300 text-black py-2 px-4 rounded mr-2">Cancel</button>
+                            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Submit</button>
+                        </div>
+                    </form>
+                )}
+            </Modal>
+
             <div className="mb-4 flex items-center justify-between">
                 <label htmlFor="officeDropdown" className="mr-2">Select Active Office:</label>
                 <select id="officeDropdown" onChange={handleOfficeChange} className="border rounded px-2 py-1">
@@ -342,6 +579,48 @@ const Colleges = () => {
                     ))}
                 </select>
             </div>
+
+            {loading ? (
+                <div className="flex justify-center items-center h-full"><p>Loading...</p></div>
+            ) : selectedCollegeId ? (
+                ['active', 'inactive'].map((status) => (
+                    <div key={status} className="mb-6">
+                        <h3 className="text-xl font-semibold mb-2">{status === 'active' ? 'Active Members' : 'Inactive Members'}</h3>
+                        {deans[status]?.length > 0 ? (
+                            <ul className="space-y-4">
+                                {displayMembers(deans[status], status === 'active' ? activePage : inactivePage).map(member => (
+                                    <li key={member.id} className="border p-2 rounded flex justify-between items-center">
+                                        <div className="flex items-center gap-4">
+                                            <img src={`http://localhost:5000/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
+                                            <div>
+                                                <p className="font-semibold">{member.name}</p>
+                                                <p className="text-sm text-gray-600">{member.title}</p>
+                                                <p className="text-sm text-gray-600">{member.email}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <button onClick={() => openEditMemberModal(member)} className="bg-blue-500 text-white py-1 px-2 rounded">Edit</button>
+                                            <button onClick={() => handleDeleteMember(member.id)} className="bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : <p className="text-gray-500">No {status} members</p>}
+                        {deans[status]?.length > itemsPerPage && (
+                            <ReactPaginate
+                                previousLabel={'«'}
+                                nextLabel={'»'}
+                                breakLabel={'...'}
+                                pageCount={Math.ceil(deans[status].length / itemsPerPage)}
+                                onPageChange={(selectedItem) => handlePageChange(status, selectedItem)}
+                                containerClassName={'flex justify-center mt-4 space-x-2'}
+                                activeClassName={'font-bold text-blue-600'}
+                                pageClassName="px-3 py-1 border rounded hover:bg-gray-100"
+                            />
+                        )}
+                    </div>
+                ))
+            ) : <p className="text-gray-500">Select an office to view deans.</p>}
         </>
     );
 };

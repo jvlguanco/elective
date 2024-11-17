@@ -22,7 +22,7 @@ const routes = {
         '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-        '/others': ['Create Opening', 'Manage Openings']
+        '/others': ['Create Opening', 'Manage Openings', 'Create Bids', 'Create']
     },
 
     others: {
@@ -49,7 +49,7 @@ const sidebarItemContent = {
     'Create Post': <PostAnnouncement/>,
     'View Normal Post': <NormalPostTable/>,
     'View Highlighted Posts': <HighlightedPostTable/>,
-    'View Time-Restricted Posts' : <TimePostTable/>,
+    'View Time-Restricted Posts' : <TimePostTable/>,                                      
     'Create Opening': <JobForm/>,
     'Manage Openings': <JobTable/>,
     'Board of Regents Member': <BoardOfRegents/>,
