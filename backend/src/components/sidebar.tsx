@@ -14,6 +14,11 @@ import Presidents from '../pages/administration/president';
 import ManagementCommittee from '../pages/administration/committee';
 import DirectorsAndChiefs from '../pages/administration/director';
 import Colleges from '../pages/academics/colleges';
+import BidItems from '../pages/bids/bid_items';
+import ConsolidatedUpdate from '../pages/bids/consolidated_updates';
+import Procurement from '../pages/bids/procurement';
+import ProjectMonitoring from '../pages/bids/project_monitoring';
+import CompetitiveBidding from '../pages/administration/competitive_bidding';
 
 const routes = {
     admin: {
@@ -22,7 +27,7 @@ const routes = {
         '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-        '/others': ['Create Opening', 'Manage Openings', 'Create Bids', 'Create']
+        '/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding']
     },
 
     others: {
@@ -38,7 +43,7 @@ const routes = {
     },
 
     bid_awards: {
-        '/': ['About Section', 'Hero Section'],
+        '/': ['Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding'],
     },
 
 };
@@ -56,7 +61,12 @@ const sidebarItemContent = {
     'President': <Presidents/>,
     'Management Committee': <ManagementCommittee/>,
     'Directors and Chiefs': <DirectorsAndChiefs/>,
-    'Colleges': <Colleges/>
+    'Colleges': <Colleges/>,
+    'Bid Items': <BidItems/>,
+    'Annual Procurement Plan': <Procurement/>,
+    'Project Monitoring Report': <ProjectMonitoring/>,
+    'Consolidated Updates of APP': <ConsolidatedUpdate/>,
+    'Competitive Bidding': <CompetitiveBidding/> 
 };
 
 const Sidebar = ({role}) => {
