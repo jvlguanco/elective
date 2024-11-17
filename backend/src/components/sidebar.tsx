@@ -18,7 +18,7 @@ import Colleges from '../pages/academics/colleges';
 const routes = {
     admin: {
         '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
+        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Offices', 'Contact'],
         '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],

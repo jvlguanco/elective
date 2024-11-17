@@ -621,14 +621,45 @@ router.post('/deans', upload.single('image'), (req, res) => {
     const { name, title, email, status, office_id } = req.body;
     const image = req.file ? req.file.path : null;
 
-    const sql = 'INSERT INTO dean (name, title, email, status, office_id, image) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [name, title, email, status, office_id, image], (err, result) => {
-        if (err) {
-            console.error('Error adding dean:', err);
-            return res.status(500).json({ message: 'Failed to add dean' });
+    const deactivateActive = () => {
+        return new Promise((resolve, reject) => {
+            const updateSql = 'UPDATE dean SET status = "inactive" WHERE status = "active"';
+            db.query(updateSql, (err, result) => {
+                if (err) {
+                    console.error('Error updating active deans:', err);
+                    return reject(err);
+                }
+                resolve(result);
+            });
+        });
+    };
+
+    const insertDean = () => {
+        return new Promise((resolve, reject) => {
+            const insertSql = 'INSERT INTO dean (name, title, email, status, college_id, image) VALUES (?, ?, ?, ?, ?, ?)';
+            db.query(insertSql, [name, title, email, status, office_id, image], (err, result) => {
+                if (err) {
+                    console.error('Error adding dean:', err);
+                    return reject(err);
+                }
+                resolve(result);
+            });
+        });
+    };
+
+    const execute = async () => {
+        try {
+            if (status === 'active') {
+                await deactivateActive();
+            }
+            await insertDean();
+            res.json({ message: 'Dean added successfully' });
+        } catch (error) {
+            res.status(500).json({ message: 'Failed to add dean' });
         }
-        res.json({ message: 'Dean added successfully' });
-    });
+    };
+
+    execute();
 });
 
 router.put('/deans/:id', upload.single('image'), (req, res) => {
@@ -636,7 +667,7 @@ router.put('/deans/:id', upload.single('image'), (req, res) => {
     const { name, title, email, status } = req.body;
     const newImage = req.file ? req.file.filename : null;
 
-    const getMemberSql = 'SELECT image FROM dean WHERE id = ?';
+    const getMemberSql = 'SELECT image, status FROM dean WHERE id = ?';
     db.query(getMemberSql, [memberId], (err, results) => {
         if (err || results.length === 0) {
             console.error('Error finding member:', err);
@@ -644,25 +675,43 @@ router.put('/deans/:id', upload.single('image'), (req, res) => {
         }
 
         const oldImage = results[0].image;
+        const currentStatus = results[0].status;
 
-        const updateSql = 'UPDATE dean SET name = ?, title = ?, email = ?, status = ?, image = ? WHERE id = ?';
-        db.query(updateSql, [name, title, email, status, newImage || oldImage, memberId], (err) => {
-            if (err) {
-                console.error('Error updating member:', err);
-                return res.status(500).json({ message: 'Failed to update member' });
-            }
+        if (status === 'active' && currentStatus !== 'active') {
+            const deactivateSql = 'UPDATE dean SET status = ? WHERE status = ?';
+            db.query(deactivateSql, ['inactive', 'active'], (err) => {
+                if (err) {
+                    console.error('Error deactivating other members:', err);
+                    return res.status(500).json({ message: 'Failed to deactivate other members' });
+                }
 
-            if (newImage && oldImage) {
-                const oldImagePath = path.join(__dirname, '../', oldImage);
-                fs.unlink(oldImagePath, (err) => {
-                    if (err) console.error('Error deleting old image:', err);
-                });
-            }
+                updateMember();
+            });
+        } else {
+            updateMember();
+        }
 
-            res.json({ message: 'Member updated successfully' });
-        });
+        function updateMember() {
+            const updateSql = 'UPDATE dean SET name = ?, title = ?, email = ?, status = ?, image = ? WHERE id = ?';
+            db.query(updateSql, [name, title, email, status, newImage || oldImage, memberId], (err) => {
+                if (err) {
+                    console.error('Error updating member:', err);
+                    return res.status(500).json({ message: 'Failed to update member' });
+                }
+
+                if (newImage && oldImage) {
+                    const oldImagePath = path.join(__dirname, '../', oldImage);
+                    fs.unlink(oldImagePath, (err) => {
+                        if (err) console.error('Error deleting old image:', err);
+                    });
+                }
+
+                res.json({ message: 'Member updated successfully' });
+            });
+        }
     });
 });
+
 
 router.delete('/deans/:id', (req, res) => {
     const memberId = req.params.id;

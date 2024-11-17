@@ -296,6 +296,9 @@ const Colleges = () => {
                 <div className='flex gap-4'>
                     <button onClick={openAddModal} className="bg-blue-500 text-white py-2 px-4 rounded">Add College</button>
                     <button onClick={openUpdateModal} className="bg-blue-500 text-white py-2 px-4 rounded">Update Colleges</button>
+                    {selectedCollegeId && (
+                        <button onClick={openAddDeanModal} className="bg-blue-500 text-white py-2 px-4 rounded">Add New Dean</button>
+                    )}
                 </div>
             </div>
 
@@ -481,7 +484,7 @@ const Colleges = () => {
                 }}
                 ariaHideApp={false}
             >
-                <h2 className="text-lg font-bold mb-4">Add New Member</h2>
+                <h2 className="text-lg font-bold mb-4">Add New Dean</h2>
                 <form onSubmit={(e) => { e.preventDefault(); handleAddNewDean(); }}>
                     <label className="block mb-2">
                         Name:
@@ -536,7 +539,7 @@ const Colleges = () => {
                 }}
                 ariaHideApp={false}
             >
-                <h2 className="text-lg font-bold mb-4">Edit Member</h2>
+                <h2 className="text-lg font-bold mb-4">Edit Dean</h2>
                 {editDean && (
                     <form onSubmit={(e) => { e.preventDefault(); handleEditDean(); }}>
                         <label className="block mb-2">
@@ -571,9 +574,9 @@ const Colleges = () => {
             </Modal>
 
             <div className="mb-4 flex items-center justify-between">
-                <label htmlFor="officeDropdown" className="mr-2">Select Active Office:</label>
+                <label htmlFor="officeDropdown" className="mr-2">Select Active College:</label>
                 <select id="officeDropdown" onChange={handleOfficeChange} className="border rounded px-2 py-1">
-                    <option value="">Select Office</option>
+                    <option value="">Select College</option>
                     {activeColleges.map((college) => (
                         <option key={college.college_id} value={college.college_id}>{college.college_name}</option>
                     ))}
@@ -600,12 +603,12 @@ const Colleges = () => {
                                         </div>
                                         <div className="flex gap-2">
                                             <button onClick={() => openEditMemberModal(member)} className="bg-blue-500 text-white py-1 px-2 rounded">Edit</button>
-                                            <button onClick={() => handleDeleteMember(member.id)} className="bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+                                            <button onClick={() => handleDeleteDean(member.id)} className="bg-red-500 text-white py-1 px-2 rounded">Delete</button>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
-                        ) : <p className="text-gray-500">No {status} members</p>}
+                        ) : <p className="text-gray-500">No {status} deans</p>}
                         {deans[status]?.length > itemsPerPage && (
                             <ReactPaginate
                                 previousLabel={'«'}
@@ -620,7 +623,7 @@ const Colleges = () => {
                         )}
                     </div>
                 ))
-            ) : <p className="text-gray-500">Select an office to view deans.</p>}
+            ) : <p className="text-gray-500">Select a college to view deans.</p>}
         </>
     );
 };
