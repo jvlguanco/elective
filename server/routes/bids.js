@@ -97,4 +97,96 @@ router.delete("/bid-items/:id", (req, res) => {
     });
 });
 
+router.get("/consolidated-updates", (req, res) => {
+    db.query("SELECT * FROM consolidated_updates", (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error fetching consolidated updates");
+        }
+        res.json(results);
+    });
+});
+
+router.post("/consolidated-updates", upload.single("file"), (req, res) => {
+    const { title } = req.body;
+    const file = req.file ? req.file.path : null;
+
+    if (!title || !file) {
+        return res.status(400).send("Title and file are required");
+    }
+
+    const sql = "INSERT INTO consolidated_updates (title, file) VALUES (?, ?)";
+    db.query(sql, [title, file], (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error creating consolidated update");
+        }
+        res.send({ message: "Consolidated update created successfully" });
+    });
+});
+
+router.put("/consolidated-updates/:id", upload.single("file"), (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+    const newFile = req.file ? req.file.path : null;
+
+    const sqlGetOld = "SELECT file FROM consolidated_updates WHERE id = ?";
+    db.query(sqlGetOld, [id], (err, results) => {
+        if (err || results.length === 0) {
+            console.error(err);
+            return res.status(404).send("Consolidated update not found");
+        }
+
+        const oldFile = results[0].file;
+        const sqlUpdate = newFile
+            ? "UPDATE consolidated_updates SET title = ?, file = ? WHERE id = ?"
+            : "UPDATE consolidated_updates SET title = ? WHERE id = ?";
+
+        const params = newFile ? [title, newFile, id] : [title, id];
+
+        db.query(sqlUpdate, params, (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error updating consolidated update");
+            }
+
+            if (newFile && oldFile) {
+                fs.unlink(path.join(__dirname, "../", oldFile), (err) => {
+                    if (err) console.error("Error deleting old file:", err);
+                });
+            }
+
+            res.send({ message: "Consolidated update updated successfully" });
+        });
+    });
+});
+
+router.delete("/consolidated-updates/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sqlGetOld = "SELECT file FROM consolidated_updates WHERE id = ?";
+    db.query(sqlGetOld, [id], (err, results) => {
+        if (err || results.length === 0) {
+            console.error(err);
+            return res.status(404).send("Consolidated update not found");
+        }
+
+        const oldFile = results[0].file;
+
+        const sqlDelete = "DELETE FROM consolidated_updates WHERE id = ?";
+        db.query(sqlDelete, [id], (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error deleting consolidated update");
+            }
+
+            fs.unlink(path.join(__dirname, "../", oldFile), (err) => {
+                if (err) console.error("Error deleting file:", err);
+            });
+
+            res.send({ message: "Consolidated update deleted successfully" });
+        });
+    });
+});
+
 module.exports = router;

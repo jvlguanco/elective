@@ -15,7 +15,7 @@ import ManagementCommittee from '../pages/administration/committee';
 import DirectorsAndChiefs from '../pages/administration/director';
 import Colleges from '../pages/academics/colleges';
 import BidItems from '../pages/bids/bid_items';
-import ConsolidatedUpdate from '../pages/bids/consolidated_updates';
+import ConsolidatedUpdates from '../pages/bids/consolidated_updates';
 import Procurement from '../pages/bids/procurement';
 import ProjectMonitoring from '../pages/bids/project_monitoring';
 import CompetitiveBidding from '../pages/administration/competitive_bidding';
@@ -65,7 +65,7 @@ const sidebarItemContent = {
     'Bid Items': <BidItems/>,
     'Annual Procurement Plan': <Procurement/>,
     'Project Monitoring Report': <ProjectMonitoring/>,
-    'Consolidated Updates of APP': <ConsolidatedUpdate/>,
+    'Consolidated Updates of APP': <ConsolidatedUpdates/>,
     'Competitive Bidding': <CompetitiveBidding/> 
 };
 

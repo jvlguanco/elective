@@ -212,7 +212,6 @@ const BidItems = () => {
                 </div>
             ) : (
                 <div className="mb-6">
-                    <h3 className="text-xl font-semibold mb-4">Bid Items</h3>
                     <table className="table-auto w-full border-collapse border border-gray-200">
                         <thead>
                             <tr className="bg-gray-100 text-left">
