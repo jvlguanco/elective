@@ -18,7 +18,7 @@ import BidItems from '../pages/bids/bid_items';
 import ConsolidatedUpdates from '../pages/bids/consolidated_updates';
 import Procurement from '../pages/bids/procurement';
 import ProjectMonitoring from '../pages/bids/project_monitoring';
-import CompetitiveBidding from '../pages/administration/competitive_bidding';
+import CompetitiveBidding from '../pages/bids/competitive_bidding';
 
 const routes = {
     admin: {

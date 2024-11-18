@@ -189,4 +189,96 @@ router.delete("/consolidated-updates/:id", (req, res) => {
     });
 });
 
+router.get("/procurement", (req, res) => {
+    db.query("SELECT * FROM procurement", (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error fetching procurement plans");
+        }
+        res.json(results);
+    });
+});
+
+router.post("/procurement", upload.single("file"), (req, res) => {
+    const { title } = req.body;
+    const file = req.file ? req.file.path : null;
+
+    if (!title || !file) {
+        return res.status(400).send("Title and file are required");
+    }
+
+    const sql = "INSERT INTO procurement (title, file) VALUES (?, ?)";
+    db.query(sql, [title, file], (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error creating procurement plan");
+        }
+        res.send({ message: "Procurement plan created successfully" });
+    });
+});
+
+router.put("/procurement/:id", upload.single("file"), (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+    const newFile = req.file ? req.file.path : null;
+
+    const sqlGetOld = "SELECT file FROM procurement WHERE id = ?";
+    db.query(sqlGetOld, [id], (err, results) => {
+        if (err || results.length === 0) {
+            console.error(err);
+            return res.status(404).send("Procurement plan not found");
+        }
+
+        const oldFile = results[0].file;
+        const sqlUpdate = newFile
+            ? "UPDATE procurement SET title = ?, file = ? WHERE id = ?"
+            : "UPDATE procurement SET title = ? WHERE id = ?";
+
+        const params = newFile ? [title, newFile, id] : [title, id];
+
+        db.query(sqlUpdate, params, (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error updating procurement plan");
+            }
+
+            if (newFile && oldFile) {
+                fs.unlink(path.join(__dirname, "../", oldFile), (err) => {
+                    if (err) console.error("Error deleting old file:", err);
+                });
+            }
+
+            res.send({ message: "Procurement plan updated successfully" });
+        });
+    });
+});
+
+router.delete("/procurement/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sqlGetOld = "SELECT file FROM procurement WHERE id = ?";
+    db.query(sqlGetOld, [id], (err, results) => {
+        if (err || results.length === 0) {
+            console.error(err);
+            return res.status(404).send("Procurement plan not found");
+        }
+
+        const oldFile = results[0].file;
+
+        const sqlDelete = "DELETE FROM procurement WHERE id = ?";
+        db.query(sqlDelete, [id], (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Error deleting procurement plan");
+            }
+
+            fs.unlink(path.join(__dirname, "../", oldFile), (err) => {
+                if (err) console.error("Error deleting file:", err);
+            });
+
+            res.send({ message: "Procurement plan deleted successfully" });
+        });
+    });
+});
+
 module.exports = router;
