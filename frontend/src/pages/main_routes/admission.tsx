@@ -1,7 +1,7 @@
-const Admission = () => {
+const Admission = ({location}) => {
     return (
         <div>
-            Admission
+            {location}
         </div>
     )
 }

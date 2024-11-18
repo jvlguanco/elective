@@ -29,7 +29,19 @@ createRoot(document.getElementById('root')!).render(
           <Route path="offices" element={<About/>} />
           <Route path="contact" element={<About/>} />
         </Route>
-        <Route path="/academics" element={<Academics />} />
+        <Route path="/academic">
+          <Route index element={<Academics location="colleges"/>} />
+          <Route path="colleges" element={<Academics location="colleges"/>} />
+          <Route path="graduate" element={<Academics location="graduate"/>} />
+          <Route path="calendar" element={<Academics location="calendar"/>} />
+          <Route path="obe" element={<Academics location="obe"/>} />
+        </Route>
+        <Route path="/admission">
+          <Route index element={<Admission location="plmat"/>} />
+          <Route path="plmat" element={<Admission location="plmat"/>} />
+          <Route path="cmat" element={<Admission location="cmat"/>} />
+          <Route path="clat" element={<Admission location="clat"/>} />
+        </Route>
         <Route path="/admissions" element={<Admission />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/careers" element={<Career />} />

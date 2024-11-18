@@ -86,16 +86,16 @@ const MainNav = () => {
                         onClick={() => setIsAcademicDropdownOpen(false)}
                     >
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/academic/profile" className="block px-4 py-2">University Profile</NavLink>
+                            <NavLink to="/academic/colleges" className="block px-4 py-2">Colleges</NavLink>
                         </li>
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/academic/administration" className="block px-4 py-2">Administration</NavLink>
+                            <NavLink to="/academic/graduate" className="block px-4 py-2">Office for Graduate and Professional Studies</NavLink>
                         </li>
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/academic/offices" className="block px-4 py-2">Offices</NavLink>
+                            <NavLink to="/academic/calendar" className="block px-4 py-2">Academic Calendar</NavLink>
                         </li>
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/academic/contact" className="block px-4 py-2">Contact</NavLink>
+                            <NavLink to="/academic/obe" className="block px-4 py-2">Outcome-Based Education (OBE)</NavLink>
                         </li>
                     </div>
                     )}
@@ -124,16 +124,13 @@ const MainNav = () => {
                         onClick={() => setIsAdmissionDropdownOpen(false)}
                     >
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/admission/profile" className="block px-4 py-2">University Profile</NavLink>
+                            <NavLink to="/admission/plmat" className="block px-4 py-2">PLM Admission Test (PLMAT)</NavLink>
                         </li>
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/admission/administration" className="block px-4 py-2">Administration</NavLink>
+                            <NavLink to="/admission/cmat" className="block px-4 py-2">College of Medicine Admission Test</NavLink>
                         </li>
                         <li className="hover:bg-gray-200">
-                            <NavLink to="/admission/offices" className="block px-4 py-2">Offices</NavLink>
-                        </li>
-                        <li className="hover:bg-gray-200">
-                            <NavLink to="/admission/contact" className="block px-4 py-2">Contact</NavLink>
+                            <NavLink to="/admission/clat" className="block px-4 py-2">College of Law Admission Test (CLAT)</NavLink>
                         </li>
                     </div>
                     )}

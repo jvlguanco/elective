@@ -1,4 +1,4 @@
-const Academics = () => {
+const Academics = ({location}) => {
     return (
         <div>
             Academics
