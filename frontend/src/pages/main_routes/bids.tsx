@@ -1,3 +1,5 @@
+import BidsSidebar from "../../components/bids/sidebar";
+
 const Bids = () => {
     return (
         <div className="w-full">
@@ -9,7 +11,7 @@ const Bids = () => {
                 </span>
             </div>
 
-
+            <BidsSidebar/>
         </div>
     )
 }
