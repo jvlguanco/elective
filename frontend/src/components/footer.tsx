@@ -81,9 +81,6 @@ const Footer = () => {
                         Privacy Policy
                     </NavLink>
                 </div>  
-                
-
-                
             </div>
 
         </div>

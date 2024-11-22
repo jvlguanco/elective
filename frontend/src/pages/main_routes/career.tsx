@@ -44,13 +44,17 @@ const Career = () => {
     if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return(
-        <div className="w-full px-36 pt-8">
-            <h1 className="font-inter font-bold text-[32px] text-navy-blue mb-4">
-                Career Opening
-            </h1> 
+        <div className="w-full">
+            <div className="relative w-full h-72 mb-12">
+                <img src="/images/background.jpg"  alt="" className="w-full h-full  object-cover object-[center_30%]"/>
+                <div className="absolute top-0 left-0 w-full h-full bg-black opacity-65"></div>
+                <span className="absolute bottom-10 left-24 font-inter text-white font-bold text-[36px] pl-9 border-l-4 border-yellow-500">
+                    CAREERS
+                </span>
+            </div>
 
             {displayCareers.map((career) => (
-                <div className="w-full border border-gray-400 border-l-8 border-l-navy-blue py-4 px-6 flex flex-col mb-2">
+                <div className="w-full border border-gray-400 border-l-8 border-l-navy-blue py-4 px-6 flex flex-col mb-2 mx-36">
                     <h2 className="font-inter font-bold text-[20px] text-navy-blue mb-4">
                         {career.title}
                     </h2>

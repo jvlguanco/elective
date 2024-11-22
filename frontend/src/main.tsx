@@ -14,6 +14,7 @@ import Announcement from './pages/main_routes/announcement.tsx';
 import Footer from './components/footer.tsx';
 import About from './pages/main_routes/about.tsx';
 import Career from './pages/main_routes/career.tsx';
+import Bids from './pages/main_routes/bids.tsx';
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
@@ -42,9 +43,9 @@ createRoot(document.getElementById('root')!).render(
           <Route path="cmat" element={<Admission location="cmat"/>} />
           <Route path="clat" element={<Admission location="clat"/>} />
         </Route>
-        <Route path="/admissions" element={<Admission />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/careers" element={<Career />} />
+        <Route path="/bids-and-awards" element={<Bids />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
