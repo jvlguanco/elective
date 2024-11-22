@@ -16,7 +16,7 @@ const staticSidebarData: Record<string, SidebarItem[]> = {
     'administration': [
         { name: 'Board of Regents', component: 'board_of_regents' },
         { name: 'The President', component: 'president' },
-        { name: 'Vice Presidents and Assistant Vice Presidents', component: 'vice_president' },
+        { name: 'Management Committee', component: 'management_committee' },
         { name: 'Directors and Chiefs', component: 'directors' },
         { name: 'Deans', component: 'deans' },
         { name: 'Organizational Chart', component: 'org_chart' },

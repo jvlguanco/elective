@@ -1,4 +1,4 @@
-const SupportStaff = () => {
+const ManagementCommittee = () => {
     return(
         <div className="w-full pt-8 pr-12">
             
@@ -6,4 +6,4 @@ const SupportStaff = () => {
     )
 }
 
-export default SupportStaff;  
+export default ManagementCommittee;  
