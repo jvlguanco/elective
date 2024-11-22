@@ -1,4 +1,21 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const BoardOfRegents = () => {
+    const [activeMembers, setActiveMembers] = useState([]);
+
+    useEffect(() => {
+        const fetchMembers = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/about/board-of-regents');
+                setActiveMembers(response.data.active);
+            } catch (error) {
+                console.error('Error fetching members:', error);
+            }
+        };
+        fetchMembers();
+    }, []);
+
     return(
         <div className="w-full pt-8 pr-12">
             <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue">
@@ -14,50 +31,13 @@ const BoardOfRegents = () => {
             </p>
 
             <div className="grid grid-cols-3 gap-6 mt-12">
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 1" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 1</p>
-                    <p className="text-gray-500">Title 1</p>
-                    <p className="text-gray-400">Description 1</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 2" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 2</p>
-                    <p className="text-gray-500">Title 2</p>
-                    <p className="text-gray-400">Description 2</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 3" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 3</p>
-                    <p className="text-gray-500">Title 3</p>
-                    <p className="text-gray-400">Description 3</p>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 4" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 4</p>
-                    <p className="text-gray-500">Title 4</p>
-                    <p className="text-gray-400">Description 4</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 5" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 5</p>
-                    <p className="text-gray-500">Title 5</p>
-                    <p className="text-gray-400">Description 5</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 6" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 6</p>
-                    <p className="text-gray-500">Title 6</p>
-                    <p className="text-gray-400">Description 6</p>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <img src="/images/temp.png" alt="Regent 7" className="w-4/6 h-4/5 object-cover" />
-                    <p className="font-semibold mt-2">Name 7</p>
-                    <p className="text-gray-500">Title 7</p>
-                    <p className="text-gray-400">Description 7</p>
-                </div>
+                {activeMembers.map((member) => (
+                    <div key={member.id} className="flex flex-col items-center">
+                        <img src={`http://localhost:5000/${member.image}` || "/images/temp.png"} alt={`${member.name}`} className="w-4/6 h-4/5 object-cover" />
+                        <p className="font-semibold mt-2">{member.name}</p>
+                        <p className="text-gray-500">{member.title}</p>
+                    </div>
+                ))}
             </div>
 
             <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-2">
