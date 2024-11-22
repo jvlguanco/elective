@@ -59,7 +59,6 @@ router.post('/collection', (req, res, next) => {
             }
 
             if (results.length > 0) {
-                // There are existing records for this location, so delete the old ones
                 results.forEach((row) => {
                     const oldFilePath = row.file_path;
                     fs.unlink(path.join(__dirname, '..', oldFilePath), (err) => {

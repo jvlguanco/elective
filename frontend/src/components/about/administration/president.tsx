@@ -15,10 +15,10 @@ const ParagraphWithNewlines = ({ text }: { text: string }) => {
 };
 
 const President = () => {
-    const [activePresident, setActivePresident] = useState(null); // Use null for initial state
+    const [activePresident, setActivePresident] = useState(null);
     const [inactivePresident, setInactivePresident] = useState([]); 
-    const [isLoading, setIsLoading] = useState(true); // Add loading state
-    const [error, setError] = useState(null); // Add error state
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchPresident = async () => {
@@ -30,7 +30,7 @@ const President = () => {
                 console.error('Error fetching members:', error);
                 setError('Failed to fetch president data.');
             } finally {
-                setIsLoading(false); // Ensure loading state is updated
+                setIsLoading(false);
             }
         };
         fetchPresident();
@@ -55,7 +55,7 @@ const President = () => {
     return (
         <div className="w-full pt-8 pr-12">
             <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue">
-                The President
+                THE PRESIDENT
             </h1>
             
             <img
