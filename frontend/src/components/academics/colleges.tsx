@@ -16,6 +16,7 @@ const ParagraphWithNewlines = ({ text }: { text: string }) => {
 
 const CollegeTemplate = ({ id }: { id: string }) => {
     const [collegeData, setCollegeData] = useState<any>(null);
+    const [courses, setCourses] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -42,6 +43,24 @@ const CollegeTemplate = ({ id }: { id: string }) => {
                 setLoading(false);
             });
     }, [id]);
+
+    useEffect(() => {
+        if (collegeData) {
+            fetchCourses(collegeData.college_id);
+        }
+    }, [collegeData]);
+
+    const fetchCourses = async (collegeId: string) => {
+        setLoading(true); // Optional: Show loading while fetching courses
+        try {
+            const response = await axios.get(`http://localhost:5000/academic/courses?college_id=${collegeId}`);
+            setCourses(response.data);
+        } catch (error) {
+            console.error("Error fetching courses:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     if (loading) {
         return <p>Loading...</p>;
@@ -94,6 +113,19 @@ const CollegeTemplate = ({ id }: { id: string }) => {
                     ))
                 ) : (
                     <li>No objectives provided</li>
+                )}
+            </ul>
+
+            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+                Offered Courses
+            </h2>
+            <ul className="mt-4 list-disc pl-6">
+                {courses && courses.length > 0 ? (
+                    courses.map((course: any, index: number) => (
+                        <li key={index}>{course.course_name}</li>
+                    ))
+                ) : (
+                    <li>No courses provided</li>
                 )}
             </ul>
         </div>

@@ -19,12 +19,13 @@ import ConsolidatedUpdates from '../pages/bids/consolidated_updates';
 import Procurement from '../pages/bids/procurement';
 import ProjectMonitoring from '../pages/bids/project_monitoring';
 import CompetitiveBidding from '../pages/bids/competitive_bidding';
+import Courses from '../pages/academics/courses';
 
 const routes = {
     admin: {
         '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Offices', 'Contact'],
-        '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Offices', 'Contact'],
+        '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
         '/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding']
@@ -33,7 +34,7 @@ const routes = {
     others: {
         '/': ['About Section', 'Hero Section'],
         '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Deans', 'Offices', 'Contact'],
-        '/academics': ['Colleges', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
     },
@@ -66,7 +67,8 @@ const sidebarItemContent = {
     'Annual Procurement Plan': <Procurement/>,
     'Project Monitoring Report': <ProjectMonitoring/>,
     'Consolidated Updates of APP': <ConsolidatedUpdates/>,
-    'Competitive Bidding': <CompetitiveBidding/> 
+    'Competitive Bidding': <CompetitiveBidding/>,
+    'Courses': <Courses/>
 };
 
 const Sidebar = ({role}) => {

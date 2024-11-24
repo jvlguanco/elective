@@ -108,6 +108,27 @@ router.get('/photos/:location', (req, res) => {
     });
 });
 
+router.get('/videos/:location', (req, res) => {
+  const location = req.params.location;
+
+  const sqlQuery = 'SELECT file_path, location FROM files WHERE location = ?';
+
+  db.query(sqlQuery, location, (err, results) => {
+      if (err) {
+          return res.status(500).send('Database query error.');
+      }
+
+      if (results.length === 0) {
+          return res.status(404).send('No videos found.');
+      }
+
+      res.status(200).json({
+          message: 'Videos retrieved successfully.',
+          data: results,
+      });
+  });
+});
+
 router.post('/hero-video', (req, res) => {
     const maxFiles = req.query.maxFiles || 1;
     const uploadHandler = upload.array('video', maxFiles);

@@ -1,32 +1,51 @@
-import Carousel from "../../components/carousel";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Compilation from "../../components/home/about/pictures";
 import AboutText from "../../components/home/about/text";
 import AnnouncementSection from "../../components/home/announcement2";
-import Hero from "../../components/home/hero_section";
-
-const images = [
-    './images/image3.jpg',
-    './images/image3.jpg',
-    './images/image3.jpg',
-];
 
 const Home = () => {
+    const [videos, setVideos] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/home/videos/HeroVideo');
+                setVideos(response.data.data);
+            } catch (err) {
+                setError('Failed to load videos.');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchVideos();
+    }, []);
+
+    console.log(videos)
+
     return (
         <div>
-            {/* <Hero /> */}
+            {loading ? (
+                <div className="flex justify-center items-center h-40">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+                    <span className="ml-4 text-blue-500 font-medium">Loading videos...</span>
+                </div>
+            ) : error ? (
+                <p className="text-center text-red-500">{error}</p>
+            ) : (
+                <video src={`http://localhost:5000/${videos[0].file_path}`} autoPlay muted loop controls={false} className="w-full h-[610px] object-cover"></video>
+            )}
 
-            <video src="./video/test.mp4" autoPlay muted loop controls={false} className="w-full h-[610px] object-cover"></video>
-            
             <div className="flex w-full mt-10">
-                <Compilation/>
-                <AboutText/>
+                <Compilation />
+                <AboutText />
             </div>
 
-            {/* <div className="mt-10">
-                <Carousel images={images}/>
-            </div> */}
-
-            <AnnouncementSection/>
+            <AnnouncementSection />
 
             <div className="mt-20 px-12 w-full h-auto flex flex-col gap-4">
                 <h1 className="font-inter text-[42px] font-semibold w-full text-navy-blue">LANDMARKS</h1>
@@ -38,7 +57,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Home;
