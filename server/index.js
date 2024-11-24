@@ -11,6 +11,7 @@ const user_api = require('./routes/user')
 const bid_api = require('./routes/bids')
 const academic_api = require('./routes/academic')
 const office_api = require('./routes/offices')
+const admission_api = require('./routes/admission')
 const path = require('path');
 const axios = require('axios');
 
@@ -19,7 +20,7 @@ const port = 5000;
 
 app.use(cors({
     origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
 }));
 app.use(bodyParser.json());
 
@@ -33,6 +34,7 @@ app.use('/user', user_api)
 app.use('/bid', bid_api)
 app.use('/academic', academic_api)
 app.use('/office', office_api)
+app.use('/admission', admission_api)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

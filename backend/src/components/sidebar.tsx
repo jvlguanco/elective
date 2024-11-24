@@ -23,6 +23,7 @@ import Courses from '../pages/academics/courses';
 import OrganizationalChart from '../pages/administration/org_chart';
 import SupportStaff from '../pages/administration/support';
 import Offices from '../pages/administration/offices';
+import Admission from '../pages/admission/template';
 
 const routes = {
     admin: {
@@ -74,7 +75,10 @@ const sidebarItemContent = {
     'Courses': <Courses/>,
     'Organizational Chart': <OrganizationalChart/>,
     'Support Staff': <SupportStaff/>,
-    'Offices': <Offices/>
+    'Offices': <Offices/>,
+    'PLMAT': <Admission id="PLMAT"/>,
+    'CLAT': <Admission id="CLAT"/>,
+    'CMAT': <Admission id="CMAT"/>
 };
 
 const Sidebar = ({role}) => {
