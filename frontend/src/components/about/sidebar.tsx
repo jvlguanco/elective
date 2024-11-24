@@ -1,9 +1,11 @@
-import React, { useState, useEffect, Suspense  } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface SidebarItem {
+    id?: number;
     name: string;
     component: string;
+    status?: string;
 }
 
 const staticSidebarData: Record<string, SidebarItem[]> = {
@@ -30,10 +32,14 @@ const staticSidebarData: Record<string, SidebarItem[]> = {
 };
 
 const loadComponent = (componentName: string, location: string) => {
-    return React.lazy(() => import(`./${location}/${componentName}`).catch(() => ({ default: () => <div>No content available</div> })));
+    return React.lazy(() =>
+        import(`./${location}/${componentName}`).catch(() => ({
+            default: () => <div>No content available</div>,
+        }))
+    );
 };
 
-const AboutSidebar = () => { 
+const AboutSidebar = () => {
     const location = useLocation();
     const routeKey = location.pathname.split('/')[2] ?? 'profile';
 
@@ -43,54 +49,36 @@ const AboutSidebar = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchOffices = async () => {
-            try {
-                // const response = await fetch('/api/offices');
-                // const officeData = await response.json();
+        if (routeKey === 'offices') {
+            const fetchOffices = async () => {
+                try {
+                    const response = await fetch('http://localhost:5000/office/information');
+                    const officeData: SidebarItem[] = await response.json();
 
-                // const formattedOffices = officeData.map((office: any) => ({
-                //     name: office.name,
-                //     component: office.componentName,
-                // }));
+                    const activeOffices = officeData
+                        .filter((office) => office.status === 'active')
+                        .map((office) => ({
+                            id: office.id,
+                            name: office.office_name,
+                            component: 'template',
+                        }));
 
-                const formattedOffices = [
-                    { name: 'Accounting Office', component: 'template' },
-                    { name: 'Budget Office', component: 'template' },
-                    { name: 'Center of University Extension Services', component: 'template' },
-                    { name: 'General Services Office', component: 'template' },
-                    { name: 'Internal Audit Office', component: 'template' },
-                    { name: 'Office of Graduate/Professional Studies', component: 'template' },
-                    { name: 'Office of Guidance & Testing Services', component: 'template' },
-                    { name: 'Office of NSTP', component: 'template' },
-                    { name: 'Office of Student Development Services', component: 'template' },
-                    { name: 'Office of the University Legal Counsel', component: 'template' },
-                    { name: 'Office of the University Registrar', component: 'template' },
-                    { name: 'Office of the University Secretary', component: 'template' },
-                    { name: 'Office of the VP for Research', component: 'template' },
-                    { name: 'Physical Facilities Management Office', component: 'template' },
-                    { name: 'Planning And Management Office', component: 'template' },
-                    { name: 'PLM Law Center', component: 'template' },
-                    { name: 'Procurement Office', component: 'template' },
-                    { name: 'Property & Supplies Office', component: 'template' },
-                    { name: 'Revenue Generation Office', component: 'template' },
-                    { name: 'University Health Services', component: 'template' },
-                    { name: 'University Library', component: 'template' },
-                    { name: 'University Research Center', component: 'template' },
-                ]
+                    setSidebarData((prevData) => ({
+                        ...prevData,
+                        offices: activeOffices,
+                    }));
+                } catch (error) {
+                    console.error('Failed to fetch offices data:', error);
+                } finally {
+                    setLoading(false);
+                }
+            };
 
-                setSidebarData(prevData => ({
-                    ...prevData,
-                    offices: formattedOffices,
-                }));
-            } catch (error) {
-                console.error('Failed to fetch offices data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchOffices();
-    }, []);
+            fetchOffices();
+        } else {
+            setLoading(false);
+        }
+    }, [routeKey]);
 
     const items = sidebarData[routeKey] || [];
 
@@ -105,40 +93,50 @@ const AboutSidebar = () => {
         setSelectedItem(itemName);
     };
 
-    const selectedComponentName = items.find(item => item.name === selectedItem)?.component;
-    const SelectedComponent = selectedComponentName ? loadComponent(selectedComponentName, routeKey) : null;
+    const selectedComponent = items.find((item) => item.name === selectedItem);
+    const SelectedComponent = selectedComponent
+        ? loadComponent(selectedComponent.component, routeKey)
+        : null;
 
     if (loading) {
         return <div>Loading content...</div>;
     }
 
-    return(
-        <div className='w-full flex'>
-            <div className='w-1/5 px-16 pt-8'>
+    return (
+        <div className="w-full flex">
+            <div className="w-1/5 px-16 pt-8">
                 <ul>
-                    {items.map(item => (
+                    {items.map((item, index) => (
                         <li
-                            key={item.name}
-                            className={`p-4  cursor-pointer ${activeItem === item.name ? 'text-yellow-600 font-bold border-yellow-600 border-l-4' : 'text-black border-l-2 hover:text-yellow-600'}`}
+                            key={item.id ?? index}
+                            className={`p-4 cursor-pointer ${
+                                activeItem === item.name
+                                    ? 'text-yellow-600 font-bold border-yellow-600 border-l-4'
+                                    : 'text-black border-l-2 hover:text-yellow-600'
+                            }`}
                             onClick={() => handleItemClick(item.name)}
                         >
-                            {item.name} 
+                            {item.name}
                         </li>
                     ))}
                 </ul>
             </div>
-    
+
             <div className="w-4/5">
-            <Suspense fallback={<div>Loading...</div>}>
-                    {SelectedComponent ? 
-                        (routeKey === 'offices' 
-                            ? <SelectedComponent location={selectedItem} />
-                            : <SelectedComponent />) 
-                        : <div>No content available</div>}
+                <Suspense fallback={<div>Loading...</div>}>
+                    {SelectedComponent ? (
+                        routeKey === 'offices' && selectedComponent?.id ? (
+                            <SelectedComponent id={selectedComponent.id} />
+                        ) : (
+                            <SelectedComponent />
+                        )
+                    ) : (
+                        <div>No content available</div>
+                    )}
                 </Suspense>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AboutSidebar;  
+export default AboutSidebar;

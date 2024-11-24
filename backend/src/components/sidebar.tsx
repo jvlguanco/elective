@@ -22,11 +22,12 @@ import CompetitiveBidding from '../pages/bids/competitive_bidding';
 import Courses from '../pages/academics/courses';
 import OrganizationalChart from '../pages/administration/org_chart';
 import SupportStaff from '../pages/administration/support';
+import Offices from '../pages/administration/offices';
 
 const routes = {
     admin: {
         '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices', 'Contact'],
+        '/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
         '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
@@ -35,7 +36,7 @@ const routes = {
 
     others: {
         '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices', 'Contact'],
+        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
         '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
@@ -72,7 +73,8 @@ const sidebarItemContent = {
     'Competitive Bidding': <CompetitiveBidding/>,
     'Courses': <Courses/>,
     'Organizational Chart': <OrganizationalChart/>,
-    'Support Staff': <SupportStaff/>
+    'Support Staff': <SupportStaff/>,
+    'Offices': <Offices/>
 };
 
 const Sidebar = ({role}) => {

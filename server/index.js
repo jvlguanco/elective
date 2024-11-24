@@ -10,6 +10,7 @@ const about_api = require('./routes/about')
 const user_api = require('./routes/user')
 const bid_api = require('./routes/bids')
 const academic_api = require('./routes/academic')
+const office_api = require('./routes/offices')
 const path = require('path');
 const axios = require('axios');
 
@@ -31,6 +32,7 @@ app.use('/about', about_api)
 app.use('/user', user_api)
 app.use('/bid', bid_api)
 app.use('/academic', academic_api)
+app.use('/office', office_api)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
