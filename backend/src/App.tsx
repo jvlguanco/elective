@@ -5,7 +5,7 @@ import Sidebar from './components/sidebar';
 import Login from './components/login';
 
 const App = () => {
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState(null);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
