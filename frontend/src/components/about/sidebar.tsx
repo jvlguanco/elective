@@ -25,9 +25,8 @@ const staticSidebarData: Record<string, SidebarItem[]> = {
         { name: 'Presidential Support Staff', component: 'support_staff' },
     ],
     'contact': [
-        { name: 'PLM Colleges', component: 'PLM Colleges' },
-        { name: 'PLM Offices', component: 'PLM Offices' },
-        { name: 'PLM Executives', component: 'PLM Executives' },
+        { name: 'PLM Colleges', component: 'template' },
+        { name: 'PLM Offices', component: 'template' },
     ],
 };
 
@@ -42,7 +41,7 @@ const loadComponent = (componentName: string, location: string) => {
 const AboutSidebar = () => {
     const location = useLocation();
     const routeKey = location.pathname.split('/')[2] ?? 'profile';
-
+    
     const [sidebarData, setSidebarData] = useState(staticSidebarData);
     const [selectedItem, setSelectedItem] = useState<string>('');
     const [activeItem, setActiveItem] = useState<string>('');
@@ -127,6 +126,8 @@ const AboutSidebar = () => {
                     {SelectedComponent ? (
                         routeKey === 'offices' && selectedComponent?.id ? (
                             <SelectedComponent id={selectedComponent.id} />
+                        ) : routeKey === 'contact' ? (
+                            <SelectedComponent location={selectedItem} />
                         ) : (
                             <SelectedComponent />
                         )
