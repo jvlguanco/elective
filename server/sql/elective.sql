@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2024 at 09:55 AM
+-- Generation Time: Nov 24, 2024 at 08:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -42,16 +42,28 @@ INSERT INTO `about_home` (`id`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `app_update`
+-- Table structure for table `admission`
 --
 
-CREATE TABLE `app_update` (
-  `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `file` text NOT NULL
+CREATE TABLE `admission` (
+  `id` varchar(15) NOT NULL,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `email` text NOT NULL,
+  `status` enum('open','close') NOT NULL,
+  `requirements` text NOT NULL,
+  `qualifications` text NOT NULL,
+  `process` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admission`
+--
+
+INSERT INTO `admission` (`id`, `name`, `description`, `email`, `status`, `requirements`, `qualifications`, `process`) VALUES
+('CLAT', 'College of Law Admission Test', 'asdasd', 'Asd@gmail.com', 'open', 'asdasd', 'sadasd', 'asdsad'),
+('CMAT', 'College of Medicine Admission Test', 'asdsad', 'asd@gmail.com', 'open', 'sadasd', 'sadasd', 'sadasd'),
+('PLMAT', 'PLM Admission Test', 'asdasd\n\nasdasd\n\nasdsad', 'asdas@gmail.com', 'close', 'asdasdas', 'asdasd', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -144,16 +156,19 @@ CREATE TABLE `colleges` (
   `history` text DEFAULT NULL,
   `vision` text DEFAULT NULL,
   `mission` text DEFAULT NULL,
-  `status` enum('active','inactive') DEFAULT NULL
+  `status` enum('active','inactive') DEFAULT NULL,
+  `email` text NOT NULL,
+  `contact_number` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `colleges`
 --
 
-INSERT INTO `colleges` (`college_id`, `college_name`, `description`, `history`, `vision`, `mission`, `status`) VALUES
-('ASDFSDA', 'Updated Name', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'active'),
-('CISTM', 'College of Information Technology and Management Systems', 'Test Desc\n\nTest Desc', 'Test History\n\nTest History', 'Vision', 'Mission', 'active');
+INSERT INTO `colleges` (`college_id`, `college_name`, `description`, `history`, `vision`, `mission`, `status`, `email`, `contact_number`) VALUES
+('ASDFSDA', 'Updated Name', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'active', 'test@gmail.com', '123456789'),
+('CISTM', 'College of Information Technology and Management Systems', 'Test Desc\n\nTest Desc', 'Test History\n\nTest History', 'Vision', 'Mission', 'active', 'test@gmail.com', '123456789'),
+('CS', 'College of Science', 'Test', 'Test', 'Test', 'Test', 'active', 'test@gmail.com', '09123456789');
 
 -- --------------------------------------------------------
 
@@ -203,10 +218,16 @@ INSERT INTO `consolidated_updates` (`id`, `title`, `file`) VALUES
 CREATE TABLE `course` (
   `course_id` varchar(15) NOT NULL,
   `course_name` text NOT NULL,
-  `college_id` varchar(15) NOT NULL,
-  `majors` text DEFAULT NULL,
-  `status` enum('active','inactive') NOT NULL DEFAULT 'active'
+  `college_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`course_id`, `course_name`, `college_id`) VALUES
+('BSCS', 'Bachelor of Science in Computer Science', 'CISTM'),
+('BSIT', 'Bachelor of Science in Information Technology', 'CISTM');
 
 -- --------------------------------------------------------
 
@@ -296,7 +317,8 @@ INSERT INTO `files` (`id`, `location`, `file_path`) VALUES
 (42, 'AboutCollage', 'uploads\\images\\1728218622957.jpg'),
 (43, 'AboutCollage', 'uploads\\images\\1728218622959.jpg'),
 (44, 'AboutCollage', 'uploads\\images\\1728218622961.jpg'),
-(47, 'HeroVideo', 'uploads\\videos\\1728218800687.mp4');
+(47, 'HeroVideo', 'uploads\\videos\\1728218800687.mp4'),
+(48, 'OrganizationalChart', 'uploads\\images\\6c178cd4-9955-425d-af32-09d6ffc58946.jpg');
 
 -- --------------------------------------------------------
 
@@ -338,11 +360,14 @@ CREATE TABLE `objectives` (
 --
 
 INSERT INTO `objectives` (`id`, `college_id`, `objective`) VALUES
-(16, 'CISTM', 'Objective 1'),
-(17, 'CISTM', 'Objective 2'),
-(21, 'ASDFSDA', 'asdasd'),
-(22, 'ASDFSDA', 'sadasdas'),
-(23, 'ASDFSDA', 'sadasdas');
+(40, 'CS', 'asdasd'),
+(41, 'CS', 'asdasd'),
+(42, 'CS', 'asdasd'),
+(45, 'CISTM', 'Objective 1'),
+(46, 'CISTM', 'Objective 2'),
+(47, 'ASDFSDA', 'asdasd'),
+(48, 'ASDFSDA', 'sadasdas'),
+(49, 'ASDFSDA', 'sadasdas');
 
 -- --------------------------------------------------------
 
@@ -357,8 +382,17 @@ CREATE TABLE `offices` (
   `vision` text NOT NULL,
   `mission` text NOT NULL,
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
-  `org_chart` text NOT NULL
+  `org_chart` text NOT NULL,
+  `email` text NOT NULL,
+  `contact_number` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `offices`
+--
+
+INSERT INTO `offices` (`id`, `office_name`, `description`, `vision`, `mission`, `status`, `org_chart`, `email`, `contact_number`) VALUES
+(3, 'Test Office Updated', 'This is the Description Updated', 'Vission', 'Mission', 'active', 'uploads\\images\\f917775e-8f28-4e41-aa1d-4a13ffce6429.jpg', 'test@gmail.com', '0912345678');
 
 -- --------------------------------------------------------
 
@@ -460,6 +494,28 @@ INSERT INTO `project` (`id`, `title`, `file`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `support_staff`
+--
+
+CREATE TABLE `support_staff` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `title` text NOT NULL,
+  `image` text NOT NULL,
+  `status` enum('active','inactive') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `support_staff`
+--
+
+INSERT INTO `support_staff` (`id`, `name`, `email`, `title`, `image`, `status`) VALUES
+(1, 'Test', 'test@gmail.com', 'Test', 'uploads\\images\\37f4cdd5-424a-4a32-b2fa-3aaec5a6bed1.png', 'active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -491,9 +547,9 @@ ALTER TABLE `about_home`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `app_update`
+-- Indexes for table `admission`
 --
-ALTER TABLE `app_update`
+ALTER TABLE `admission`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -608,6 +664,12 @@ ALTER TABLE `project`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `support_staff`
+--
+ALTER TABLE `support_staff`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -623,12 +685,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `about_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `app_update`
---
-ALTER TABLE `app_update`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bid_items`
@@ -682,7 +738,7 @@ ALTER TABLE `director_offices`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `management_committee`
@@ -694,13 +750,13 @@ ALTER TABLE `management_committee`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `offices`
 --
 ALTER TABLE `offices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -724,6 +780,12 @@ ALTER TABLE `procurement`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `support_staff`
+--
+ALTER TABLE `support_staff`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
