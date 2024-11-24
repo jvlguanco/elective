@@ -10,7 +10,18 @@ const Colleges = () => {
     const [loading, setLoading] = useState(true);
     const [addModalIsOpen, setAddModalIsOpen] = useState(false);
     const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false);
-    const [newCollege, setNewCollege] = useState({ college_id: '', college_name: '', description: '', history: '', vision: '', mission: '', objectives: [], status: 'active' });
+    const [newCollege, setNewCollege] = useState({
+        college_id: '',
+        college_name: '',
+        email: '',
+        contact_number: '',
+        description: '',
+        history: '',
+        vision: '',
+        mission: '',
+        objectives: [],
+        status: 'active',
+    });
     const [editCollege, setEditCollege] = useState(null);
     const [formStep, setFormStep] = useState(1);
     const [objectiveInputs, setObjectiveInputs] = useState(['']);
@@ -88,12 +99,24 @@ const Colleges = () => {
     const closeUpdateModal = () => setUpdateModalIsOpen(false);
 
     const resetForm = () => {
-        setNewCollege({ college_id: '', college_name: '', description: '', history: '', vision: '', mission: '', objectives: [], status: 'active' });
+        setNewCollege({
+            college_id: '',
+            college_name: '',
+            email: '',
+            contact_number: '',
+            description: '',
+            history: '',
+            vision: '',
+            mission: '',
+            objectives: [],
+            status: 'active',
+        });
         setObjectiveInputs(['']);
         setFormStep(1);
         setErrors({});
         setEditCollege(null);
     };
+
 
     const handleCollegeInputChange = (e) => {
         const { name, value } = e.target;
@@ -123,6 +146,8 @@ const Colleges = () => {
         if (formStep === 1) {
             if (!currentCollege.college_id) newErrors.college_id = 'College ID is required';
             if (!currentCollege.college_name) newErrors.college_name = 'College Name is required';
+            if (!currentCollege.email) newErrors.email = 'Email is required';
+            if (!currentCollege.contact_number) newErrors.contact_number = 'Contact Number is required';
             if (!currentCollege.status) newErrors.status = 'Status is required';
         } else if (formStep === 2) {
             if (!currentCollege.description) newErrors.description = 'Description is required';
@@ -131,7 +156,7 @@ const Colleges = () => {
             if (!currentCollege.vision) newErrors.vision = 'Vision is required';
             if (!currentCollege.mission) newErrors.mission = 'Mission is required';
         } else if (formStep === 4) {
-            if (objectiveInputs.some(input => !input.trim())) newErrors.objectives = 'Each objective must have text';
+            if (objectiveInputs.some((input) => !input.trim())) newErrors.objectives = 'Each objective must have text';
         }
 
         setErrors(newErrors);
@@ -189,6 +214,7 @@ const Colleges = () => {
             objectives: objectiveInputs.filter(input => input.trim() !== '')
         };
 
+        console.log('Updating college:', updatedCollege);
         axios.put(`http://localhost:5000/about/college/${editCollege.college_id}`, updatedCollege)
             .then(response => {
                 alert(response.data.message);
@@ -374,15 +400,34 @@ const Colleges = () => {
                 <form onSubmit={(e) => { e.preventDefault(); editCollege ? handleUpdateCollege() : handleAddNewCollege(); }}>
                     {formStep === 1 && (
                         <>
-                            <label className="block mb-2">
+                            {!editCollege && (
+                                <label className="block mb-2">
                                 College ID:
-                                <input type="text" name="college_id" value={(editCollege || newCollege).college_id} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                                <input
+                                    type="text"
+                                    name="college_id"
+                                    value={newCollege.college_id}
+                                    onChange={handleCollegeInputChange}
+                                    required
+                                    className="border rounded px-2 py-1 w-full mt-1"
+                                />
                                 {errors.college_id && <p className="text-red-500 text-sm">{errors.college_id}</p>}
-                            </label>
+                                </label>
+                            )}
                             <label className="block mb-2">
                                 College Name:
                                 <input type="text" name="college_name" value={(editCollege || newCollege).college_name} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
                                 {errors.college_name && <p className="text-red-500 text-sm">{errors.college_name}</p>}
+                            </label>
+                            <label className="block mb-2">
+                                Email:
+                                <input type="email" name="email" value={(editCollege || newCollege).email} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                            </label>
+                            <label className="block mb-2">
+                                Contact Number:
+                                <input type="text" name="contact_number" value={(editCollege || newCollege).contact_number} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                                {errors.contact_number && <p className="text-red-500 text-sm">{errors.contact_number}</p>}
                             </label>
                             <label className="block mb-4">
                                 Status:

@@ -498,16 +498,16 @@ router.get('/college', (req, res) => {
 });
 
 router.post('/college', (req, res) => {
-    const { college_id, college_name, description, history, vision, mission, status, objectives } = req.body;
+    const { college_id, college_name, description, history, vision, mission, status, objectives, email, contact_number } = req.body;
 
     const insertCollegeQuery = `
-        INSERT INTO colleges (college_id, college_name, description, history, vision, mission, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO colleges (college_id, college_name, description, history, vision, mission, status, email, contact_number)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         insertCollegeQuery,
-        [college_id, college_name, description, history, vision, mission, status],
+        [college_id, college_name, description, history, vision, mission, status, email, contact_number],
         (error, results) => {
             if (error) {
                 console.error('Failed to add new college:', error);
@@ -534,11 +534,12 @@ router.post('/college', (req, res) => {
 
 router.put('/college/:college_id', (req, res) => {
     const { college_id } = req.params;
-    const { college_name, description, history, vision, mission, objectives, status } = req.body;
+    const { college_name, description, history, vision, mission, status, objectives, email, contact_number } = req.body;
+    console.log(contact_number)
 
     db.query(
-        'UPDATE colleges SET college_name = ?, description = ?, history = ?, vision = ?, mission = ?, status = ? WHERE college_id = ?',
-        [college_name, description, history, vision, mission, status, college_id],
+        'UPDATE colleges SET college_name = ?, description = ?, history = ?, vision = ?, mission = ?, status = ?, email = ?, contact_number = ? WHERE college_id = ?',
+        [college_name, description, history, vision, mission, status, email, contact_number, college_id],
         (err) => {
             if (err) {
                 console.error('Error updating college:', err);
