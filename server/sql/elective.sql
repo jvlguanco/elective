@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2024 at 10:16 AM
+-- Generation Time: Nov 24, 2024 at 09:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -42,19 +42,6 @@ INSERT INTO `about_home` (`id`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `annual_procurement`
---
-
-CREATE TABLE `annual_procurement` (
-  `id` int(11) NOT NULL,
-  `title` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `app_update`
 --
 
@@ -65,6 +52,25 @@ CREATE TABLE `app_update` (
   `end_date` date NOT NULL,
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bid_items`
+--
+
+CREATE TABLE `bid_items` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bid_items`
+--
+
+INSERT INTO `bid_items` (`id`, `title`, `file`) VALUES
+(1, 'Item asd asda', 'uploads\\files\\5b38073b-6e19-4436-9d6b-13fc69a32b95.pdf');
 
 -- --------------------------------------------------------
 
@@ -141,6 +147,53 @@ CREATE TABLE `colleges` (
   `status` enum('active','inactive') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `colleges`
+--
+
+INSERT INTO `colleges` (`college_id`, `college_name`, `description`, `history`, `vision`, `mission`, `status`) VALUES
+('ASDFSDA', 'Updated Name', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'active'),
+('CISTM', 'College of Information Technology and Management Systems', 'Test Desc\n\nTest Desc', 'Test History\n\nTest History', 'Vision', 'Mission', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `competitive_bidding`
+--
+
+CREATE TABLE `competitive_bidding` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `budget` decimal(15,2) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `competitive_bidding`
+--
+
+INSERT INTO `competitive_bidding` (`id`, `title`, `budget`, `date`) VALUES
+(1, 'Changed', 12312.11, '2024-11-18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consolidated_updates`
+--
+
+CREATE TABLE `consolidated_updates` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `consolidated_updates`
+--
+
+INSERT INTO `consolidated_updates` (`id`, `title`, `file`) VALUES
+(1, 'asdasdas', 'uploads\\files\\2a4b4b73-7ed4-4436-a31d-f2f3347294ce.pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -167,8 +220,17 @@ CREATE TABLE `dean` (
   `title` text NOT NULL,
   `image` text NOT NULL,
   `college_id` varchar(15) NOT NULL,
-  `email` text DEFAULT NULL
+  `email` text DEFAULT NULL,
+  `status` enum('active','inactive') DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dean`
+--
+
+INSERT INTO `dean` (`id`, `name`, `title`, `image`, `college_id`, `email`, `status`) VALUES
+(1, 'Test jmjmmj', 'Test', 'uploads\\images\\temp.png', 'CISTM', 'test@gmail.com', 'inactive'),
+(2, 'asdasdas', 'sadasd', 'uploads\\images\\651a2f4d-b3b9-4fc4-a430-dfe27cc84474.png', 'CISTM', 'test@gmail.com', 'active');
 
 -- --------------------------------------------------------
 
@@ -271,6 +333,17 @@ CREATE TABLE `objectives` (
   `objective` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `objectives`
+--
+
+INSERT INTO `objectives` (`id`, `college_id`, `objective`) VALUES
+(16, 'CISTM', 'Objective 1'),
+(17, 'CISTM', 'Objective 2'),
+(21, 'ASDFSDA', 'asdasd'),
+(22, 'ASDFSDA', 'sadasdas'),
+(23, 'ASDFSDA', 'sadasdas');
+
 -- --------------------------------------------------------
 
 --
@@ -342,37 +415,47 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `description`, `image`, `status`) VALUES
-(13, 'Current President', 'Test', 'uploads\\images\\cf76f888-0590-4dbf-9053-602b13be0381.png', 'active'),
+(13, 'Current President', 'Test\n\nTHIS HAS A LOT OF PARGRAPHS\n\nHERE IS ANOTHER PARAGRAPH', 'uploads\\images\\cf76f888-0590-4dbf-9053-602b13be0381.png', 'active'),
 (16, 'Test', 'asddsaasd', 'uploads\\images\\4c1dcd2b-909c-4bf2-b3ec-11ea0e962b49.png', 'inactive'),
 (17, 'New President', 'Desc', 'uploads\\images\\05bc5b5f-a78c-4197-87e0-ed17e54e5903.png', 'inactive');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_monitoring`
+-- Table structure for table `procurement`
 --
 
-CREATE TABLE `project_monitoring` (
+CREATE TABLE `procurement` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
-  `date` date NOT NULL,
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `procurement`
+--
+
+INSERT INTO `procurement` (`id`, `title`, `file`) VALUES
+(1, 'asdasd', 'uploads\\files\\55ac2075-01ee-47a7-aa88-2cde66421285.pdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_staff`
+-- Table structure for table `project`
 --
 
-CREATE TABLE `support_staff` (
+CREATE TABLE `project` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `position` text NOT NULL,
-  `status` enum('active','inactive') NOT NULL,
-  `image` text NOT NULL
+  `title` text NOT NULL,
+  `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `title`, `file`) VALUES
+(1, 'asdasdas', 'uploads\\files\\ab9434ee-a675-4158-bc46-eac2c2c16a98.pdf');
 
 -- --------------------------------------------------------
 
@@ -394,7 +477,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `role`) VALUES
 (1, 'jvlguanco2021@plm.edu.ph', '$2y$10$imF4fOsufWrRnYYw2jTDBOzvNynU95OL1JV9BzIDvdrRYV26xcYX2', 'admin'),
 (2, 'test@plm.edu.ph', '$2y$10$imF4fOsufWrRnYYw2jTDBOzvNynU95OL1JV9BzIDvdrRYV26xcYX2', 'others'),
-(3, 'test2@plm.edu.ph', '$2y$10$imF4fOsufWrRnYYw2jTDBOzvNynU95OL1JV9BzIDvdrRYV26xcYX2', 'career');
+(3, 'test2@plm.edu.ph', '$2y$10$imF4fOsufWrRnYYw2jTDBOzvNynU95OL1JV9BzIDvdrRYV26xcYX2', 'career'),
+(4, 'admin@plm.edu.ph', '$2y$10$imF4fOsufWrRnYYw2jTDBOzvNynU95OL1JV9BzIDvdrRYV26xcYX2', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -407,15 +491,15 @@ ALTER TABLE `about_home`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `annual_procurement`
---
-ALTER TABLE `annual_procurement`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `app_update`
 --
 ALTER TABLE `app_update`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bid_items`
+--
+ALTER TABLE `bid_items`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -435,6 +519,18 @@ ALTER TABLE `career`
 --
 ALTER TABLE `colleges`
   ADD PRIMARY KEY (`college_id`);
+
+--
+-- Indexes for table `competitive_bidding`
+--
+ALTER TABLE `competitive_bidding`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `consolidated_updates`
+--
+ALTER TABLE `consolidated_updates`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `course`
@@ -500,15 +596,15 @@ ALTER TABLE `president`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `project_monitoring`
+-- Indexes for table `procurement`
 --
-ALTER TABLE `project_monitoring`
+ALTER TABLE `procurement`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `support_staff`
+-- Indexes for table `project`
 --
-ALTER TABLE `support_staff`
+ALTER TABLE `project`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -535,6 +631,12 @@ ALTER TABLE `app_update`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bid_items`
+--
+ALTER TABLE `bid_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `board`
 --
 ALTER TABLE `board`
@@ -547,10 +649,22 @@ ALTER TABLE `career`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `competitive_bidding`
+--
+ALTER TABLE `competitive_bidding`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `consolidated_updates`
+--
+ALTER TABLE `consolidated_updates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `dean`
 --
 ALTER TABLE `dean`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `directors`
@@ -580,7 +694,7 @@ ALTER TABLE `management_committee`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `offices`
@@ -601,22 +715,22 @@ ALTER TABLE `president`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `project_monitoring`
+-- AUTO_INCREMENT for table `procurement`
 --
-ALTER TABLE `project_monitoring`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `procurement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `support_staff`
+-- AUTO_INCREMENT for table `project`
 --
-ALTER TABLE `support_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
