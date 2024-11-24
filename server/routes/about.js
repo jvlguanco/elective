@@ -745,4 +745,81 @@ router.delete('/deans/:id', (req, res) => {
     });
 });
 
+router.get('/support-staff', (req, res) => {
+    const query = 'SELECT * FROM support_staff';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).send(err);
+
+        const activeStaff = results.filter(staff => staff.status === 'active');
+        const inactiveStaff = results.filter(staff => staff.status === 'inactive');
+        
+        res.json({ active: activeStaff, inactive: inactiveStaff });
+    });
+});
+
+router.post('/support-staff', upload.single('image'), (req, res) => {
+    const { name, email, title, status } = req.body;
+    if (!req.file) {
+        return res.status(400).json({ message: 'Image is required for new support staff members' });
+    }
+    const imagePath = req.file.path;
+  
+    const query = 'INSERT INTO support_staff (name, email, title, image, status) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [name, email, title, imagePath, status], (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.json({ message: 'Support staff member added successfully!', userId: result.insertId });
+    });
+});
+
+router.put('/support-staff/:id', upload.single('image'), (req, res) => {
+    const { id } = req.params;
+    const { name, email, title, status } = req.body;
+
+    const selectQuery = `SELECT image FROM support_staff WHERE id = ?`;
+    db.query(selectQuery, [id], (err, results) => {
+        if (err) return res.status(500).send({ error: 'Database query error', details: err });
+        if (results.length === 0) return res.status(404).json({ message: 'Support staff member not found' });
+
+        const existingImage = results[0].image;
+        let imagePath = existingImage;
+
+        if (req.file) {
+            const fullExistingImagePath = path.join(__dirname, '../', existingImage);
+            if (existingImage && fs.existsSync(fullExistingImagePath)) {
+                fs.unlinkSync(fullExistingImagePath);
+            }
+            imagePath = req.file.path;
+        }
+
+        const updateQuery = `UPDATE support_staff SET name = ?, email = ?, title = ?, image = ?, status = ? WHERE id = ?`;
+        db.query(updateQuery, [name, email, title, imagePath, status, id], (err, result) => {
+            if (err) return res.status(500).send({ error: 'Database update error', details: err });
+            res.json({ message: 'Support staff member updated successfully' });
+        });
+    });
+});
+
+router.delete('/support-staff/:id', (req, res) => {
+    const { id } = req.params;
+
+    const selectQuery = `SELECT image FROM support_staff WHERE id = ?`;
+    db.query(selectQuery, [id], (err, results) => {
+        if (err) return res.status(500).send(err);
+        if (results.length === 0) return res.status(404).json({ message: 'Support staff member not found' });
+
+        const image = results[0].image;
+        const fullExistingImagePath = path.join(__dirname, '../', image);
+
+        if (image && fs.existsSync(fullExistingImagePath)) {
+            fs.unlinkSync(fullExistingImagePath);
+        }
+
+        const deleteQuery = `DELETE FROM support_staff WHERE id = ?`;
+        db.query(deleteQuery, [id], (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: 'Support staff member deleted successfully' });
+        });
+    });
+});
+
 module.exports = router;
