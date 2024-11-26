@@ -32,7 +32,7 @@ const staticSidebarData: Record<string, SidebarItem[]> = {
 
 const loadComponent = (componentName: string, location: string) => {
     return React.lazy(() =>
-        import(`./${location}/${componentName}`).catch(() => ({
+        import(`./${location}/${componentName}.tsx`).catch(() => ({
             default: () => <div>No content available</div>,
         }))
     );

@@ -21,14 +21,22 @@ const CollegeTemplate = ({ id }: { id: string }) => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (!id) {
+            setError('No college selected.');
+            setCollegeData(null);
+            return;
+        }
+    
+        setError(null);
+        setLoading(true);
+    
         axios
             .get('http://localhost:5000/about/college')
             .then((response) => {
                 const { active, inactive } = response.data;
-
                 const allColleges = [...active, ...inactive];
                 const selectedCollege = allColleges.find(college => college.college_id === id);
-
+    
                 if (selectedCollege) {
                     setCollegeData(selectedCollege);
                 } else {
@@ -51,7 +59,7 @@ const CollegeTemplate = ({ id }: { id: string }) => {
     }, [collegeData]);
 
     const fetchCourses = async (collegeId: string) => {
-        setLoading(true); // Optional: Show loading while fetching courses
+        setLoading(true);
         try {
             const response = await axios.get(`http://localhost:5000/academic/courses?college_id=${collegeId}`);
             setCourses(response.data);
@@ -64,6 +72,10 @@ const CollegeTemplate = ({ id }: { id: string }) => {
 
     if (loading) {
         return <p>Loading...</p>;
+    }
+
+    if (!id) {
+        return <p>Please select a college from the sidebar.</p>;
     }
 
     if (error) {

@@ -21,32 +21,52 @@ const AnnouncementSection = () => {
     const [postDetails, setPostDetails] = useState<PostData[] | null>(null);
     const [highlightDetails, setHighlightDetails] = useState<PostData[] | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
-    const [isLoadingPostIds, setIsLoadingPostIds] = useState(true);
-    const [isLoadingPostDetails, setIsLoadingPostDetails] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const fetchPostIds = () => {
-        setIsLoadingPostIds(true);
-        axios.get('http://localhost:5000/facebook/all-post')
-            .then((response) => {
-                setPostIds(response.data.data[0]);
-                setAccessToken(response.data.token);
-                setIsLoadingPostIds(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching post IDs:', error);
-                setIsLoadingPostIds(false);
-            });
-        
-        axios.get('http://localhost:5000/facebook/announcement-post')
-            .then((response) => {
-                setHighlightIds(response.data.data);
-                setAccessToken(response.data.token);
-                setIsLoadingPostIds(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching post IDs:', error);
-                setIsLoadingPostIds(false);
-            });
+    const fetchPostIds = async () => {
+        try {
+            setIsLoading(true);
+            console.log('Fetching post IDs...');
+            const [allPostsResponse, announcementPostsResponse] = await Promise.all([
+                axios.get('http://localhost:5000/facebook/all-post'),
+                axios.get('http://localhost:5000/facebook/announcement-post')
+            ]);
+
+            setPostIds(allPostsResponse.data.data[0]);
+            setHighlightIds(announcementPostsResponse.data.data);
+            setAccessToken(allPostsResponse.data.token);
+            console.log('Post IDs retrieved');
+        } catch (error) {
+            console.error('Error fetching post IDs:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchPosts = async () => {
+        if (!postIds || !highlightIds || !accessToken) return;
+
+        try {
+            console.log('Fetching post details...');
+            const mainPostResponse = await axios.get(
+                `https://graph.facebook.com/v21.0/${postIds.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
+            );
+            setPostDetails([mainPostResponse.data]);
+
+            const highlightRequests = highlightIds.map((post) =>
+                axios.get(
+                    `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
+                )
+            );
+
+            const highlightResponses = await Promise.all(highlightRequests);
+            setHighlightDetails(highlightResponses.map((response) => response.data));
+            console.log('Post details retrieved');
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -54,35 +74,12 @@ const AnnouncementSection = () => {
     }, []);
 
     useEffect(() => {
-        if (postIds && highlightIds && accessToken) {
-            const fetchPosts = async () => {
-                try {
-                    const response = await axios.get(
-                        `https://graph.facebook.com/v21.0/${postIds.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
-                    );
-                    setPostDetails([response.data]);
-
-                    const requests = highlightIds.map((post) => {
-                        return axios.get(
-                            `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
-                        );
-                    });
-
-                    const responses = await Promise.all(requests);
-                    const postData = responses.map((response) => response.data);
-                    setHighlightDetails(postData);
-
-                    setIsLoadingPostDetails(false);
-                } catch (error) {
-                    console.error('Error fetching posts:', error);
-                    setIsLoadingPostDetails(false);
-                }
-            };
+        if (!isLoading && postIds && highlightIds && accessToken) {
             fetchPosts();
         }
-    }, [postIds, accessToken]);
+    }, [isLoading, postIds, highlightIds, accessToken]);
 
-    if (isLoadingPostIds || isLoadingPostDetails) {
+    if (isLoading || !postDetails || !highlightDetails) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <p>Loading...</p>

@@ -1,25 +1,22 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
+import BidItem from './bid_item';
+import Procurement from './procurement';
+import Report from './report';
+import Updates from './updates';
+import Bidding from './bidding';
 
 interface SidebarItem {
     name: string;
-    component: string;
+    component: React.ComponentType;
 }
 
 const staticSidebarData: SidebarItem[] = [
-    { name: 'Bid Items', component: 'bid_item' },
-    { name: 'Annual Procurement Plan', component: 'procurement' },
-    { name: 'Project Monitoring Report', component: 'report' },
-    { name: 'Consolidated Updates of APP', component: 'updates' },
-    { name: 'Competitive Bidding', component: 'bidding' },
+    { name: 'Bid Items', component: BidItem },
+    { name: 'Annual Procurement Plan', component: Procurement },
+    { name: 'Project Monitoring Report', component: Report },
+    { name: 'Consolidated Updates of APP', component: Updates },
+    { name: 'Competitive Bidding', component: Bidding },
 ];
-
-const loadComponent = (componentName: string) => {
-    return React.lazy(() =>
-        import(`./${componentName}`).catch(() => ({
-            default: () => <div>No content available</div>,
-        }))
-    );
-};
 
 const BidsSidebar = () => {
     const [selectedItem, setSelectedItem] = useState<string>(staticSidebarData[0]?.name || '');
@@ -30,8 +27,7 @@ const BidsSidebar = () => {
         setSelectedItem(itemName);
     };
 
-    const selectedComponentName = staticSidebarData.find(item => item.name === selectedItem)?.component;
-    const SelectedComponent = selectedComponentName ? loadComponent(selectedComponentName) : null;
+    const SelectedComponent = staticSidebarData.find(item => item.name === selectedItem)?.component;
 
     return (
         <div className="w-full flex">
@@ -61,5 +57,4 @@ const BidsSidebar = () => {
         </div>
     );
 };
-
 export default BidsSidebar;

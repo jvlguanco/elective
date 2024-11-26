@@ -1,5 +1,8 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Colleges from './colleges';
+import Calendar from './calendar';
+import OBE from './obe';
+import Graduate from './graduate';
 
 interface SidebarItem {
     name: string;
@@ -10,14 +13,14 @@ interface VariableProps {
     route: string;
 }
 
-const loadComponent = (componentName: string) =>
-    React.lazy(() =>
-        import(`./${componentName}`).catch(() => ({
-            default: () => <div>No content available</div>,
-        }))
-);
+const componentMap: Record<string, React.FC<any>> = {
+    colleges: Colleges,
+    calendar: Calendar,
+    obe: OBE,
+    graduate: Graduate,
+};
 
-const AcademicSidebar: React.FC<VariableProps> = ({route}) => {
+const AcademicSidebar: React.FC<VariableProps> = ({ route }) => {
     const routeKey = route || 'colleges';
 
     const [sidebarData, setSidebarData] = useState<SidebarItem[]>([]);
@@ -52,20 +55,14 @@ const AcademicSidebar: React.FC<VariableProps> = ({route}) => {
     }, [routeKey]);
 
     useEffect(() => {
-        if (sidebarData.length > 0) {
+        if (sidebarData.length > 0 && !selectedItem) {
             setSelectedItem(sidebarData[0].id);
         }
-    }, [sidebarData]);
-
+    }, [sidebarData, selectedItem]);
+    
     const handleItemClick = (id: string) => setSelectedItem(id);
 
-    const SelectedComponent = React.lazy(() =>
-        routeKey === 'colleges'
-            ? import('./colleges').then((module) => ({
-                default: () => <module.default id={selectedItem} />,
-            }))
-            : import(`./${routeKey}`)
-    );
+    const SelectedComponent = componentMap[routeKey] || (() => <div>No content available</div>);
 
     if (loading) {
         return <div>Loading content...</div>;
@@ -75,7 +72,7 @@ const AcademicSidebar: React.FC<VariableProps> = ({route}) => {
         routeKey === 'colleges' && (
             <div className="w-1/5 px-16 pt-8">
                 <ul>
-                    {sidebarData.map(item => (
+                    {sidebarData.map((item) => (
                         <li
                             key={item.id}
                             className={`p-4 cursor-pointer ${
@@ -94,9 +91,7 @@ const AcademicSidebar: React.FC<VariableProps> = ({route}) => {
 
     const MainContent = () => (
         <div className={`w-${routeKey === 'colleges' ? '4/5' : 'full'}`}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <SelectedComponent />
-            </Suspense>
+            <SelectedComponent id={selectedItem} />
         </div>
     );
 

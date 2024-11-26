@@ -38,10 +38,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path="obe" element={<Academics location="obe"/>} />
         </Route>
         <Route path="/admission">
-          <Route index element={<Admission location="plmat"/>} />
-          <Route path="plmat" element={<Admission location="plmat"/>} />
-          <Route path="cmat" element={<Admission location="cmat"/>} />
-          <Route path="clat" element={<Admission location="clat"/>} />
+          <Route index element={<Admission location="PLMAT"/>} />
+          <Route path="plmat" element={<Admission location="PLMAT"/>} />
+          <Route path="cmat" element={<Admission location="CMAT"/>} />
+          <Route path="clat" element={<Admission location="CLAT"/>} />
         </Route>
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/careers" element={<Career />} />
