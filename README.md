@@ -33,26 +33,30 @@ The following are the prerequisites to use the repository:
 ![alt text](<readme_images/Screenshot 2024-11-26 215451.png>)
 - Once signed up, create your own application with the following specific settings: `Use Case = Other`, `App Type = Business`
     - Go to My Apps
-
-![alt text](readme_images/image-2.png)
+    
+    ![alt text](readme_images/image-2.png)
     - Create App
 
-![alt text](readme_images/image-3.png)
+    ![alt text](readme_images/image-3.png)
+
     - Follow the required field
     - Select Other
 
-![alt text](readme_images/image-4.png)
+    ![alt text](readme_images/image-4.png)
+
     - Select Business
 
-![alt text](readme_images/image-5.png)
+    ![alt text](readme_images/image-5.png)
+    
     - Create the App
 - Once the application is created retrieve the following: `APP_ID`, `APP_SECRET`, `PAGE_ID`, `ACCESS_TOKEN`
     - For `APP_ID` and `APP_SECRET` you can see it in the App Settings
 
-![alt text](readme_images/image-6.png)
+    ![alt text](readme_images/image-6.png)
+
     - `PAGE_ID` and `ACCESS_TOKEN`, use the [Graph API Explorer](https://developers.facebook.com/tools/explorer/) which can be found in the tools tab
     
-![alt text](readme_images/image-7.png)
+    ![alt text](readme_images/image-7.png)
 - The prior mentioned items are will be instered inside the `.env` of the server folder
 - You can test out Facebook's APIs thought [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
 
