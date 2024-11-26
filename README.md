@@ -23,27 +23,36 @@ The following are the prerequisites to use the repository:
     - You should have a Facebook Developer Accounts. If you do not have account, create one.
     - Make sure that you have access to the facebook page you want to try the application for. See image below to see when you have access to a page.
     - Switch to the Page
+
 ![alt text](readme_images/image.png)
     - In the Settings Option, Search for Page Access
-![alt text](image-1.png)  
+
+![alt text](readme_images/image-1.png)  
     - You should see your account in the list of 'People with Facebook Access'
-![alt text](<Screenshot 2024-11-26 215451.png>)
+
+![alt text](<readme_images/Screenshot 2024-11-26 215451.png>)
 - Once signed up, create your own application with the following specific settings: `Use Case = Other`, `App Type = Business`
     - Go to My Apps
-![alt text](image-2.png)
+
+![alt text](readme_images/image-2.png)
     - Create App
-    ![alt text](image-3.png)
+
+![alt text](readme_images/image-3.png)
     - Follow the required field
     - Select Other
-    ![alt text](image-4.png)
+
+![alt text](readme_images/image-4.png)
     - Select Business
-    ![alt text](image-5.png)
+
+![alt text](readme_images/image-5.png)
     - Create the App
 - Once the application is created retrieve the following: `APP_ID`, `APP_SECRET`, `PAGE_ID`, `ACCESS_TOKEN`
     - For `APP_ID` and `APP_SECRET` you can see it in the App Settings
-    ![alt text](image-6.png)
+
+![alt text](readme_images/image-6.png)
     - `PAGE_ID` and `ACCESS_TOKEN`, use the [Graph API Explorer](https://developers.facebook.com/tools/explorer/) which can be found in the tools tab
-    ![alt text](image-7.png)
+    
+![alt text](readme_images/image-7.png)
 - The prior mentioned items are will be instered inside the `.env` of the server folder
 - You can test out Facebook's APIs thought [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
 
@@ -54,10 +63,12 @@ The following are the prerequisites to use the repository:
 
 ### PAGE ID
 - In order to get the Page Id, run this line in the [Graph API Explorer](https://developers.facebook.com/tools/explorer/) `/me/accounts`
-![alt text](image-8.png)
+
+![alt text](readme_images/image-8.png)
 - Retrieve the `Page_Id`
 - Also take note of the `ACCESS_TOKEN` given by the prompt, this will be used to retrieve the access token
-![alt text](image-9.png)
+
+![alt text](readme_images/image-9.png)
 
 ### ACCESS TOKEN
 - There are two types of access token: Short-Lived and Long-Lived Access Token
