@@ -39,9 +39,9 @@ createRoot(document.getElementById('root')!).render(
         </Route>
         <Route path="/admission">
           <Route index element={<Admission location="PLMAT"/>} />
-          <Route path="plmat" element={<Admission location="PLMAT"/>} />
-          <Route path="cmat" element={<Admission location="CMAT"/>} />
-          <Route path="clat" element={<Admission location="CLAT"/>} />
+          <Route path="PLMAT" element={<Admission location="PLMAT"/>} />
+          <Route path="CMAT" element={<Admission location="CMAT"/>} />
+          <Route path="CLAT" element={<Admission location="CLAT"/>} />
         </Route>
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/careers" element={<Career />} />

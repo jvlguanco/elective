@@ -154,17 +154,17 @@ const MainNav = () => {
                             className="absolute top-12 mt-1 bg-white w-72 flex flex-col z-10"
                         >
                             <li className="hover:bg-gray-200">
-                                <NavLink to="/admission/plmat" className="block px-4 py-2">
+                                <NavLink to="/admission/PLMAT" className="block px-4 py-2">
                                     PLM Admission Test (PLMAT)
                                 </NavLink>
                             </li>
                             <li className="hover:bg-gray-200">
-                                <NavLink to="/admission/cmat" className="block px-4 py-2">
+                                <NavLink to="/admission/CMAT" className="block px-4 py-2">
                                     College of Medicine Admission Test
                                 </NavLink>
                             </li>
                             <li className="hover:bg-gray-200">
-                                <NavLink to="/admission/clat" className="block px-4 py-2">
+                                <NavLink to="/admission/CLAT" className="block px-4 py-2">
                                     College of Law Admission Test (CLAT)
                                 </NavLink>
                             </li>

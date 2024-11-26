@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Admission = ({id}) => {
+const Admission = ({ id }) => {
     const [admissionData, setAdmissionData] = useState({
         name: "",
         description: "",
@@ -29,9 +29,26 @@ const Admission = ({id}) => {
         fetchAdmission();
     }, [id]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setAdmissionData((prev) => ({ ...prev, [name]: value }));
+    
+        if (name === "requirements" || name === "qualifications") {
+            const formattedValue = value
+                .split("\n")
+                .map((line) => (line.trim() ? (line.trim().startsWith("-") ? line : `- ${line}`) : ""))
+                .join("\n");
+            setAdmissionData((prev) => ({ ...prev, [name]: formattedValue }));
+        } else if (name === "process") {
+            const formattedValue = value
+                .split("\n")
+                .map((line, index) =>
+                    line.trim() ? (line.trim().match(/^\d+\./) ? line : `${index + 1}. ${line}`) : ""
+                )
+                .join("\n");
+            setAdmissionData((prev) => ({ ...prev, [name]: formattedValue }));
+        } else {
+            setAdmissionData((prev) => ({ ...prev, [name]: value }));
+        }
     };
 
     const handleStatusChange = async () => {
@@ -39,18 +56,18 @@ const Admission = ({id}) => {
             const updatedStatus = admissionData.status === "open" ? "close" : "open";
             await axios.patch(`http://localhost:5000/admission/information/${id}/status`, { status: updatedStatus });
             setAdmissionData((prev) => ({ ...prev, status: updatedStatus }));
-            alert("Status Changed")
+            alert("Status Changed");
         } catch (err) {
             alert(err);
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.put(`http://localhost:5000/admission/information/${id}`, admissionData);
             alert("Admission updated successfully.");
-        } catch (err: any) {
+        } catch (err) {
             console.error(err);
             setErrors(err.response?.data?.errors || {});
         }
@@ -96,7 +113,7 @@ const Admission = ({id}) => {
 
                 <div className="w-1/2">
                     <label className="block mb-4">
-                        Requirements:
+                        Requirements (Bullet Points):
                         <textarea
                             name="requirements"
                             value={admissionData.requirements}
@@ -114,7 +131,7 @@ const Admission = ({id}) => {
             <div className="flex gap-4 justify-between w-full">
                 <div className="w-1/2">
                     <label className="block mb-4">
-                        Qualifications:
+                        Qualifications (Bullet Points):
                         <textarea
                             name="qualifications"
                             value={admissionData.qualifications}
@@ -130,7 +147,7 @@ const Admission = ({id}) => {
 
                 <div className="w-1/2">
                     <label className="block mb-4">
-                        Application Process:
+                        Application Process (Numbered):
                         <textarea
                             name="process"
                             value={admissionData.process}
