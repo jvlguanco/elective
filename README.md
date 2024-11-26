@@ -57,6 +57,10 @@ The following are the prerequisites to use the repository:
     - `PAGE_ID` and `ACCESS_TOKEN`, use the [Graph API Explorer](https://developers.facebook.com/tools/explorer/) which can be found in the tools tab
     
     ![alt text](readme_images/image-7.png)
+
+    - Also make sure to create your own privacy policy. This can be generated using [Free Privacy Policy](https://www.freeprivacypolicy.com/) and include it in the privacy policy section of the settings if you want the updates of the bot to be live
+
+    ![alt text](readme_images/privacy.png)
 - The prior mentioned items are will be instered inside the `.env` of the server folder
 - You can test out Facebook's APIs thought [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
 
