@@ -23,7 +23,7 @@ The following are the prerequisites to use the repository:
     - You should have a Facebook Developer Accounts. If you do not have account, create one.
     - Make sure that you have access to the facebook page you want to try the application for. See image below to see when you have access to a page.
     - Switch to the Page
-![alt text](image.png)
+![alt text](readme_images/image.png)
     - In the Settings Option, Search for Page Access
 ![alt text](image-1.png)  
     - You should see your account in the list of 'People with Facebook Access'
