@@ -22,6 +22,7 @@ const AnnouncementSection = () => {
     const [highlightDetails, setHighlightDetails] = useState<PostData[] | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const fetchPostIds = async () => {
         try {
@@ -32,12 +33,17 @@ const AnnouncementSection = () => {
                 axios.get('http://localhost:5000/facebook/announcement-post')
             ]);
 
-            setPostIds(allPostsResponse.data.data[0]);
-            setHighlightIds(announcementPostsResponse.data.data);
-            setAccessToken(allPostsResponse.data.token);
+            if (allPostsResponse.data.data[0] && announcementPostsResponse.data.data) {
+                setPostIds(allPostsResponse.data.data[0]);
+                setHighlightIds(announcementPostsResponse.data.data);
+                setAccessToken(allPostsResponse.data.token);
+            } else {
+                setErrorMessage('No posts available.');
+            }
             console.log('Post IDs retrieved');
         } catch (error) {
             console.error('Error fetching post IDs:', error);
+            setErrorMessage('Failed to fetch posts. Please try again later.');
         } finally {
             setIsLoading(false);
         }
@@ -51,6 +57,7 @@ const AnnouncementSection = () => {
             const mainPostResponse = await axios.get(
                 `https://graph.facebook.com/v21.0/${postIds.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
             );
+
             setPostDetails([mainPostResponse.data]);
 
             const highlightRequests = highlightIds.map((post) =>
@@ -64,6 +71,7 @@ const AnnouncementSection = () => {
             console.log('Post details retrieved');
         } catch (error) {
             console.error('Error fetching posts:', error);
+            setErrorMessage('Failed to fetch posts from Facebook API. Please try again later.');
         } finally {
             setIsLoading(false);
         }
@@ -79,10 +87,26 @@ const AnnouncementSection = () => {
         }
     }, [isLoading, postIds, highlightIds, accessToken]);
 
-    if (isLoading || !postDetails || !highlightDetails) {
+    if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <p>Loading...</p>
+            </div>
+        );
+    }
+
+    if (errorMessage) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <p>{errorMessage}</p>
+            </div>
+        );
+    }
+
+    if (!postDetails || !postDetails.length || !highlightDetails || !highlightDetails.length) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <p>No posts available.</p>
             </div>
         );
     }
@@ -100,17 +124,17 @@ const AnnouncementSection = () => {
                 <h1 className="font-inter text-navy-blue font-bold text-[28px] mb-2">
                     LATEST NEWS
                 </h1>
-    
+
                 <img src={postDetails[0].attachments.data[0].media.image.src} alt="" className="w-full h-[450px] object-cover" />
-    
+
                 <h3 className="font-inter font-bold text-[22px]">
                     {firstSection}
                 </h3>
-    
+
                 <p className='text-[15px] line-clamp-4 overflow-hidden text-ellipsis'>
                     {remainingText}
                 </p>
-    
+
                 <div className="w-full flex justify-between mt-8">
                     <span
                         className="text-red-600 cursor-pointer hover:underline font-inter font-semibold"
@@ -118,19 +142,19 @@ const AnnouncementSection = () => {
                     >
                         View Post
                     </span>
-    
+
                     <div className='flex gap-4 items-center justify-center'>
                         <EventIcon style={{ fontSize: 20, color: 'black' }} />
                         <p className="text-[15px]">{format(postDetails[0].created_time, "MMMM d, yyyy")}</p>
                     </div>
                 </div>
             </div>
-    
+
             <div className="w-1/2 flex flex-col">
                 <h1 className="font-inter text-navy-blue font-bold text-[28px] mb-2">
                     HIGHLIGHTED NEWS
                 </h1>
-    
+
                 {highlightDetails?.map((post, index) => {
                     const [firstSection, ...restSections] = post.message.split('\n\n');
                     const remainingText = restSections.join('\n\n');
@@ -167,13 +191,13 @@ const AnnouncementSection = () => {
                         </div>
                     );
                 })}
-    
+
                 <NavLink to="/announcement" className="bg-navy-blue px-4 py-2 rounded-full flex items-center justify-center w-fit font-inter font-semibold text-yellow-500">
                     View All Announcements
                 </NavLink>
             </div>
         </div>
-    );    
+    );
 }
 
 export default AnnouncementSection

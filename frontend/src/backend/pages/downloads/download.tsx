@@ -27,6 +27,9 @@ const Downloads = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [page, setPage] = useState(0);
+    const [error, setError] = useState<{ section: string | null }>({
+        section: null,
+    });
     const itemsPerPage = 8;
 
     const openModal = (item: Download | null = null) => {
@@ -70,12 +73,20 @@ const Downloads = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+    
+        if (!formData.section) {
+            setError({ section: 'Please select or create a section.' });
+            return;
+        } else {
+            setError({ section: null });
+        }
+    
         const data = new FormData();
         data.append('title', formData.title);
         data.append('section', formData.section);
         data.append('location', 'downloads');
         if (formData.file) data.append('file', formData.file);
-
+    
         try {
             if (isEditing && formData.id) {
                 const res = await axios.put(`http://localhost:5000/other/downloads/${formData.id}`, data);
@@ -109,9 +120,9 @@ const Downloads = () => {
         try {
             const res = await axios.get('http://localhost:5000/other/sections');
             setSections(
-                res.data.map((section: { name: string }) => ({
-                    label: section.name,
-                    value: section.name,
+                res.data.map((section: { section: string }) => ({
+                    label: section.section,
+                    value: section.section,
                 }))
             );
         } catch (err) {
@@ -216,8 +227,9 @@ const Downloads = () => {
                         onChange={handleSectionChange}
                         onCreateOption={handleCreateSection}
                         placeholder="Select or create a section"
-                        className="w-full mb-4"
+                        className={`w-full mb-4 ${error.section ? 'border-red-500' : ''}`}
                     />
+                    {error.section && <p className="text-red-500 text-sm">{error.section}</p>}
                     <input
                         type="file"
                         name="file"

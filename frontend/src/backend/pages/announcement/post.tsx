@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const PostAnnouncement = () => {
     const [title, setTitle] = useState('');
@@ -8,10 +8,13 @@ const PostAnnouncement = () => {
     const [postType, setPostType] = useState('Normal');
     const [endDate, setEndDate] = useState('');
     const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (images.length === 0) return;
+        if (!images || images.length === 0) return;
 
         const formData = new FormData();
         formData.append('title', title);
@@ -25,15 +28,27 @@ const PostAnnouncement = () => {
             formData.append('endDate', endDate);
         }
 
-        setLoading(true); 
+        setLoading(true);
 
         try {
             const response = await axios.post('http://localhost:5000/facebook/post', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            console.log('Post created with ID:', response.data.postId);
+
+            setSuccessMessage('Post created successfully!');
+            setErrorMessage('');
+
+            // Reset form fields
+            setTitle('');
+            setBody('');
+            setImages(null);
+            setPostType('Normal');
+            setEndDate('');
+            if (fileInputRef.current) fileInputRef.current.value = '';
         } catch (error) {
             console.error('Error creating post:', error);
+            setErrorMessage('Failed to create the post. Please try again.');
+            setSuccessMessage('');
         } finally {
             setLoading(false);
         }
@@ -54,6 +69,19 @@ const PostAnnouncement = () => {
                     <div className="text-white text-lg font-semibold">Submitting...</div>
                 </div>
             )}
+
+            {successMessage && (
+                <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    {successMessage}
+                </div>
+            )}
+
+            {errorMessage && (
+                <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    {errorMessage}
+                </div>
+            )}
+
             <h1 className='text-3xl font-bold text-gray-800 mb-6'>Create a Facebook Post</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="mb-4">
@@ -85,6 +113,7 @@ const PostAnnouncement = () => {
                         multiple
                         onChange={handleFileChange}
                         required
+                        ref={fileInputRef}
                         className="mt-1 w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                 </div>
@@ -130,6 +159,6 @@ const PostAnnouncement = () => {
             </form>
         </div>
     );
-}
+};
 
-export default PostAnnouncement
+export default PostAnnouncement;
