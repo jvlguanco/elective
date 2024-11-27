@@ -24,6 +24,10 @@ import OrganizationalChart from '../pages/administration/org_chart';
 import SupportStaff from '../pages/administration/support';
 import Offices from '../pages/administration/offices';
 import Admission from '../pages/admission/template';
+import Partner from '../pages/partner/partner';
+import PrivacyPolicy from '../pages/privacy_policy/privacy';
+import Scholarship from '../pages/scholarship/scholarship';
+import Downloads from '../pages/downloads/download';
 
 const routes = {
     admin: {
@@ -32,7 +36,7 @@ const routes = {
         '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
         '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-        '/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding']
+        '/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding', 'Downloads', 'Scholarship', 'Partners', 'Privacy Policy']
     },
 
     others: {
@@ -78,7 +82,11 @@ const sidebarItemContent = {
     'Offices': <Offices/>,
     'PLMAT': <Admission id="PLMAT"/>,
     'CLAT': <Admission id="CLAT"/>,
-    'CMAT': <Admission id="CMAT"/>
+    'CMAT': <Admission id="CMAT"/>,
+    'Scholarship': <Scholarship/>,
+    'Downloads': <Downloads/>,
+    'Partners': <Partner/>,
+    'Privacy Policy': <PrivacyPolicy/>
 };
 
 const Sidebar = ({role}) => {
@@ -101,7 +109,7 @@ const Sidebar = ({role}) => {
 
     return (
         <div className='flex w-full'>
-            <div className='w-1/6 h-screen-minus-82 border-r-2 border-black flex flex-col gap-12 px-12 py-8'>
+            <div className='w-1/6 h-screen-minus-82 flex flex-col gap-12 px-12 py-8'>
                 <ul>
                     {items.map(item => (
                         <li

@@ -12,8 +12,8 @@ const bid_api = require('./routes/bids')
 const academic_api = require('./routes/academic')
 const office_api = require('./routes/offices')
 const admission_api = require('./routes/admission')
+const other_api = require('./routes/other')
 const path = require('path');
-const axios = require('axios');
 
 const app = express();
 const port = 5000;
@@ -35,6 +35,7 @@ app.use('/bid', bid_api)
 app.use('/academic', academic_api)
 app.use('/office', office_api)
 app.use('/admission', admission_api)
+app.use('/other', other_api)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
