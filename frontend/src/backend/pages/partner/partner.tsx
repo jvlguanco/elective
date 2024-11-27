@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Partner = () => {
     const [partnerData, setPartnerData] = useState({
+        title: "", // New field for title
         description: "",
         individuals: "",
         providers: "",
@@ -30,7 +31,7 @@ const Partner = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "providers" || name === "individuals") {
+        if (name === "providers" || name === "individuals" || name === "how") {
             const formattedValue = value
                 .split("\n")
                 .map((line) => (line.trim() ? (line.trim().startsWith("-") ? line : `- ${line}`) : ""))
@@ -60,6 +61,21 @@ const Partner = () => {
             <h2 className="text-2xl font-bold mb-4">Edit Partner</h2>
 
             <div className="flex flex-col gap-4">
+                <label className="block mb-2">
+                    Title:
+                    <input
+                        type="text"
+                        name="title"
+                        value={partnerData.title}
+                        onChange={handleInputChange}
+                        required
+                        className="border rounded px-2 py-1 w-full mt-1"
+                    />
+                    {errors.title && (
+                        <p className="text-red-500 text-sm">{errors.title}</p>
+                    )}
+                </label>
+
                 <label className="block mb-2">
                     Description:
                     <textarea

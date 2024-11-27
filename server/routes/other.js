@@ -141,14 +141,14 @@ router.get('/partner', (req, res) => {
 });
 
 router.put('/partner', (req, res) => {
-    const { description, individuals, providers, how, who } = req.body;
+    const { description, individuals, providers, how, who, title } = req.body;
 
     const updateQuery = `
         UPDATE partner 
-        SET description = ?, individuals = ?, providers = ?, how = ?, who = ?
+        SET description = ?, individuals = ?, providers = ?, how = ?, who = ?, title = ?
         LIMIT 1
     `;
-    db.query(updateQuery, [description, individuals, providers, how, who], (err, results) => {
+    db.query(updateQuery, [description, individuals, providers, how, who, title], (err, results) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Server error.' });
