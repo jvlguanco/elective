@@ -444,13 +444,13 @@ const Colleges = () => {
                         <>
                             <label className="block mb-4">
                                 Description:
-                                <textarea name="description" value={(editCollege || newCollege).description} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                                <textarea name="description" value={(editCollege || newCollege).description} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1 h-56" />
                                 {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
                             </label>
 
                             <label className="block mb-4">
                                 History:
-                                <textarea name="history" value={(editCollege || newCollege).history} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1" />
+                                <textarea name="history" value={(editCollege || newCollege).history} onChange={handleCollegeInputChange} required className="border rounded px-2 py-1 w-full mt-1 h-56" />
                                 {errors.history && <p className="text-red-500 text-sm">{errors.history}</p>}
                             </label>
                         </>
