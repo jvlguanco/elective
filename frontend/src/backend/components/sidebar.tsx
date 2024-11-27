@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AboutEdit from '../pages/home/about';
 import HeroEdit from '../pages/home/hero';
@@ -31,28 +30,28 @@ import Downloads from '../pages/downloads/download';
 
 const routes = {
     admin: {
-        '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
-        '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
-        '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
-        '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
-        '/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding', 'Downloads', 'Scholarship', 'Partners', 'Privacy Policy']
+        '/admin': ['About Section', 'Hero Section'],
+        '/admin/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
+        '/admin/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admin/admissions': ['PLMAT', 'CMAT', 'CLAT'],
+        '/admin/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
+        '/admin/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding', 'Downloads', 'Scholarship', 'Partners', 'Privacy Policy']
     },
 
     others: {
-        '/': ['About Section', 'Hero Section'],
-        '/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
-        '/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
-        '/admissions': ['PLMAT', 'CMAT', 'CLAT'],
-        '/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
+        '/admin': ['About Section', 'Hero Section'],
+        '/admin/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
+        '/admin/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admin/admissions': ['PLMAT', 'CMAT', 'CLAT'],
+        '/admin/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
     },
 
     career: {
-        '/': ['Create Opening', 'Manage Openings']
+        '/admin': ['Create Opening', 'Manage Openings']
     },
 
     bid_awards: {
-        '/': ['Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding'],
+        '/admin': ['Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding'],
     },
 
 };

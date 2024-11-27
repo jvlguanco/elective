@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
 import Login from './components/login';
 
-const App = () => {
-    const [role, setRole] = useState('admin');
+const Backend = () => {
+    const [role, setRole] = useState(null);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         setRole(null);
+        navigate('/');
     };
 
     return (
-        <BrowserRouter>
+        <>
             {role ? (
                 <>
                     <Navbar role={role} onLogout={handleLogout} />
@@ -22,8 +24,8 @@ const App = () => {
             ) : (
                 <Login setRole={setRole} />
             )}
-        </BrowserRouter>
+        </>
     );
 };
 
-export default App;
+export default Backend;

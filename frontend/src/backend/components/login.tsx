@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Login = ({ setRole }) => {
             const { token, role } = response.data;
             localStorage.setItem('token', token);
             setRole(role);
-            navigate('/');
+            navigate('/admin');
         } catch (err) {
             setError('Invalid credentials. Please try again.');
         }

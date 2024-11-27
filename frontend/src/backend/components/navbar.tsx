@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = ({ role, onLogout }) => {
@@ -14,7 +13,7 @@ const Navbar = ({ role, onLogout }) => {
 
             <ul className="flex list-none m-0 p-0">
                 <li className="mr-6">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                    <NavLink to="/admin" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                         Home
                     </NavLink>
                 </li>
@@ -22,22 +21,22 @@ const Navbar = ({ role, onLogout }) => {
                 {role === 'admin' || role === 'others' ? (
                     <>
                         <li className="mr-6">
-                            <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                            <NavLink to="/admin/about" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                                 About
                             </NavLink>
                         </li>
                         <li className="mr-6">
-                            <NavLink to="/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                            <NavLink to="/admin/academics" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                                 Academics
                             </NavLink>
                         </li>
                         <li className="mr-6">
-                            <NavLink to="/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                            <NavLink to="/admin/admissions" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                                 Admissions
                             </NavLink>
                         </li>
                         <li className="mr-6">
-                            <NavLink to="/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                            <NavLink to="/admin/announcement" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                                 Announcements
                             </NavLink>
                         </li>
@@ -47,7 +46,7 @@ const Navbar = ({ role, onLogout }) => {
                 {role === 'admin' ? (
                     <>
                         <li className="mr-6">
-                            <NavLink to="/others" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
+                            <NavLink to="/admin/others" className={({ isActive }) => (isActive ? 'text-red-500 font-bold' : 'text-black')} end>
                                 Others
                             </NavLink>
                         </li>
