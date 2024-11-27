@@ -73,9 +73,13 @@ const Footer = () => {
                 </div>  
 
                 <div className='flex flex-col gap-2'>
-                    <NavLink to="/catalog">
+                    <a
+                        href='https://library.plm.edu.ph/'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Online Public Access Catalog
-                    </NavLink>
+                    </a>
 
                     <NavLink to="/privacy">
                         Privacy Policy

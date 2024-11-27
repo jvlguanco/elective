@@ -20,7 +20,7 @@ const MainNav = () => {
             if (rect.right > window.innerWidth) {
                 dropdown.style.left = `-${rect.right - window.innerWidth}px`;
             } else {
-                dropdown.style.left = '0'; // Reset if no overflow
+                dropdown.style.left = '0';
             }
         }
     };

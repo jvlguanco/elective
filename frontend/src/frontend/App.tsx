@@ -12,6 +12,9 @@ import Footer from './components/footer.tsx';
 import About from './pages/main_routes/about.tsx';
 import Career from './pages/main_routes/career.tsx';
 import Bids from './pages/main_routes/bids.tsx';
+import Download from './pages/main_routes/download.tsx';
+import CRS from './pages/main_routes/crs.tsx';
+import Partners from './pages/main_routes/partner.tsx';
 
 function Frontend() {
   return (
@@ -42,6 +45,11 @@ function Frontend() {
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/careers" element={<Career />} />
         <Route path="/bids-and-awards" element={<Bids />} />
+        <Route path="/downloads" element={<Download />} />
+        <Route path="/student/crs" element={<CRS />} />
+        <Route path="/faculty/crs" element={<CRS />} />
+        <Route path="/partner" element={<Partners location={'partners'} />} />
+        <Route path="/scholarship" element={<Partners location={'scholarship'}/>} />
       </Routes>
       <Footer />
     </>

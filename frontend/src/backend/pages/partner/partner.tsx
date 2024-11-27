@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Partner = () => {
     const [partnerData, setPartnerData] = useState({
-        title: "", // New field for title
+        title: "",
         description: "",
         individuals: "",
         providers: "",
