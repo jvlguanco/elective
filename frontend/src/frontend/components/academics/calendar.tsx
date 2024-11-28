@@ -67,7 +67,7 @@ const Calendar = () => {
         const sortedEvents = Object.keys(grouped).sort((a, b) => {
             if (a === "Semester Duration") return -1;
             if (b === "Semester Duration") return 1;
-            return a.localeCompare(b);
+            return 0;
         });
 
         return sortedEvents.map(event => (
