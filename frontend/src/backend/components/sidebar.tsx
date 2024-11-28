@@ -27,12 +27,13 @@ import Partner from '../pages/partner/partner';
 import PrivacyPolicy from '../pages/privacy_policy/privacy';
 import Scholarship from '../pages/scholarship/scholarship';
 import Downloads from '../pages/downloads/download';
+import Calendar from '../pages/academics/calendar';
 
 const routes = {
     admin: {
         '/admin': ['About Section', 'Hero Section'],
         '/admin/about': ['Board of Regents Member', 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
-        '/admin/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admin/academics': ['Colleges', 'Courses',  'Academic Calendar for Semestral', 'Academic Calendar for Trimestral'],
         '/admin/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/admin/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
         '/admin/others': ['Create Opening', 'Manage Openings', 'Bid Items', 'Annual Procurement Plan', 'Project Monitoring Report', 'Consolidated Updates of APP', 'Competitive Bidding', 'Downloads', 'Scholarship', 'Partners', 'Privacy Policy']
@@ -41,7 +42,7 @@ const routes = {
     others: {
         '/admin': ['About Section', 'Hero Section'],
         '/admin/about': ['Board of Regents Member' , 'President', 'Management Committee', 'Directors and Chiefs', 'Organizational Chart', 'Support Staff', 'Offices'],
-        '/admin/academics': ['Colleges', 'Courses', 'Office of Graduate and Professional Studies', 'Academic Calendar', 'Outcome-Based Education'],
+        '/admin/academics': ['Colleges', 'Courses', 'Academic Calendar for Semestral', 'Academic Calendar for Trimestral'],
         '/admin/admissions': ['PLMAT', 'CMAT', 'CLAT'],
         '/admin/announcement': ['Create Post', 'View Normal Post', 'View Highlighted Posts', 'View Time-Restricted Posts'],
     },
@@ -85,7 +86,9 @@ const sidebarItemContent = {
     'Scholarship': <Scholarship/>,
     'Downloads': <Downloads/>,
     'Partners': <Partner/>,
-    'Privacy Policy': <PrivacyPolicy/>
+    'Privacy Policy': <PrivacyPolicy/>,
+    'Academic Calendar for Semestral': <Calendar type={'semestral'}/>,
+    'Academic Calendar for Trimestral': <Calendar type={'trimestral'}/>
 };
 
 const Sidebar = ({role}) => {

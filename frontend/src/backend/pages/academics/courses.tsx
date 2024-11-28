@@ -9,7 +9,11 @@ const Courses: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [selectedCollegeId, setSelectedCollegeId] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({ course_id: "", course_name: "" });
+    const [formData, setFormData] = useState({
+        course_id: "",
+        course_name: "",
+        is_graduate: 0,
+    });
     const [editingCourse, setEditingCourse] = useState(false);
     const [page, setPage] = useState(0);
     const itemsPerPage = 8;
@@ -49,7 +53,7 @@ const Courses: React.FC = () => {
 
     const handleModalClose = () => {
         setShowModal(false);
-        setFormData({ course_id: "", course_name: "" });
+        setFormData({ course_id: "", course_name: "" , is_graduate: 0,});
         setEditingCourse(false);
     };
 
@@ -58,7 +62,7 @@ const Courses: React.FC = () => {
             setFormData(course);
             setEditingCourse(true);
         } else {
-            setFormData({ course_id: "", course_name: "" });
+            setFormData({ course_id: "", course_name: "" , is_graduate: 0,});
             setEditingCourse(false);
         }
         setShowModal(true);
@@ -165,12 +169,67 @@ const Courses: React.FC = () => {
                     <h2 className="text-2xl font-bold mb-4">
                         {editingCourse ? 'Edit Course' : 'Add Course'}
                     </h2>
-                    <input type="text" name="course_id" onChange={handleFormChange} value={formData.course_id} placeholder="College Id" className="w-full mb-4 p-2 border rounded" required />
-                    <input type="text" name="course_name" onChange={handleFormChange} value={formData.course_name} placeholder="College Name" className="w-full mb-4 p-2 border rounded" required />
+                    <input
+                        type="text"
+                        name="course_id"
+                        onChange={handleFormChange}
+                        value={formData.course_id}
+                        placeholder="Course Id"
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="course_name"
+                        onChange={handleFormChange}
+                        value={formData.course_name}
+                        placeholder="Course Name"
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    />
+
+                    <div className="mb-4">
+                        <label className="block font-bold mb-2">
+                            Is the Program a Masteral/Graduate Program?
+                        </label>
+                        <div className="flex items-center gap-4">
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="is_graduate"
+                                    value="1"
+                                    checked={formData.is_graduate === 1}
+                                    onChange={handleFormChange}
+                                />{' '}
+                                Yes
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="is_graduate"
+                                    value="0"
+                                    checked={formData.is_graduate === 0}
+                                    onChange={handleFormChange}
+                                />{' '}
+                                No
+                            </label>
+                        </div>
+                    </div>
 
                     <div className="flex gap-2">
-                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">{editingCourse ? 'Update' : 'Submit'}</button>
-                        <button type="button" onClick={handleModalClose} className="w-full bg-gray-500 text-white p-2 rounded">Cancel</button>
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-500 text-white p-2 rounded"
+                        >
+                            {editingCourse ? 'Update' : 'Submit'}
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleModalClose}
+                            className="w-full bg-gray-500 text-white p-2 rounded"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </form>
             </Modal>
