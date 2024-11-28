@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2024 at 01:41 PM
+-- Generation Time: Nov 28, 2024 at 11:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -38,6 +38,156 @@ CREATE TABLE `about_home` (
 
 INSERT INTO `about_home` (`id`, `message`) VALUES
 (1, 'Pamantasan ng Lungsod ng Maynila (PLM) is the first and only chartered and autonomous university funded by a city government. It was created by the Congress of the Philippines by virtue of Republic Act No. 4196 or “An Act Authorizing the City of Manila to Establish and Operate the University of City of Manila” on June 19, 1965\n\nThe university first opened its gates on July 17, 1967 to 556 first-year students at its campus in the historic Intramuros district, which served as the seat of power during the Spanish occupation. Currently, about 10,000 graduate and post-graduate students grace its halls to receive PLM’s quality education.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic_calendar`
+--
+
+CREATE TABLE `academic_calendar` (
+  `id` int(11) NOT NULL,
+  `type` enum('semestral','trimestral') NOT NULL,
+  `term` enum('First Semester','Second Semester','Third Semester','Midyear Term') NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `event` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `academic_calendar`
+--
+
+INSERT INTO `academic_calendar` (`id`, `type`, `term`, `start_date`, `end_date`, `event`) VALUES
+(1, 'semestral', 'First Semester', '2024-11-27', '2024-11-08', 'REGISTRATION PERIOD'),
+(2, 'semestral', 'First Semester', NULL, NULL, 'START OF CLASSES'),
+(3, 'semestral', 'First Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(4, 'semestral', 'First Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(5, 'semestral', 'First Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(6, 'semestral', 'First Semester', NULL, NULL, 'MIDTERM EXAMINATIONS'),
+(7, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(8, 'semestral', 'First Semester', NULL, NULL, 'END OF CLASSES for Graduating Students'),
+(9, 'semestral', 'First Semester', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
+(10, 'semestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
+(11, 'semestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
+(12, 'semestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
+(13, 'semestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
+(14, 'semestral', 'First Semester', NULL, NULL, 'Christmas Break / Term Break'),
+(15, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(16, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(17, 'semestral', 'First Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(18, 'semestral', 'First Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(19, 'semestral', 'First Semester', NULL, NULL, 'University Foundation Anniversary'),
+(20, 'semestral', 'First Semester', NULL, NULL, 'Araw ng Maynila'),
+(21, 'semestral', 'First Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(22, 'semestral', 'First Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(23, 'semestral', 'First Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
+(24, 'semestral', 'Second Semester', NULL, NULL, 'REGISTRATION PERIOD'),
+(25, 'semestral', 'Second Semester', NULL, NULL, 'START OF CLASSES'),
+(26, 'semestral', 'Second Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(27, 'semestral', 'Second Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(28, 'semestral', 'Second Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(29, 'semestral', 'Second Semester', NULL, NULL, 'MIDTERM EXAMINATIONS'),
+(30, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(31, 'semestral', 'Second Semester', NULL, NULL, 'END OF CLASSES for Graduating Students'),
+(32, 'semestral', 'Second Semester', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
+(33, 'semestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
+(34, 'semestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
+(35, 'semestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
+(36, 'semestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
+(37, 'semestral', 'Second Semester', NULL, NULL, 'Christmas Break / Term Break'),
+(38, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(39, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(40, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(41, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(42, 'semestral', 'Second Semester', NULL, NULL, 'University Foundation Anniversary'),
+(43, 'semestral', 'Second Semester', NULL, NULL, 'Araw ng Maynila'),
+(44, 'semestral', 'Second Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(45, 'semestral', 'Second Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(46, 'semestral', 'Second Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
+(47, 'semestral', 'Midyear Term', NULL, NULL, 'REGISTRATION PERIOD'),
+(48, 'semestral', 'Midyear Term', NULL, NULL, 'START OF CLASSES'),
+(49, 'semestral', 'Midyear Term', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(50, 'semestral', 'Midyear Term', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(51, 'semestral', 'Midyear Term', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(52, 'semestral', 'Midyear Term', NULL, NULL, 'MIDTERM EXAMINATIONS'),
+(53, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(54, 'semestral', 'Midyear Term', NULL, NULL, 'END OF CLASSES for Graduating Students'),
+(55, 'semestral', 'Midyear Term', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
+(56, 'semestral', 'Midyear Term', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
+(57, 'semestral', 'Midyear Term', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
+(58, 'semestral', 'Midyear Term', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
+(59, 'semestral', 'Midyear Term', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
+(60, 'semestral', 'Midyear Term', NULL, NULL, 'Christmas Break / Term Break'),
+(61, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(62, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(63, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(64, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(65, 'semestral', 'Midyear Term', NULL, NULL, 'University Foundation Anniversary'),
+(66, 'semestral', 'Midyear Term', NULL, NULL, 'Araw ng Maynila'),
+(67, 'semestral', 'Midyear Term', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(68, 'semestral', 'Midyear Term', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(69, 'semestral', 'Midyear Term', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
+(70, 'semestral', 'First Semester', '2024-10-17', '2025-01-24', 'Semester Duration'),
+(71, 'semestral', 'Second Semester', '2024-12-24', '2025-01-23', 'Semester Duration'),
+(72, 'semestral', 'Midyear Term', '2025-03-20', '2024-11-30', 'Semester Duration'),
+(73, 'trimestral', 'First Semester', '2024-11-13', NULL, 'Semester Duration'),
+(74, 'trimestral', 'First Semester', NULL, NULL, 'REGISTRATION PERIOD'),
+(75, 'trimestral', 'First Semester', NULL, NULL, 'START OF CLASSES'),
+(76, 'trimestral', 'First Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(77, 'trimestral', 'First Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(78, 'trimestral', 'First Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(79, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(80, 'trimestral', 'First Semester', NULL, NULL, 'END OF CLASSES'),
+(81, 'trimestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
+(82, 'trimestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES'),
+(83, 'trimestral', 'First Semester', NULL, NULL, 'Christmas Break / Term Break'),
+(84, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(85, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(86, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(87, 'trimestral', 'First Semester', NULL, NULL, 'University Foundation Anniversary'),
+(88, 'trimestral', 'First Semester', NULL, NULL, 'Araw ng Maynila'),
+(89, 'trimestral', 'First Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(90, 'trimestral', 'First Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(91, 'trimestral', 'First Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
+(92, 'trimestral', 'Second Semester', NULL, NULL, 'Semester Duration'),
+(93, 'trimestral', 'Second Semester', NULL, NULL, 'REGISTRATION PERIOD'),
+(94, 'trimestral', 'Second Semester', NULL, NULL, 'START OF CLASSES'),
+(95, 'trimestral', 'Second Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(96, 'trimestral', 'Second Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(97, 'trimestral', 'Second Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(98, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(99, 'trimestral', 'Second Semester', NULL, NULL, 'END OF CLASSES'),
+(100, 'trimestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
+(101, 'trimestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES'),
+(102, 'trimestral', 'Second Semester', NULL, NULL, 'Christmas Break / Term Break'),
+(103, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(104, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(105, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(106, 'trimestral', 'Second Semester', NULL, NULL, 'University Foundation Anniversary'),
+(107, 'trimestral', 'Second Semester', NULL, NULL, 'Araw ng Maynila'),
+(108, 'trimestral', 'Second Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(109, 'trimestral', 'Second Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(110, 'trimestral', 'Second Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
+(111, 'trimestral', 'Third Semester', NULL, NULL, 'Semester Duration'),
+(112, 'trimestral', 'Third Semester', NULL, NULL, 'REGISTRATION PERIOD'),
+(113, 'trimestral', 'Third Semester', NULL, NULL, 'START OF CLASSES'),
+(114, 'trimestral', 'Third Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
+(115, 'trimestral', 'Third Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(116, 'trimestral', 'Third Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
+(117, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(118, 'trimestral', 'Third Semester', NULL, NULL, 'END OF CLASSES'),
+(119, 'trimestral', 'Third Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
+(120, 'trimestral', 'Third Semester', NULL, NULL, 'ENCODING OF GRADES'),
+(121, 'trimestral', 'Third Semester', NULL, NULL, 'Christmas Break / Term Break'),
+(122, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(123, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(124, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(125, 'trimestral', 'Third Semester', NULL, NULL, 'University Foundation Anniversary'),
+(126, 'trimestral', 'Third Semester', NULL, NULL, 'Araw ng Maynila'),
+(127, 'trimestral', 'Third Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(128, 'trimestral', 'Third Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(129, 'trimestral', 'Third Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES');
 
 -- --------------------------------------------------------
 
@@ -239,65 +389,67 @@ INSERT INTO `consolidated_updates` (`id`, `title`, `file`) VALUES
 CREATE TABLE `course` (
   `course_id` varchar(15) NOT NULL,
   `course_name` text NOT NULL,
-  `college_id` varchar(15) NOT NULL
+  `college_id` varchar(15) NOT NULL,
+  `is_graduate` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`course_id`, `course_name`, `college_id`) VALUES
-(' MAEPHy', 'Master of Arts in Education major in Physics', 'CEduc'),
-('BECED', 'Bachelor of Early Childhood Education', 'CEduc'),
-('BEEd', 'Bachelor of Elementary Education ', 'CEduc'),
-('BMMP', 'Bachelor of Music in Music Performance', 'CHASS'),
-('BPEd', 'Bachelor of Physical Education', 'CEduc'),
-('BS', 'BS in Nursing', 'cn'),
-('BS Bio 2', 'Bachelor of Science in Biology major in Ecology', 'CS'),
-('BS Bio 3', 'Bachelor of Science in Biology major in Medical Biology', 'CS'),
-('BS Chem', 'Bachelor of Science in Chemistry', 'CS'),
-('BS Math', 'Bachelor of Science in Mathematics', 'CS'),
-('BS Psych', 'Bachelor of Science in Psychology', 'CS'),
-('BSA', 'BS in Accountancy', 'CA'),
-('BSArchi', 'BS in Architecture ', '001'),
-('BSBio', 'Bachelor of Science in Biology major in Cell and Molecular Biology', 'CS'),
-('BSC', 'BS Communications', 'CHASS'),
-('BSC2', 'BS Communications with Specialization in Public Relations', 'CHASS'),
-('BSCE-CM', 'BS in Civil Engineering with Specialization in Construction Management', 'CE'),
-('BSCE-SE', 'BS in Civil Engineering with Specialization in Structural Engineering', 'CE'),
-('BSChE', 'BS in Chemical Engineering', 'CE'),
-('BSCpE', 'BS in Computer Engineering ', 'CE'),
-('BSCS', 'Bachelor of Science in Computer Science', 'CISTM'),
-('BSECE', 'BS in Electronics Engineering', 'CE'),
-('BSEd-Eng', 'Bachelor of Secondary Education major in English', 'CEduc'),
-('BSEd-Fil', 'Bachelor of Secondary Education major in Filipino', 'CEduc'),
-('BSEd-Math', 'Bachelor of Secondary Education major in Mathematics', 'CEduc'),
-('BSEd-Sci', ' Bachelor of Secondary Education major in Sciences', 'CEduc'),
-('BSEd-SS', ' Bachelor of Secondary Education major in Social Studies', 'CEduc'),
-('BSEE', 'BS in Electrical Engineering', 'CE'),
-('BSHM', 'Bachelor of Science in Hospitality Management', 'CTHM'),
-('BSIT', 'Bachelor of Science in Information Technology', 'CISTM'),
-('BSME', 'BS in Mechanical Engineering', 'CE'),
-('BSMFGE', 'BS in Manufacturing Engineering ', 'CE'),
-('BSNED Generalis', 'Bachelor of Special Needs Education', 'CEduc'),
-('BSPT', 'BS in Physical Therapy ', 'cpt'),
-('BSSW', 'BS Social Work', 'CHASS'),
-('BSTM', 'Bachelor of Science in Tourism Management', 'CTHM'),
-('DM', 'Doctor of Medicine', 'cm'),
-('EDD-EML', 'Doctor of Education major in Educational Management and Leadership ', 'CEduc'),
-('JD', 'Juris Doctor', 'cl'),
-('MACM', 'MA Communication Management', 'CHASS'),
-('MAEd-BS', 'Master of Arts in Education major in Biological Science', 'CEduc'),
-('MAEd-Chem', 'Master of Arts in Education major in Chemistry', 'CEduc'),
-('MAEd-EML', 'Master of Arts in Education major in Educational Management and Leadership', 'CEduc'),
-('MAEd-SS', 'Master of Arts in Education major in Social Sciences', 'CEduc'),
-('MASPED', 'Master Arts in Special Education with Specialization in Developmental Delays', 'CEduc'),
-('MEM-CM', 'Master of Engineering Management with Specialization in Construction Management', 'CE'),
-('MEng-CoE', 'Master of Engineering with Specialization in Computer Engineering', 'CE'),
-('MEng-SE', ' Master of Engineering with Specialization in Structural Engineering ', 'CE'),
-('MSManEng', 'Master of Science in Management Engineering', 'CE'),
-('MSMEd', 'Master of Science in Mathematics Education', 'CEduc'),
-('MSW', 'Master of Social Work', 'CHASS');
+INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) VALUES
+(' MAEPHy', 'Master of Arts in Education major in Physics', 'CEduc', 1),
+('BECED', 'Bachelor of Early Childhood Education', 'CEduc', 0),
+('BEEd', 'Bachelor of Elementary Education ', 'CEduc', 0),
+('BMMP', 'Bachelor of Music in Music Performance', 'CHASS', 0),
+('BPEd', 'Bachelor of Physical Education', 'CEduc', 0),
+('BS', 'BS in Nursing', 'cn', 0),
+('BS Bio 2', 'Bachelor of Science in Biology major in Ecology', 'CS', 0),
+('BS Bio 3', 'Bachelor of Science in Biology major in Medical Biology', 'CS', 1),
+('BS Chem', 'Bachelor of Science in Chemistry', 'CS', 0),
+('BS Math', 'Bachelor of Science in Mathematics', 'CS', 0),
+('BS Psych', 'Bachelor of Science in Psychology', 'CS', 0),
+('BSA', 'BS in Accountancy', 'CA', 0),
+('BSArchi', 'BS in Architecture ', '001', 0),
+('BSBio', 'Bachelor of Science in Biology major in Cell and Molecular Biology', 'CS', 0),
+('BSC', 'BS Communications', 'CHASS', 0),
+('BSC2', 'BS Communications with Specialization in Public Relations', 'CHASS', 0),
+('BSCE-CM', 'BS in Civil Engineering with Specialization in Construction Management', 'CE', 0),
+('BSCE-SE', 'BS in Civil Engineering with Specialization in Structural Engineering', 'CE', 0),
+('BSChE', 'BS in Chemical Engineering', 'CE', 0),
+('BSCpE', 'BS in Computer Engineering ', 'CE', 0),
+('BSCS', 'Bachelor of Science in Computer Science', 'CISTM', 0),
+('BSECE', 'BS in Electronics Engineering', 'CE', 0),
+('BSEd-Eng', 'Bachelor of Secondary Education major in English', 'CEduc', 0),
+('BSEd-Fil', 'Bachelor of Secondary Education major in Filipino', 'CEduc', 0),
+('BSEd-Math', 'Bachelor of Secondary Education major in Mathematics', 'CEduc', 0),
+('BSEd-Sci', ' Bachelor of Secondary Education major in Sciences', 'CEduc', 0),
+('BSEd-SS', ' Bachelor of Secondary Education major in Social Studies', 'CEduc', 0),
+('BSEE', 'BS in Electrical Engineering', 'CE', 0),
+('BSHM', 'Bachelor of Science in Hospitality Management', 'CTHM', 0),
+('BSIT', 'Bachelor of Science in Information Technology', 'CISTM', 0),
+('BSME', 'BS in Mechanical Engineering', 'CE', 0),
+('BSMFGE', 'BS in Manufacturing Engineering ', 'CE', 0),
+('BSNED Generalis', 'Bachelor of Special Needs Education', 'CEduc', 0),
+('BSPT', 'BS in Physical Therapy ', 'cpt', 0),
+('BSSW', 'BS Social Work', 'CHASS', 0),
+('BSTM', 'Bachelor of Science in Tourism Management', 'CTHM', 0),
+('DM', 'Doctor of Medicine', 'cm', 0),
+('EDD-EML', 'Doctor of Education major in Educational Management and Leadership ', 'CEduc', 0),
+('JD', 'Juris Doctor', 'cl', 0),
+('MACM', 'MA Communication Management', 'CHASS', 0),
+('MAEd-BS', 'Master of Arts in Education major in Biological Science', 'CEduc', 0),
+('MAEd-Chem', 'Master of Arts in Education major in Chemistry', 'CEduc', 0),
+('MAEd-EML', 'Master of Arts in Education major in Educational Management and Leadership', 'CEduc', 0),
+('MAEd-SS', 'Master of Arts in Education major in Social Sciences', 'CEduc', 0),
+('MASPED', 'Master Arts in Special Education with Specialization in Developmental Delays', 'CEduc', 0),
+('MEM-CM', 'Master of Engineering Management with Specialization in Construction Management', 'CE', 0),
+('MEng-CoE', 'Master of Engineering with Specialization in Computer Engineering', 'CE', 0),
+('MEng-SE', ' Master of Engineering with Specialization in Structural Engineering ', 'CE', 0),
+('MSManEng', 'Master of Science in Management Engineering', 'CE', 0),
+('MSMEd', 'Master of Science in Mathematics Education', 'CEduc', 0),
+('MSW', 'Master of Social Work', 'CHASS', 0),
+('Test', 'TEst', '001', 1);
 
 -- --------------------------------------------------------
 
@@ -731,6 +883,12 @@ ALTER TABLE `about_home`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `academic_calendar`
+--
+ALTER TABLE `academic_calendar`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admission`
 --
 ALTER TABLE `admission`
@@ -881,6 +1039,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `about_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `academic_calendar`
+--
+ALTER TABLE `academic_calendar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `bid_items`
