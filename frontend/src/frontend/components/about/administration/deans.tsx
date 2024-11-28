@@ -57,8 +57,8 @@ const Deans = () => {
                   className="w-4/6 h-4/5 object-cover"
                 />
                 <p className="font-semibold mt-2">{dean.name}</p>
-                <p className="text-gray-500">{dean.title}</p>
-                <p className="text-gray-400 text-sm">{dean.email}</p>
+                <p className="text-gray-500 text-center">{dean.title}</p>
+                <p className="text-blue-500 text-sm">{dean.email}</p>
               </div>
             ))}
           </div>

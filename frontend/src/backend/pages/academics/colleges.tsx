@@ -268,7 +268,7 @@ const Colleges = () => {
         setEditDean((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleEditDean = () => {
+    const handleEditDean = (collegeId) => {
         const formData = new FormData();
         formData.append('name', editDean.name);
         formData.append('title', editDean.title);
@@ -278,7 +278,7 @@ const Colleges = () => {
             formData.append('image', editDean.image);
         }
 
-        axios.put(`http://localhost:5000/about/deans/${editDean.id}`, formData, {
+        axios.put(`http://localhost:5000/about/deans/${editDean.id}?office_id=${collegeId}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {
@@ -585,7 +585,7 @@ const Colleges = () => {
             >
                 <h2 className="text-lg font-bold mb-4">Edit Dean</h2>
                 {editDean && (
-                    <form onSubmit={(e) => { e.preventDefault(); handleEditDean(); }}>
+                    <form onSubmit={(e) => { e.preventDefault(); handleEditDean(selectedCollegeId); }}>
                         <label className="block mb-2">
                             Name:
                             <input type="text" name="name" value={editDean.name} onChange={handleEditMemberChange} required className="border rounded px-2 py-1 w-full mt-1" />

@@ -12,7 +12,7 @@ const Courses: React.FC = () => {
     const [formData, setFormData] = useState({
         course_id: "",
         course_name: "",
-        is_graduate: 0,
+        is_graduate: '0',
     });
     const [editingCourse, setEditingCourse] = useState(false);
     const [page, setPage] = useState(0);
@@ -43,7 +43,11 @@ const Courses: React.FC = () => {
     const fetchCourses = async (collegeId: string) => {
         try {
             const response = await axios.get(`http://localhost:5000/academic/courses?college_id=${collegeId}`);
-            setCourses(response.data);
+            const transformedData = response.data.map((course: any) => ({
+                ...course,
+                is_graduate: course.is_graduate === 1 ? "1" : "0",
+            }));
+            setCourses(transformedData);
         } catch (error) {
             console.error("Error fetching courses:", error);
         } finally {
@@ -53,7 +57,7 @@ const Courses: React.FC = () => {
 
     const handleModalClose = () => {
         setShowModal(false);
-        setFormData({ course_id: "", course_name: "" , is_graduate: 0,});
+        setFormData({ course_id: "", course_name: "" , is_graduate: '0',});
         setEditingCourse(false);
     };
 
@@ -62,7 +66,7 @@ const Courses: React.FC = () => {
             setFormData(course);
             setEditingCourse(true);
         } else {
-            setFormData({ course_id: "", course_name: "" , is_graduate: 0,});
+            setFormData({ course_id: "", course_name: "" , is_graduate: '0',});
             setEditingCourse(false);
         }
         setShowModal(true);
@@ -198,7 +202,7 @@ const Courses: React.FC = () => {
                                     type="radio"
                                     name="is_graduate"
                                     value="1"
-                                    checked={formData.is_graduate === 1}
+                                    checked={formData.is_graduate === '1'}
                                     onChange={handleFormChange}
                                 />{' '}
                                 Yes
@@ -208,7 +212,7 @@ const Courses: React.FC = () => {
                                     type="radio"
                                     name="is_graduate"
                                     value="0"
-                                    checked={formData.is_graduate === 0}
+                                    checked={formData.is_graduate === '0'}
                                     onChange={handleFormChange}
                                 />{' '}
                                 No

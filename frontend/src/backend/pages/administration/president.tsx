@@ -246,7 +246,7 @@ function Presidents() {
                         onChange={handleChange} 
                         value={formData.description} 
                         placeholder="Description" 
-                        className="w-full mb-4 p-3 border rounded-md" 
+                        className="w-full mb-4 p-3 border rounded-md h-96" 
                         required 
                     />
                     <input 

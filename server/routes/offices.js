@@ -83,7 +83,7 @@ router.put('/information/:id', upload.single('org_chart'), (req, res) => {
     });
 });
 
-router.delete('/office/information/:id', (req, res) => {
+router.delete('/information/:id', (req, res) => {
     const { id } = req.params;
 
     const sqlGet = 'SELECT org_chart FROM offices WHERE id = ?';

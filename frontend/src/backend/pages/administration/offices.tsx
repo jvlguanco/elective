@@ -171,6 +171,123 @@ const Offices = () => {
                 </button>
             </div>
 
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
+                    content: {
+                        position: 'relative',
+                        width: '500px',
+                        maxWidth: '90%',
+                        margin: '0 auto',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        background: 'white',
+                        overflow: 'hidden',
+                    },
+                }}
+                ariaHideApp={false}
+            >
+                <form onSubmit={handleSubmit} className="p-6">
+                    <h2 className="text-2xl font-bold mb-4">
+                        {isEditing ? 'Edit Office' : 'Add Office'}
+                    </h2>
+                    <input
+                        type="text"
+                        name="office_name"
+                        onChange={handleChange}
+                        value={formData.office_name}
+                        placeholder="Office Name"
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    />
+                    <textarea
+                        name="description"
+                        onChange={handleChange}
+                        value={formData.description}
+                        placeholder="Description"
+                        className="w-full mb-4 p-2 border rounded"
+                        rows={3}
+                        required
+                    />
+                    <textarea
+                        name="vision"
+                        onChange={handleChange}
+                        value={formData.vision}
+                        placeholder="Vision"
+                        className="w-full mb-4 p-2 border rounded"
+                        rows={3}
+                        required
+                    />
+                    <textarea
+                        name="mission"
+                        onChange={handleChange}
+                        value={formData.mission}
+                        placeholder="Mission"
+                        className="w-full mb-4 p-2 border rounded"
+                        rows={3}
+                        required
+                    />
+                    <select
+                        name="status"
+                        onChange={handleChange}
+                        value={formData.status}
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    >
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <input
+                        type="email"
+                        name="email"
+                        onChange={handleChange}
+                        value={formData.email}
+                        placeholder="Email"
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    />
+                    <input
+                        type="number"
+                        name="contact_number"
+                        onChange={handleChange}
+                        value={formData.contact_number}
+                        placeholder="Contact Number"
+                        className="w-full mb-4 p-2 border rounded"
+                        required
+                    />
+                    <input
+                        type="file"
+                        name="org_chart"
+                        onChange={handleFileChange}
+                        accept=".png,.jpg,.jpeg"
+                        className="w-full mb-4 p-2 border rounded"
+                        required={!isEditing}
+                    />
+                    <div className="flex gap-2">
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-500 text-white p-2 rounded"
+                        >
+                            {isEditing ? 'Update' : 'Submit'}
+                        </button>
+                        <button
+                            type="button"
+                            onClick={closeModal}
+                            className="w-full bg-gray-500 text-white p-2 rounded"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
             {loading ? (
                 <div className="flex justify-center items-center h-full">
                     <p>Loading...</p>

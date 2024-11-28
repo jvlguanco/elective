@@ -624,8 +624,8 @@ router.post('/deans', upload.single('image'), (req, res) => {
 
     const deactivateActive = () => {
         return new Promise((resolve, reject) => {
-            const updateSql = 'UPDATE dean SET status = "inactive" WHERE status = "active"';
-            db.query(updateSql, (err, result) => {
+            const updateSql = 'UPDATE dean SET status = "inactive" WHERE college_id = ? AND status = "active"';
+            db.query(updateSql, [office_id],(err, result) => {
                 if (err) {
                     console.error('Error updating active deans:', err);
                     return reject(err);
@@ -665,6 +665,7 @@ router.post('/deans', upload.single('image'), (req, res) => {
 
 router.put('/deans/:id', upload.single('image'), (req, res) => {
     const memberId = req.params.id;
+    const {college_id} = req.query
     const { name, title, email, status } = req.body;
     const newImage = req.file ? req.file.filename : null;
 
@@ -679,8 +680,8 @@ router.put('/deans/:id', upload.single('image'), (req, res) => {
         const currentStatus = results[0].status;
 
         if (status === 'active' && currentStatus !== 'active') {
-            const deactivateSql = 'UPDATE dean SET status = ? WHERE status = ?';
-            db.query(deactivateSql, ['inactive', 'active'], (err) => {
+            const deactivateSql = 'UPDATE dean SET status = ? WHERE college_id = ? AND status = ?';
+            db.query(deactivateSql, ['inactive', college_id, 'active'], (err) => {
                 if (err) {
                     console.error('Error deactivating other members:', err);
                     return res.status(500).json({ message: 'Failed to deactivate other members' });

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2024 at 12:45 PM
+-- Generation Time: Nov 28, 2024 at 03:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -59,134 +59,134 @@ CREATE TABLE `academic_calendar` (
 --
 
 INSERT INTO `academic_calendar` (`id`, `type`, `term`, `start_date`, `end_date`, `event`) VALUES
-(1, 'semestral', 'First Semester', '2024-11-27', '2024-11-08', 'REGISTRATION PERIOD'),
-(2, 'semestral', 'First Semester', NULL, NULL, 'START OF CLASSES'),
-(3, 'semestral', 'First Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(4, 'semestral', 'First Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(5, 'semestral', 'First Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(6, 'semestral', 'First Semester', NULL, NULL, 'MIDTERM EXAMINATIONS'),
-(7, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(8, 'semestral', 'First Semester', NULL, NULL, 'END OF CLASSES for Graduating Students'),
-(9, 'semestral', 'First Semester', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
-(10, 'semestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
-(11, 'semestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
-(12, 'semestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
-(13, 'semestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
-(14, 'semestral', 'First Semester', NULL, NULL, 'Christmas Break / Term Break'),
-(15, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
-(16, 'semestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
-(17, 'semestral', 'First Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(18, 'semestral', 'First Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(1, 'semestral', 'First Semester', '2024-08-12', '2024-08-18', 'REGISTRATION PERIOD'),
+(2, 'semestral', 'First Semester', '2024-08-19', '0000-00-00', 'START OF CLASSES'),
+(3, 'semestral', 'First Semester', '2024-08-19', '2024-08-22', 'Late Registration/Add-Drop Period'),
+(4, 'semestral', 'First Semester', '2024-09-18', '0000-00-00', 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(5, 'semestral', 'First Semester', '2024-10-28', '2023-12-15', 'Encoding of schedule of classes for the next school term'),
+(6, 'semestral', 'First Semester', '2024-10-21', '2024-10-27', 'MIDTERM EXAMINATIONS'),
+(7, 'semestral', 'First Semester', '2024-11-29', '0000-00-00', 'Last Day for Graduating Students to clear their Deficiencies'),
+(8, 'semestral', 'First Semester', '2024-12-07', NULL, 'END OF CLASSES for Graduating Students'),
+(9, 'semestral', 'First Semester', '2024-12-15', NULL, 'END OF CLASSES for Non Graduating Students'),
+(10, 'semestral', 'First Semester', '2024-12-09', '2024-12-15', 'FINAL EXAMINATION for Graduating Students'),
+(11, 'semestral', 'First Semester', '2024-12-16', '2024-12-22', 'FINAL EXAMINATION for Non Graduating Students'),
+(12, 'semestral', 'First Semester', '2024-12-16', '2024-12-29', 'ENCODING OF GRADES for Graduating Students'),
+(13, 'semestral', 'First Semester', '2024-12-16', '2024-12-29', 'ENCODING OF GRADES for Non Graduating Students'),
+(14, 'semestral', 'First Semester', '2024-12-23', NULL, 'Christmas Break / Term Break'),
+(15, 'semestral', 'First Semester', NULL, '2025-01-12', 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(16, 'semestral', 'First Semester', '2025-01-03', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(17, 'semestral', 'First Semester', '2025-01-03', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(18, 'semestral', 'First Semester', '2025-01-13', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
 (19, 'semestral', 'First Semester', NULL, NULL, 'University Foundation Anniversary'),
 (20, 'semestral', 'First Semester', NULL, NULL, 'Araw ng Maynila'),
-(21, 'semestral', 'First Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(22, 'semestral', 'First Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(21, 'semestral', 'First Semester', '2025-01-22', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(22, 'semestral', 'First Semester', '2025-01-31', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
 (23, 'semestral', 'First Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
-(24, 'semestral', 'Second Semester', NULL, NULL, 'REGISTRATION PERIOD'),
-(25, 'semestral', 'Second Semester', NULL, NULL, 'START OF CLASSES'),
-(26, 'semestral', 'Second Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(27, 'semestral', 'Second Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(28, 'semestral', 'Second Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(29, 'semestral', 'Second Semester', NULL, NULL, 'MIDTERM EXAMINATIONS'),
-(30, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(31, 'semestral', 'Second Semester', NULL, NULL, 'END OF CLASSES for Graduating Students'),
-(32, 'semestral', 'Second Semester', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
-(33, 'semestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
-(34, 'semestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
-(35, 'semestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
-(36, 'semestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
-(37, 'semestral', 'Second Semester', NULL, NULL, 'Christmas Break / Term Break'),
-(38, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
-(39, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
-(40, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(41, 'semestral', 'Second Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
-(42, 'semestral', 'Second Semester', NULL, NULL, 'University Foundation Anniversary'),
-(43, 'semestral', 'Second Semester', NULL, NULL, 'Araw ng Maynila'),
-(44, 'semestral', 'Second Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(45, 'semestral', 'Second Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
-(46, 'semestral', 'Second Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
-(47, 'semestral', 'Midyear Term', NULL, NULL, 'REGISTRATION PERIOD'),
-(48, 'semestral', 'Midyear Term', NULL, NULL, 'START OF CLASSES'),
-(49, 'semestral', 'Midyear Term', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(50, 'semestral', 'Midyear Term', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(51, 'semestral', 'Midyear Term', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(52, 'semestral', 'Midyear Term', NULL, NULL, 'MIDTERM EXAMINATIONS'),
-(53, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(54, 'semestral', 'Midyear Term', NULL, NULL, 'END OF CLASSES for Graduating Students'),
-(55, 'semestral', 'Midyear Term', NULL, NULL, 'END OF CLASSES for Non Graduating Students'),
-(56, 'semestral', 'Midyear Term', NULL, NULL, 'FINAL EXAMINATION for Graduating Students'),
-(57, 'semestral', 'Midyear Term', NULL, NULL, 'FINAL EXAMINATION for Non Graduating Students'),
-(58, 'semestral', 'Midyear Term', NULL, NULL, 'ENCODING OF GRADES for Graduating Students'),
-(59, 'semestral', 'Midyear Term', NULL, NULL, 'ENCODING OF GRADES for Non Graduating Students'),
-(60, 'semestral', 'Midyear Term', NULL, NULL, 'Christmas Break / Term Break'),
-(61, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
-(62, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
-(63, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(64, 'semestral', 'Midyear Term', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(24, 'semestral', 'Second Semester', '2025-01-02', '2025-01-12', 'REGISTRATION PERIOD'),
+(25, 'semestral', 'Second Semester', '2025-01-13', NULL, 'START OF CLASSES'),
+(26, 'semestral', 'Second Semester', '2025-01-13', '2025-01-16', 'Late Registration/Add-Drop Period'),
+(27, 'semestral', 'Second Semester', '2025-02-12', NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(28, 'semestral', 'Second Semester', '2025-03-24', '2024-05-04', 'Encoding of schedule of classes for the next school term'),
+(29, 'semestral', 'Second Semester', '2025-03-17', '2024-03-23', 'MIDTERM EXAMINATIONS'),
+(30, 'semestral', 'Second Semester', '2025-05-02', NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(31, 'semestral', 'Second Semester', '2025-05-11', NULL, 'END OF CLASSES for Graduating Students'),
+(32, 'semestral', 'Second Semester', '2025-05-18', NULL, 'END OF CLASSES for Non Graduating Students'),
+(33, 'semestral', 'Second Semester', '2025-05-12', '2025-05-18', 'FINAL EXAMINATION for Graduating Students'),
+(34, 'semestral', 'Second Semester', '2025-05-19', '2025-05-25', 'FINAL EXAMINATION for Non Graduating Students'),
+(35, 'semestral', 'Second Semester', '2025-05-12', '2025-05-25', 'ENCODING OF GRADES for Graduating Students'),
+(36, 'semestral', 'Second Semester', '2025-05-19', '2024-06-01', 'ENCODING OF GRADES for Non Graduating Students'),
+(37, 'semestral', 'Second Semester', '2025-05-26', '2025-06-06', 'Christmas Break / Term Break'),
+(38, 'semestral', 'Second Semester', '2025-05-30', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(39, 'semestral', 'Second Semester', '2025-06-06', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(40, 'semestral', 'Second Semester', '2025-06-06', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(41, 'semestral', 'Second Semester', '2025-06-13', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(42, 'semestral', 'Second Semester', '2025-06-19', NULL, 'University Foundation Anniversary'),
+(43, 'semestral', 'Second Semester', '2025-06-24', NULL, 'Araw ng Maynila'),
+(44, 'semestral', 'Second Semester', '2025-07-04', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(45, 'semestral', 'Second Semester', '2025-07-11', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(46, 'semestral', 'Second Semester', '2025-09-02', '2025-09-05', '57th COMMENCEMENT EXERCISES'),
+(47, 'semestral', 'Midyear Term', '2025-06-02', '2025-06-08', 'REGISTRATION PERIOD'),
+(48, 'semestral', 'Midyear Term', '2025-06-09', NULL, 'START OF CLASSES'),
+(49, 'semestral', 'Midyear Term', '2025-06-09', '2025-06-12', 'Late Registration/Add-Drop Period'),
+(50, 'semestral', 'Midyear Term', '2025-07-02', NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(51, 'semestral', 'Midyear Term', '2025-06-02', '2025-07-20', 'Encoding of schedule of classes for the next school term'),
+(52, 'semestral', 'Midyear Term', '2025-07-26', '2025-07-28', 'MIDTERM EXAMINATIONS'),
+(53, 'semestral', 'Midyear Term', '2025-07-04', NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(54, 'semestral', 'Midyear Term', '2025-07-20', NULL, 'END OF CLASSES for Graduating Students'),
+(55, 'semestral', 'Midyear Term', '2025-07-20', NULL, 'END OF CLASSES for Non Graduating Students'),
+(56, 'semestral', 'Midyear Term', '2025-07-21', '2025-07-23', 'FINAL EXAMINATION for Graduating Students'),
+(57, 'semestral', 'Midyear Term', '2025-07-21', '2025-07-23', 'FINAL EXAMINATION for Non Graduating Students'),
+(58, 'semestral', 'Midyear Term', '2025-07-24', '2025-07-29', 'ENCODING OF GRADES for Graduating Students'),
+(59, 'semestral', 'Midyear Term', '2025-07-24', '2025-07-29', 'ENCODING OF GRADES for Non Graduating Students'),
+(60, 'semestral', 'Midyear Term', '2025-07-24', '2025-08-10', 'Christmas Break / Term Break'),
+(61, 'semestral', 'Midyear Term', '2025-08-01', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Graduating Students'),
+(62, 'semestral', 'Midyear Term', '2025-08-01', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office for Non Graduating Students'),
+(63, 'semestral', 'Midyear Term', '2025-08-08', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(64, 'semestral', 'Midyear Term', '2025-08-15', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
 (65, 'semestral', 'Midyear Term', NULL, NULL, 'University Foundation Anniversary'),
 (66, 'semestral', 'Midyear Term', NULL, NULL, 'Araw ng Maynila'),
-(67, 'semestral', 'Midyear Term', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(68, 'semestral', 'Midyear Term', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(67, 'semestral', 'Midyear Term', '2025-09-05', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(68, 'semestral', 'Midyear Term', '2025-09-12', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
 (69, 'semestral', 'Midyear Term', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
-(70, 'semestral', 'First Semester', '2024-10-17', '2025-01-24', 'Semester Duration'),
-(71, 'semestral', 'Second Semester', '2024-12-24', '2025-01-23', 'Semester Duration'),
-(72, 'semestral', 'Midyear Term', '2025-03-20', '2024-11-30', 'Semester Duration'),
-(73, 'trimestral', 'First Semester', '2024-11-13', NULL, 'Semester Duration'),
-(74, 'trimestral', 'First Semester', NULL, NULL, 'REGISTRATION PERIOD'),
-(75, 'trimestral', 'First Semester', NULL, NULL, 'START OF CLASSES'),
-(76, 'trimestral', 'First Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(77, 'trimestral', 'First Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(78, 'trimestral', 'First Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(79, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(80, 'trimestral', 'First Semester', NULL, NULL, 'END OF CLASSES'),
-(81, 'trimestral', 'First Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
-(82, 'trimestral', 'First Semester', NULL, NULL, 'ENCODING OF GRADES'),
-(83, 'trimestral', 'First Semester', NULL, NULL, 'Christmas Break / Term Break'),
-(84, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
-(85, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(86, 'trimestral', 'First Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(70, 'semestral', 'First Semester', '2024-08-19', '2024-12-22', 'Semester Duration'),
+(71, 'semestral', 'Second Semester', '2025-01-13', '2025-05-25', 'Semester Duration'),
+(72, 'semestral', 'Midyear Term', '2025-06-09', '2025-07-26', 'Semester Duration'),
+(73, 'trimestral', 'First Semester', '2024-08-27', '2024-12-15', 'Semester Duration'),
+(74, 'trimestral', 'First Semester', '2024-08-19', '2024-08-25', 'REGISTRATION PERIOD'),
+(75, 'trimestral', 'First Semester', '2024-08-27', NULL, 'START OF CLASSES'),
+(76, 'trimestral', 'First Semester', '2024-08-27', '2024-08-30', 'Late Registration/Add-Drop Period'),
+(77, 'trimestral', 'First Semester', '2024-09-02', NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(78, 'trimestral', 'First Semester', '2024-11-04', '2024-12-08', 'Encoding of schedule of classes for the next school term'),
+(79, 'trimestral', 'First Semester', '2024-11-22', NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(80, 'trimestral', 'First Semester', '2024-12-07', NULL, 'END OF CLASSES'),
+(81, 'trimestral', 'First Semester', '2024-12-09', '2024-12-15', 'FINAL EXAMINATIONS'),
+(82, 'trimestral', 'First Semester', '2024-12-09', '2024-12-15', 'ENCODING OF GRADES'),
+(83, 'trimestral', 'First Semester', '2024-12-16', '2025-01-05', 'Christmas Break / Term Break'),
+(84, 'trimestral', 'First Semester', '2025-01-03', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(85, 'trimestral', 'First Semester', '2025-01-07', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(86, 'trimestral', 'First Semester', '2025-01-13', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
 (87, 'trimestral', 'First Semester', NULL, NULL, 'University Foundation Anniversary'),
 (88, 'trimestral', 'First Semester', NULL, NULL, 'Araw ng Maynila'),
-(89, 'trimestral', 'First Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(90, 'trimestral', 'First Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(89, 'trimestral', 'First Semester', '2025-01-22', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(90, 'trimestral', 'First Semester', '2025-01-31', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
 (91, 'trimestral', 'First Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
-(92, 'trimestral', 'Second Semester', NULL, NULL, 'Semester Duration'),
-(93, 'trimestral', 'Second Semester', NULL, NULL, 'REGISTRATION PERIOD'),
-(94, 'trimestral', 'Second Semester', NULL, NULL, 'START OF CLASSES'),
-(95, 'trimestral', 'Second Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(96, 'trimestral', 'Second Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(97, 'trimestral', 'Second Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(98, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(99, 'trimestral', 'Second Semester', NULL, NULL, 'END OF CLASSES'),
-(100, 'trimestral', 'Second Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
-(101, 'trimestral', 'Second Semester', NULL, NULL, 'ENCODING OF GRADES'),
-(102, 'trimestral', 'Second Semester', NULL, NULL, 'Christmas Break / Term Break'),
-(103, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
-(104, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(105, 'trimestral', 'Second Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
-(106, 'trimestral', 'Second Semester', NULL, NULL, 'University Foundation Anniversary'),
-(107, 'trimestral', 'Second Semester', NULL, NULL, 'Araw ng Maynila'),
-(108, 'trimestral', 'Second Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(109, 'trimestral', 'Second Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
-(110, 'trimestral', 'Second Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES'),
-(111, 'trimestral', 'Third Semester', NULL, NULL, 'Semester Duration'),
-(112, 'trimestral', 'Third Semester', NULL, NULL, 'REGISTRATION PERIOD'),
-(113, 'trimestral', 'Third Semester', NULL, NULL, 'START OF CLASSES'),
-(114, 'trimestral', 'Third Semester', NULL, NULL, 'Late Registration/Add-Drop Period'),
-(115, 'trimestral', 'Third Semester', NULL, NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
-(116, 'trimestral', 'Third Semester', NULL, NULL, 'Encoding of schedule of classes for the next school term'),
-(117, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
-(118, 'trimestral', 'Third Semester', NULL, NULL, 'END OF CLASSES'),
-(119, 'trimestral', 'Third Semester', NULL, NULL, 'FINAL EXAMINATIONS'),
-(120, 'trimestral', 'Third Semester', NULL, NULL, 'ENCODING OF GRADES'),
-(121, 'trimestral', 'Third Semester', NULL, NULL, 'Christmas Break / Term Break'),
-(122, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
-(123, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
-(124, 'trimestral', 'Third Semester', NULL, NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
-(125, 'trimestral', 'Third Semester', NULL, NULL, 'University Foundation Anniversary'),
-(126, 'trimestral', 'Third Semester', NULL, NULL, 'Araw ng Maynila'),
-(127, 'trimestral', 'Third Semester', NULL, NULL, 'University Council Meeting to Approve Candidates for Graduation'),
-(128, 'trimestral', 'Third Semester', NULL, NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(92, 'trimestral', 'Second Semester', '2025-01-06', '2025-04-27', 'Semester Duration'),
+(93, 'trimestral', 'Second Semester', '2024-12-16', '2025-01-05', 'REGISTRATION PERIOD'),
+(94, 'trimestral', 'Second Semester', '2025-01-06', NULL, 'START OF CLASSES'),
+(95, 'trimestral', 'Second Semester', '2025-01-06', '2025-01-09', 'Late Registration/Add-Drop Period'),
+(96, 'trimestral', 'Second Semester', '2025-02-12', NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(97, 'trimestral', 'Second Semester', '2025-03-03', '2025-04-06', 'Encoding of schedule of classes for the next school term'),
+(98, 'trimestral', 'Second Semester', '2025-04-22', NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(99, 'trimestral', 'Second Semester', '2025-04-20', NULL, 'END OF CLASSES'),
+(100, 'trimestral', 'Second Semester', '2025-04-21', '2025-04-27', 'FINAL EXAMINATIONS'),
+(101, 'trimestral', 'Second Semester', '2025-04-21', '2025-05-04', 'ENCODING OF GRADES'),
+(102, 'trimestral', 'Second Semester', '2025-04-28', '2025-05-04', 'Christmas Break / Term Break'),
+(103, 'trimestral', 'Second Semester', '2025-05-09', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(104, 'trimestral', 'Second Semester', '2025-05-23', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(105, 'trimestral', 'Second Semester', '2025-05-30', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(106, 'trimestral', 'Second Semester', '2025-06-19', NULL, 'University Foundation Anniversary'),
+(107, 'trimestral', 'Second Semester', '2025-06-24', NULL, 'Araw ng Maynila'),
+(108, 'trimestral', 'Second Semester', '2025-07-04', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(109, 'trimestral', 'Second Semester', '2025-07-11', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
+(110, 'trimestral', 'Second Semester', '2025-09-02', '2025-09-05', '57th COMMENCEMENT EXERCISES'),
+(111, 'trimestral', 'Third Semester', '2025-05-05', '2025-08-17', 'Semester Duration'),
+(112, 'trimestral', 'Third Semester', '2025-04-28', '2025-05-04', 'REGISTRATION PERIOD'),
+(113, 'trimestral', 'Third Semester', '2025-05-05', NULL, 'START OF CLASSES'),
+(114, 'trimestral', 'Third Semester', '2025-05-05', '2025-05-08', 'Late Registration/Add-Drop Period'),
+(115, 'trimestral', 'Third Semester', '2025-06-04', NULL, 'Deadline for Filing of Candidacy for Graduation / Academic Honors with the College'),
+(116, 'trimestral', 'Third Semester', '2025-06-03', '2025-07-20', 'Encoding of schedule of classes for the next school term'),
+(117, 'trimestral', 'Third Semester', '2025-07-04', NULL, 'Last Day for Graduating Students to clear their Deficiencies'),
+(118, 'trimestral', 'Third Semester', '2025-08-10', NULL, 'END OF CLASSES'),
+(119, 'trimestral', 'Third Semester', '2025-08-11', '2025-08-17', 'FINAL EXAMINATIONS'),
+(120, 'trimestral', 'Third Semester', '2025-08-11', '2025-08-20', 'ENCODING OF GRADES'),
+(121, 'trimestral', 'Third Semester', '2025-08-18', '2025-08-24', 'Christmas Break / Term Break'),
+(122, 'trimestral', 'Third Semester', '2025-08-22', NULL, 'Last Day for Submitting Report of Grades to the Registrar\'s Office'),
+(123, 'trimestral', 'Third Semester', '2025-08-26', NULL, 'Last Day for College Faculty Meeting to Approve Candidates for Graduation'),
+(124, 'trimestral', 'Third Semester', '2025-08-29', NULL, 'Last Day for College to submit Approved Lists of Candidates for Graduation to the Registrar\'s Office'),
+(125, 'trimestral', 'Third Semester', '2025-06-19', NULL, 'University Foundation Anniversary'),
+(126, 'trimestral', 'Third Semester', '2025-06-24', NULL, 'Araw ng Maynila'),
+(127, 'trimestral', 'Third Semester', '2025-09-05', NULL, 'University Council Meeting to Approve Candidates for Graduation'),
+(128, 'trimestral', 'Third Semester', '2025-09-12', NULL, 'Board of Regents Meeting to Confirm Candidates for Graduation'),
 (129, 'trimestral', 'Third Semester', NULL, NULL, '57th COMMENCEMENT EXERCISES');
 
 -- --------------------------------------------------------
@@ -257,14 +257,15 @@ CREATE TABLE `board` (
 --
 
 INSERT INTO `board` (`id`, `name`, `email`, `title`, `status`, `image`) VALUES
-(14, 'Test Name of Active Regent Edt', 'test@gmail.com', 'Test Title', 'active', 'uploads\\images\\465ce7f2-9a3f-430d-b2d0-f15e5e0a946d.png'),
-(15, 'Test Name of Active Regent', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\c208fa6d-4fcd-4c08-a846-cdf44c9b7005.png'),
-(16, 'Test Name of Active Regent', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\0da87194-8fd3-4286-8952-74f4c6dce8b0.png'),
-(17, 'Test Name of Active Regent', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\6d308bed-8109-44c1-8812-aa57af746bf1.png'),
-(18, 'Test Name of Active Regent', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\0380ac04-f73a-4a1c-b810-5cfb74d02c2b.png'),
-(19, 'Test Name of Active Regent', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\b16b5ab4-2897-4a6f-bdd4-dee588b05cc8.png'),
-(20, 'Test', 'test@gmail.com', 'Test', 'active', 'uploads\\images\\4190ca7b-cfa7-40f5-8ee7-a829097d4eac.png'),
-(21, 'Test', 'test@gmail.com', 'Test Title', 'inactive', 'uploads\\images\\e7af340e-4d7c-4c1a-8ccd-e2ee25ac2b2a.png');
+(21, 'Test', 'test@gmail.com', 'Test Title', 'inactive', 'uploads\\images\\e7af340e-4d7c-4c1a-8ccd-e2ee25ac2b2a.png'),
+(22, 'Atty. Edward S. Serapio', 'esserapio@plm.edu.ph', 'Chairman', 'active', 'uploads\\images\\0c93fe43-bf55-49f8-b688-2f7d3b26bcc9.png'),
+(23, 'Atty. Domingo Y. Reyes Jr.', 'dyreyes@plm.edu.ph', 'University President and Vice-President', 'active', 'uploads\\images\\100f3c16-7b73-47b0-9f36-b71ea9d19b96.png'),
+(24, 'Dr. Rita E. Riddle', 'reriddle@plm.edu.ph', 'Ex-Officio Member and Superintendent of the Division of City Schools - Manila', 'active', 'uploads\\images\\cc007bd5-832a-499c-9163-70b50e88c1e1.png'),
+(25, 'Dr. Joseph Berlin P. Juanzon', 'jbpjuanzon@plm.edu.ph', 'Member and Executive Director of the Office for Graduate and Professional Studies', 'active', 'uploads\\images\\f5ba991d-3aa3-4317-88c3-7e75afc64bfd.png'),
+(26, 'Ms. Wilma V. Galvante', 'wvgalvante@plm.edu.ph', 'Member', 'active', 'uploads\\images\\b75a094e-8ed3-4641-b196-5d7579cfd801.png'),
+(27, 'Dr. Neri S. Pescadera', 'nspescadera@plm.edu.ph', 'Member', 'active', 'uploads\\images\\554650f6-7893-4d23-bb84-ea1ba682a3a4.png'),
+(28, 'Atty. Marisol DL Anenias', 'mdlanenias@plm.edu.ph', 'Member', 'active', 'uploads\\images\\abef4794-38d3-4fdd-9c96-52f7c0af9938.png'),
+(29, 'Atty Elvira Cruz', 'ecruz@plm.edu.ph', ' University and Board Secretary', 'active', 'uploads\\images\\d2841443-a5d3-41f7-bde7-165e1470810d.png');
 
 -- --------------------------------------------------------
 
@@ -398,7 +399,6 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) VALUES
-(' MAEPHy', 'Master of Arts in Education major in Physics', 'CEduc', 1),
 ('BECED', 'Bachelor of Early Childhood Education', 'CEduc', 0),
 ('BEEd', 'Bachelor of Elementary Education ', 'CEduc', 0),
 ('BMMP', 'Bachelor of Music in Music Performance', 'CHASS', 0),
@@ -438,10 +438,15 @@ INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) V
 ('BSMFGE', 'BS in Manufacturing Engineering ', 'CE', 0),
 ('BSNED Generalis', 'Bachelor of Special Needs Education', 'CEduc', 0),
 ('BSPT', 'BS in Physical Therapy ', 'cpt', 0),
+('BSREM-BG', 'Bachelor of Science in Real Estate Management (Business Graduate 2nd Degree)', 'CBA', 1),
+('BSREM-NBG', 'Bachelor of Science in Real Estate Management (Non Business Graduate 2nd Degree)', 'CBA', 1),
 ('BSSW', 'BS Social Work', 'CHASS', 0),
 ('BSTM', 'Bachelor of Science in Tourism Management', 'CTHM', 0),
 ('DBA', 'Doctor of Business Administration', 'CBA', 1),
+('DEM', 'Doctor of Engineering Management', 'CE', 1),
+('DIT', 'Doctor in Information Technology', 'CISTM', 1),
 ('DM', 'Doctor of Medicine', 'cm', 1),
+('DPA', 'Doctor Of Public Administration', 'pub', 1),
 ('EDD-EML', 'Doctor of Education major in Educational Management and Leadership ', 'CEduc', 1),
 ('JD', 'Juris Doctor', 'cl', 1),
 ('LLM', 'Master of Law', 'cl', 1),
@@ -450,13 +455,26 @@ INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) V
 ('MAEd-Chem', 'Master of Arts in Education major in Chemistry', 'CEduc', 1),
 ('MAEd-EML', 'Master of Arts in Education major in Educational Management and Leadership', 'CEduc', 1),
 ('MAEd-SS', 'Master of Arts in Education major in Social Sciences', 'CEduc', 1),
+('MAEP', 'Master of Arts in Education - Physics', 'CEduc', 1),
+('MAN', 'Master of Arts in Nursing', 'cn', 1),
+('MAPSY-CP', 'Master of Arts in Psychology with Specialization in Clinical Psychology', 'CS', 1),
+('MAPSY-IP', 'Master of Arts in Psychology with Specialization in Industrial Psychology', 'CS', 1),
 ('MASPED', 'Master Arts in Special Education with Specialization in Developmental Delays', 'CEduc', 1),
 ('MBA', 'Master in Business Administration ', 'CBA', 1),
+('MCE', 'Master in Civil Engineering with specialization in Structural Engineering (Professional Track)', 'CE', 1),
+('MCM', 'Master in Construction Management', 'CE', 1),
+('MEM', 'Master in Engineering Management', 'CE', 1),
 ('MEM-CM', 'Master of Engineering Management with Specialization in Construction Management', 'CE', 1),
 ('MEng-CoE', 'Master of Engineering with Specialization in Computer Engineering', 'CE', 1),
 ('MEng-SE', ' Master of Engineering with Specialization in Structural Engineering ', 'CE', 1),
-('MSManEng', 'Master of Science in Management Engineering', 'CE', 1),
+('MIT', 'Master of Information Technology', 'CISTM', 1),
+('MPA', 'Master of Public Administration - Off-Campus', 'pub', 1),
+('MPA-IN', 'Master of Public Administration - In-Campus', 'pub', 1),
+('MPH', 'Masters in Public Health', 'cm', 1),
+('MPT', 'Master of Physical Therapy', 'cpt', 1),
+('MSCE', 'Master of Science in Civil Engineering with specialization in Structural Engineering (Academic Track)', 'CE', 1),
 ('MSMEd', 'Master of Science in Mathematics Education', 'CEduc', 1),
+('MSPT ', 'Master of Science in Physical Therapy', 'cpt', 1),
 ('MSW', 'Master of Social Work', 'CHASS', 1);
 
 -- --------------------------------------------------------
@@ -480,9 +498,21 @@ CREATE TABLE `dean` (
 --
 
 INSERT INTO `dean` (`id`, `name`, `title`, `image`, `college_id`, `email`, `status`) VALUES
-(1, 'Test jmjmmj', 'Test', 'uploads\\images\\temp.png', 'CISTM', 'test@gmail.com', 'inactive'),
-(2, 'asdasdas', 'sadasd', 'uploads\\images\\651a2f4d-b3b9-4fc4-a430-dfe27cc84474.png', 'CISTM', 'test@gmail.com', 'inactive'),
-(4, 'Arwin Tiangco', 'College Dean', 'uploads\\images\\38c40af7-d11b-4dd1-a234-02bacdc9a7f2.png', '001', 'arwintiangco@gmail.com', 'active');
+(5, ' Arch. Jared Aaron R. Cruz', 'Acting Dean, College of Architecture and Sustainable Built Environment', 'uploads\\images\\88d7cf61-1645-43a4-a724-39f64197789d.png', '001', 'jarcruz@plm.edu.ph', 'active'),
+(6, 'Prof. Luzviminda B. Landicho', 'Dean, College of Accountancy', 'uploads\\images\\5b70f712-e691-4587-8ae5-a33d6e9cb42c.png', 'CA', 'lblandicho@plm.edu.ph', 'active'),
+(7, 'Engr. Bernard R. Letrero', 'Dean, College of Business Administration', 'uploads\\images\\98efbcc0-fa37-4b4b-873e-7fdc56599f00.png', 'CBA', 'brletrero@plm.edu.ph', 'active'),
+(8, 'Dr. Jimmy M. Romero', 'Dean, College of Education', 'uploads\\images\\8f096a3b-a3ad-413d-91a0-00fafe6f95fa.png', 'CEduc', 'jmromero@plm.edu.ph', 'active'),
+(9, ' Prof. Luningning P. Galindez', 'Acting Dean, College of Humanities, Arts and Social Sciences', 'uploads\\images\\e6fbcb6e-cdfc-4f06-aa0a-126493ecbf50.png', 'CHASS', 'lpgalindez@plm.edu.ph', 'active'),
+(11, ' Dr. Khatalyn E. Mata', 'Acting Dean, College of Information Systems and Technology Management  Dean, College of Law', 'uploads\\images\\981d2eab-3450-4380-ba4c-749e4b9d9675.png', 'CISTM', 'kemata@plm.edu.ph', 'active'),
+(12, 'Atty. Magelio S. Arboladura', 'Dean, College of Law', 'uploads\\images\\389fada3-c087-435f-90eb-0ae9606fa237.png', 'cl', 'msarboladura@plm.edu.ph', 'active'),
+(13, 'Dr. Rose Anna R. Banal', 'Dean, College of Medicine', 'uploads\\images\\581812b4-2d18-4db6-a641-48fb477cd7de.png', 'cm', 'rarbanal@plm.edu.ph', 'active'),
+(14, 'Dr. David Paul R. Ramos', ' Dean, College of Nursing', 'uploads\\images\\4d6a01dd-880d-4ee8-a05d-e6a950881c10.png', 'cn', 'dprramos@plm.edu.ph', 'active'),
+(15, 'Dr. Nil Edward F. Panuelos', ' Dean, College of Physical Therapy', 'uploads\\images\\a00abde7-40bf-4a07-8c76-03b7153c7e8e.png', 'cpt', 'nefpanuelos@plm.edu.ph', 'active'),
+(16, 'Dr. Aileen I. Atienza', 'Dean, College of Science', 'uploads\\images\\60ef8051-6cf7-4aca-a42c-7bb2d285fe53.png', 'CS', 'aiatienza@plm.edu.ph', 'active'),
+(17, 'Prof. Jerrald Lancer O. Abril', 'Acting Dean, College of Tourism and Hospitality Management', 'uploads\\images\\3635a80e-fcf3-44c2-8993-cf277bb9080e.png', 'CTHM', 'jloabril@plm.edu.ph', 'active'),
+(18, ' Justice Hector L. Hofileña', 'Dean, Graduate School of Law', 'uploads\\images\\a96b847f-6b84-439f-b76b-381a8da89d2e.png', 'gds', 'hlhofilena@plm.edu.ph', 'active'),
+(19, 'Prof. Noemi C. Gocuyo', 'Acting Dean, College of Public Administration', 'uploads\\images\\bc6566bf-e4df-4c23-80d6-364e941d4bb7.png', 'pub', 'ncgocuyo@plm.edu.ph', 'active'),
+(20, 'Engr. Evangeline P. Lubao', 'Acting Dean, College of Engineering', 'uploads\\images\\528f48f9-49ff-4cf0-ac54-875ef8a8d5d5.png', 'CE', 'eplubao@plm.edu.ph', 'active');
 
 -- --------------------------------------------------------
 
@@ -505,7 +535,31 @@ CREATE TABLE `directors` (
 --
 
 INSERT INTO `directors` (`id`, `name`, `title`, `office_id`, `status`, `image`, `email`) VALUES
-(9, 'Test', 'Test', 6, 'active', 'uploads\\images\\016a0b52-9453-496a-912f-fcc2eb453cff.png', 'test@gmail.com');
+(10, 'Prof. April May S. Bonoan', 'In-Charge for Sports, Presidential Committee on Arts, Culture and Sports', 9, 'active', 'uploads\\images\\e0209e35-c872-4e3e-91b5-0a5f7b2ebbae.png', 'amsbonoan@plm.edu.ph'),
+(11, 'Mr. Argel G. Solis', 'OIC, Internal Audit Office', 9, 'active', 'uploads\\images\\8fcc7ebe-4d7c-4e63-8fbb-fdf82087edaa.png', 'argsolis@plm.edu.ph'),
+(12, ' Prof. Harold Perfecto R. Galang', 'Vice-Chair for Arts and Culture, Presidential Committee on Arts, Culture and Sports', 9, 'active', 'uploads\\images\\ac7a1716-4be0-4f36-aa93-055dbf7ebab0.png', 'hprgalang@plm.edu.ph'),
+(13, ' Dr. Joseph Berlin P. Juanzon', 'Executive Director of the Office for Graduate and Professional Studies', 9, 'active', 'uploads\\images\\b73e5eb8-2c1b-4292-9146-1bdc27c7901c.png', 'jbpjuanzon@plm.edu.ph'),
+(14, 'Atty. Carlo Florendo C. Castro', 'Chief, Office of the University Legal Counsel', 9, 'active', 'uploads\\images\\cb9883ad-f6fc-4594-967a-0ea207424567.png', 'ofcastro@plm.edu.ph'),
+(15, 'Engr. Erwin D. Marcelo', 'Admission Officer, Admission Office', 10, 'active', 'uploads\\images\\233512ab-7026-48b7-8584-16de2a95c3a0.png', 'edmarcelo@plm.edu.ph'),
+(16, ' Mr. Jesus Raymond R. Mijares', 'Chief, University Library', 10, 'active', 'uploads\\images\\763bf553-c5a7-4032-9864-69d562fa9620.png', 'jrrmijares@plm.edu.ph'),
+(17, ' Prof. Liezel A. Zafra', 'Director, Center of University Extension Services', 10, 'active', 'uploads\\images\\60370a93-494c-48f5-a0af-919107a5ac9f.png', 'lazafra@plm.edu.ph'),
+(18, 'Ms. Margielou B. Peralta', 'Director, Office of the Guidance and Testing Services', 10, 'active', 'uploads\\images\\db9d3772-8c96-4ebc-a97e-8379d99ebe70.png', 'mbperalta@plm.edu.ph'),
+(19, 'Mr. Mark John S. Bonifacio', 'Director, Office of the National Service Training Program', 10, 'active', 'uploads\\images\\4c35ee26-659e-4d4a-8d81-1bf5e3b1c768.png', 'mjsbonifacio@plm.edu.ph'),
+(20, 'Dr. Lynnette G. Cleto', 'Director, Office of Student Dev & Services', 10, 'active', 'uploads\\images\\a751c1c6-c726-4f70-bbd2-8ff9d890e5bf.png', 'lgcleto@plm.edu.ph'),
+(21, 'Dr. Benedicto L. Avila', 'University Registrar', 10, 'active', 'uploads\\images\\6688e8a7-db5b-49cd-af39-ad8a294fd9b5.png', 'blavila@plm.edu.ph'),
+(23, 'Ms. Emily E. Espero', 'Chief, General Services Office', 11, 'active', 'uploads\\images\\a3d9a207-cac8-482b-b290-80da611548f6.png', 'eespero@plm.edu.ph'),
+(24, ' Mr. Reynaldo J. Villegas', 'Chief, Human Resource Management Office', 11, 'active', 'uploads\\images\\a7981f43-6c30-414d-89a0-4f54991bc340.png', 'rjvillegas@plm.edu.ph'),
+(25, ' Prof. Mark Christopher R. Blanco', 'Chief, Information and Communications Technology Office', 11, 'active', 'uploads\\images\\c0734585-956b-4cdf-9324-7728220fdf2d.png', 'mcrblanco@plm.edu.ph'),
+(26, 'Engr. Karen L. Leyson', 'Chief, Physical Facilities Management Office', 11, 'active', 'uploads\\images\\ceb507f2-61b2-4667-a75f-a47ab700a167.png', 'klleyson@plm.edu.ph'),
+(27, 'Ms. Herminia D. Nuñez', 'Chief, Planning Management Office', 11, 'active', 'uploads\\images\\06d9d2ed-c47d-43e0-8473-3e110d6726c4.png', 'hdnunez@plm.edu.ph'),
+(28, ' Engr. Bryan C. Gulapa', 'Chief, Property and Supplies Office', 11, 'active', 'uploads\\images\\8dfb79b5-30f9-4d13-a065-15401172a3fd.png', 'bcgulapa@plm.edu.ph'),
+(29, ' Dr. Maria Ana B. Mariano', 'Chief, University Health Services', 11, 'active', 'uploads\\images\\6464b932-f750-42fb-b49e-99d90e51b56e.png', 'mabmariano@plm.edu.ph'),
+(30, 'Dr. Ronaldo A. Tan', ' OIC - University Security Office', 11, 'active', 'uploads\\images\\295cc18b-a0dc-46a7-b099-9d7fb5ac3af9.png', 'ratan@plm.edu.ph'),
+(31, 'Ms. Andrea E. Solomon-Malunes', 'Chief, Accounting Office', 12, 'active', 'uploads\\images\\3500a8d9-4b9b-4a7d-a7bf-e3a8fdfdb503.png', 'aesolomon@plm.edu.ph'),
+(32, ' Ms. Maribeth P. Solquio', 'OIC, Budget Office', 12, 'active', 'uploads\\images\\f07614f3-3dae-4940-9acc-ee32be1f9c03.png', 'mpsolquio@plm.edu.ph'),
+(33, ' Ms. Nanette E. Laurente', 'University Treasurer, Office of the University Treasurer', 12, 'active', 'uploads\\images\\04ac1af6-d6b7-499b-b715-02c3b15cdc0f.png', 'nelaurente@plm.edu.ph'),
+(34, ' Mr. Gilbert S. Dador', 'OIC, Procurement Office', 12, 'active', 'uploads\\images\\226fcfa9-9640-4992-aef5-2a7383c637e5.png', 'gsdador@plm.edu.ph'),
+(35, ' Ms. Dina C. Mendez', 'Acting Chief, Resource Generation Office', 12, 'active', 'uploads\\images\\6c285be3-8789-47e9-b821-85aa4b4215c9.png', 'dcmendez@plm.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -524,8 +578,10 @@ CREATE TABLE `director_offices` (
 --
 
 INSERT INTO `director_offices` (`id`, `office_name`, `status`) VALUES
-(6, 'Active Test Office', 'active'),
-(8, 'Test', 'active');
+(9, ' Officials reporting to the Office of the University President', 'active'),
+(10, 'Officials reporting to the Vice President for Academic Services, Research & Extension', 'active'),
+(11, 'Officials reporting to the Vice President for Administration', 'active'),
+(12, 'Officials reporting to the Vice President for Finance', 'active');
 
 -- --------------------------------------------------------
 
@@ -552,9 +608,40 @@ INSERT INTO `files` (`id`, `location`, `file_path`, `title`, `section`) VALUES
 (44, 'AboutCollage', 'uploads\\images\\1728218622961.jpg', NULL, NULL),
 (47, 'HeroVideo', 'uploads\\videos\\1728218800687.mp4', NULL, NULL),
 (48, 'OrganizationalChart', 'uploads\\images\\6c178cd4-9955-425d-af32-09d6ffc58946.jpg', NULL, NULL),
-(49, 'downloads', 'uploads\\files\\432c2d62-7a4e-4353-82b7-8d9073eadf5e.pdf', 'Test Updated', 'Test Section'),
-(51, 'downloads', 'uploads\\files\\db03c3a3-4849-42a9-96ac-21a9001c4fba.pdf', 'New', 'asdas'),
-(52, 'downloads', 'uploads\\files\\5fdbcbc2-3bb6-423a-bef7-fe6f0977fb00.pdf', 'Hello', 'Section');
+(53, 'downloads', 'uploads\\files\\3989e9a7-ecd2-4c41-a457-2ce31230d753.pdf', 'Students\' Faculty Evaluation System manual', 'I. Manuals and resource materials'),
+(54, 'downloads', 'uploads\\files\\ae572115-b022-4447-a805-9c083b3d3caf.pdf', 'PLM Suicide Prevention and Postvention Protocol: A Guide for the School Community', 'I. Manuals and resource materials'),
+(55, 'downloads', 'uploads\\files\\dcd9047c-4710-4dc2-95ff-ddde2d8ac573.pdf', 'University Health Services Orientation for Scholars', 'I. Manuals and resource materials'),
+(56, 'downloads', 'uploads\\files\\b0623776-ac07-4ca1-a6f7-1751d26e3526.pdf', 'Professionalization Program for Public Procurement Practitioners brochure', 'I. Manuals and resource materials'),
+(57, 'downloads', 'uploads\\files\\675e08f8-a816-4cfd-9719-f25c268636df.pdf', 'Scholarship application form (revised 2019)', 'II. Forms for students'),
+(58, 'downloads', 'uploads\\files\\74705248-8bba-4272-acc3-8d714d8755f8.pdf', 'DOH Medical Scholarship form', 'II. Forms for students'),
+(59, 'downloads', 'uploads\\files\\8cdf057b-b322-4479-af66-73b3c42d272e.pdf', 'DOH Scholar Commitment form', 'II. Forms for students'),
+(60, 'downloads', 'uploads\\files\\aa88aaad-495c-47cb-a755-4a9c428e6609.pdf', 'Data Privacy consent form', 'II. Forms for students'),
+(61, 'downloads', 'uploads\\files\\78b4c931-1a0b-4472-a84c-1be7424b4ec8.pdf', 'Request Form for School Credentials', 'II. Forms for students'),
+(62, 'downloads', 'uploads\\files\\ba978ac5-df4c-4fbd-b2d5-93d793716710.pdf', 'Checklist of Requirements for Request for School Credentials', 'II. Forms for students'),
+(63, 'downloads', 'uploads\\files\\9c102ad9-58d4-451c-89b1-2ac5025e1799.pdf', 'Philhealth members registration form (PMRF, January 2020 version)', 'II. Forms for students'),
+(64, 'downloads', 'uploads\\files\\c6370879-d887-4ba2-8015-9e4fd2d4d881.pdf', 'Guidelines for applicants and new hires', 'III. Forms for faculty and administrative workers'),
+(65, 'downloads', 'uploads\\files\\ecda5449-6101-4366-a19c-ddc4318c336f.pdf', 'CSC Reso No. 1700656', 'III. Forms for faculty and administrative workers'),
+(66, 'downloads', 'uploads\\files\\8595bf07-b97e-4fdb-b5d8-f4bc040c479a.pdf', 'Personal Data Sheet (CS Form 212)', 'III. Forms for faculty and administrative workers'),
+(67, 'downloads', 'uploads\\files\\d0584c91-19db-4cca-b70d-fc9c4e5c7348.pdf', 'Personal Data Sheet (CS Form 212) Attachment - Work Experience Sheet', 'III. Forms for faculty and administrative workers'),
+(68, 'downloads', 'uploads\\files\\a00f90ee-4be9-4d10-a766-fae2b5494fc8.pdf', 'Personal Data Sheet (CS Form 212) Attachment - Revised Guide to Filling Up the Personal Data Sheet', 'III. Forms for faculty and administrative workers'),
+(69, 'downloads', 'uploads\\files\\708a60a7-b995-4f77-928b-ee315ee3c172.pdf', 'Philhealth Membership Registration Form (PMRF)', 'III. Forms for faculty and administrative workers'),
+(70, 'downloads', 'uploads\\files\\437475ab-94df-4df5-9660-96b64ce1ed82.pdf', 'GSIS Membership Information Sheet (MIF)', 'III. Forms for faculty and administrative workers'),
+(71, 'downloads', 'uploads\\files\\d89eac01-a974-41ef-9f93-135e71e2511b.pdf', 'PAGIBIG Member\'s Data Form (MDF)', 'III. Forms for faculty and administrative workers'),
+(72, 'downloads', 'uploads\\files\\b600947d-98c4-4ab5-8a24-1f9525e6df15.pdf', 'Statement of Assets, Liabilities, and Net Worth (SALN) form', 'III. Forms for faculty and administrative workers'),
+(73, 'downloads', 'uploads\\files\\6e697cdd-2ffb-4228-b42d-a292719a77ec.pdf', 'Daily Time Record (DTR)', 'III. Forms for faculty and administrative workers'),
+(74, 'downloads', 'uploads\\files\\17279e96-e1d5-4592-9fa5-289fd868226a.pdf', 'Certification of Assumption to Duty', 'III. Forms for faculty and administrative workers'),
+(75, 'downloads', 'uploads\\files\\de732d47-7d0f-4dd0-82b3-60b92d7dd961.pdf', 'Service Report (for administrative COS workers)', 'III. Forms for faculty and administrative workers'),
+(76, 'downloads', 'uploads\\files\\4e6c9ff8-53ce-4206-bab6-be1b3684a005.pdf', 'Service Report (for faculty)', 'III. Forms for faculty and administrative workers'),
+(77, 'downloads', 'uploads\\files\\fabead13-dbe2-4cd5-9ab5-53967c9ca0b1.pdf', 'Staffing Pattern Form', 'III. Forms for faculty and administrative workers'),
+(78, 'downloads', 'uploads\\files\\4ee9d20a-2e57-4ee1-8c8a-d51fcd5084ab.pdf', 'Coaching Journal', 'III. Forms for faculty and administrative workers'),
+(79, 'downloads', 'uploads\\files\\388d6d82-5176-421e-9c52-914ea4a74d86.pdf', 'Individual Performance Contract (IPC) Targets', 'III. Forms for faculty and administrative workers'),
+(80, 'downloads', 'uploads\\files\\ac0b4ac1-ca2f-4341-b8cc-ad32afd0fac9.pdf', 'Individual Performance Contract Review (IPCR) Form', 'III. Forms for faculty and administrative workers'),
+(81, 'downloads', 'uploads\\files\\6da75c94-172c-40de-b1dd-b04f03f31ccc.pdf', 'Office Performance Contract (OPC) Targets', 'III. Forms for faculty and administrative workers'),
+(82, 'downloads', 'uploads\\files\\75eda768-a898-4e5a-bef4-d3e9dbafc015.pdf', 'Office Performance Contract Review Form', 'III. Forms for faculty and administrative workers'),
+(83, 'downloads', 'uploads\\files\\f35dcd60-4a6e-43fc-84ac-faf02b65ae7d.pdf', 'Job Description Form', 'III. Forms for faculty and administrative workers'),
+(84, 'downloads', 'uploads\\files\\f8abe197-cbbb-4e9b-baac-9d8e2e85074c.pdf', 'Statement of Duties and Responsibilities', 'III. Forms for faculty and administrative workers'),
+(85, 'downloads', 'uploads\\files\\3058d3f2-ed4c-4858-a670-1a84b81e8f75.pdf', 'Performance Evaluation System Form', 'III. Forms for faculty and administrative workers'),
+(86, 'downloads', 'uploads\\files\\97512511-b08b-4465-9cd3-32329371178d.pdf', 'Download PLM Mobile App', 'III. Forms for faculty and administrative workers');
 
 -- --------------------------------------------------------
 
@@ -576,8 +663,16 @@ CREATE TABLE `management_committee` (
 --
 
 INSERT INTO `management_committee` (`id`, `name`, `email`, `title`, `image`, `status`) VALUES
-(1, 'Committee 1', 'test@gmail.com', 'Com', 'uploads\\images\\17acfc7a-8cb6-418c-ae7e-b8f39f6ecd8d.png', 'active'),
-(2, 'Committee Inactive', 'test@gmail.com', 'Test', 'uploads\\images\\5af3051c-62c7-41a1-a773-bee3c556daab.png', 'inactive');
+(2, 'Committee Inactive', 'test@gmail.com', 'Test', 'uploads\\images\\5af3051c-62c7-41a1-a773-bee3c556daab.png', 'inactive'),
+(3, 'Dr. Ronald P. Romero', 'rpromero@plm.edu.ph', 'Vice President for Academic Affairs', 'uploads\\images\\bb7cb298-aad9-43d2-8058-29c8c63fc47c.png', 'active'),
+(4, 'Dr. Ronald A. Tan', 'ratan@plm.edu.ph', 'Vice President for Administration', 'uploads\\images\\a4cc63ba-26f3-4115-92be-a85bd6052516.png', 'active'),
+(5, 'Ms Luzviminda B. Landicho', 'lblandicho@plm.edu.ph', 'Vice President for Finance', 'uploads\\images\\ac88f781-25bc-4033-896c-1a6205f09347.png', 'active'),
+(6, 'Dr. Dan Michael A. Cortez', 'dmacortez@plm.edu.ph', 'Vice President for Research', 'uploads\\images\\9de73220-a30e-4e49-a8a3-5b4b02193c82.png', 'active'),
+(7, 'Mr. Reynaldo J. Villegas', 'rjvillegas@plm.edu.ph', 'Chief, Human Resource Management Office', 'uploads\\images\\315ba52f-9c88-40fd-8e92-d2d2adec8ad8.png', 'active'),
+(8, 'Atty. Carlo Florendo Castro', 'cfcastro@plm.edu.ph', 'Chief, Office of the University Legal Counsel', 'uploads\\images\\03baecd7-009b-4fd8-80eb-de045871f34a.png', 'active'),
+(9, 'Dr. Benedicto L. Avila', 'blavila@plm.edu.ph', 'University Registrar', 'uploads\\images\\88bde334-f031-4035-be74-4cfea1bce67c.png', 'active'),
+(10, 'Atty. Relson P. Moral', 'rpmoral@plm.edu.ph', 'Chief Executive Staff  H', 'uploads\\images\\c5968fd8-56d4-4c82-863d-b1dc4f558ccd.png', 'active'),
+(11, 'Mr. Ryan Jay SM. Cruz', 'rjsmcruz@plm.edu.ph', 'Head, Executive Assistant', 'uploads\\images\\2bff678e-7e35-4388-a15b-376346557cf6.png', 'active');
 
 -- --------------------------------------------------------
 
@@ -686,7 +781,28 @@ CREATE TABLE `offices` (
 --
 
 INSERT INTO `offices` (`id`, `office_name`, `description`, `vision`, `mission`, `status`, `org_chart`, `email`, `contact_number`) VALUES
-(3, 'Test Office Updated', 'This is the Description Updated', 'Vission', 'Mission', 'active', 'uploads\\images\\f917775e-8f28-4e41-aa1d-4a13ffce6429.jpg', 'test@gmail.com', '0912345678');
+(5, 'Accounting Office', 'The Accounting Office shall provide an information system to measure, process, and communicate financial information about the University. It shall record accounts payable and receivable, inventory, payroll, plant, property and equipment, and all other financial elements. It shall review the records of each operating unit to determine the University\'s financial position and any changes required to run the University cost- effectively. It shall be headed by the Chief Accountant.', 'To excel as a trusted steward of public funds, ensuring transparent, accurate and accountable financial management that upholds public trust and supports effective governance.', 'To deliver accounting services and support that align with the university’s commitment to academic excellence, research, and community service. We are committed to ensuring financial integrity, transparency, efficiency, and compliant with relevant rules and regulations, whether internal and/or external, thereby enabling the university to effectively utilize its resources for the benefit of students, faculty, and the broader community.', 'active', 'uploads\\images\\235ffe1f-2900-4827-b78a-cc1374efff32.png', 'budget@plm.edu.ph', '123'),
+(6, 'Budget Office', 'Budget Office is responsible in the preparation of University Budget and certify availability of funds for each projects and expenses being paid.', 'To provide the best customer service to our stakeholders.', 'Provide ideal use of funds for timely and useful budget information for the University and its stakeholders', 'active', 'uploads\\images\\aacc050e-0e3f-4e4a-9169-8ae4b47ba0ff.png', 'budget@plm.edu.ph', '12321412'),
+(7, 'Center of University Extension Services', 'An implementing arm of the Pamantasan ng Lungsod ng Maynila various extension programs, projects, and activities which aims to\r\n1. strengthen university-community relationship through mutual cooperation and support of planned extension programs and services;\r\n2. To  mobilize the university constituency for meaningful and responsive community service;\r\n3. To maximize the use of university resources for the improvement of urban community life;\r\n4. To provide technical, educational, social and health services to outside agencies and communities as long as these are within the capacity and resources of the university; and\r\n5. To generate financial support for university extension projects.', 'A leading university center in providing extension and other related  public services for the public interest particularly those from its adopted communities focusing on the underserved and less privileged beneficiaries in the pursuit of social and community development through its dynamically engaged stakeholders.', 'CUES is committed to carrying out public service for the public interest through planning, administering, and regulating extension programs, projects, and activities. Likewise, it establishes linkages, networking, and partnership with government and non-government institutions.', 'active', 'uploads\\images\\4a48396d-b856-489a-959a-3e84686f58fd.png', 'cues@plm.edu.ph', '123'),
+(8, 'General Services Office', 'By virtue of BOR Resolution No. 4721 signed 15 November 2019, the mandate and services of the former Gymnasium Management Section (GMS) was expanded to better reflect the need to deliver excellent facilities management in a timely and cost-effective manner, in support of the University’s pursuit towards quality education, research, and extension services. As a result, the GMS was renamed as the General Services Office (GSO) – a unit under the Office of the Vice President for Administration.\r\n\r\nThe GSO is primarily responsible for the centralized reservation, development, use, and maintenance of campus facilities. The GSO is tasked to supervise and control all activities undertaken within the Rajah Sulayman Gymnasium, a premier sports center that caters to the needs of indoor Physical Education classes, athletic and recreational activities of students, faculty, and staff.\r\n\r\nAs building and equipment custodian of the University, the GSO also operates and maintains fourteen (14) activity venues or facilities.\r\n\r\nThe GMS trace its beginnings from the Physical Education (P.E.) Department which later grew into Sports, Physical Education and Recreation Department (SPERD) formed in 1981. A Director was appointed to head the Department and in some cases, College Dean also assumes its leadership in the absence of the former. Hence, the P.E./SPERD Directors, and College Deans are de facto Gymnasium Managers prior the creation of a separate Office of the Gymnasium Manager under the Vice President for Administration in 2003.', 'To deliver excellent facilities management in a timely and cost-effective manner, in support of the University’s pursuit towards quality education, research, and extension services.', 'In pursuit of quality higher education, the GSO endeavors to provide a clean, safe, and secure environment that is conducive to learning and everyone’s well-being.', 'active', 'uploads\\images\\769b21f9-1756-4c3c-a98f-d9f4933c072e.jpg', 'gso@plm.edu.ph', '123'),
+(9, 'Internal Audit Office', 'The Internal Audit Office (IAO) provides independent, objective assurance and advisory services designed to add value and improve the University\'s operations.', 'To provide the University with value-added audits with objectivity, fairness and in accordance with highest professional and ethical standards.', 'To provide the University with value-added audits with objectivity, fairness and in accordance with highest professional and ethical standards.', 'active', 'uploads\\images\\ee4b3f32-f11a-4dd8-9929-49cb16598560.png', 'iao@plm.edu.ph', '123'),
+(10, 'Office of Graduate and Professional Studies', 'Welcome to the Office of Graduate and Professional Studies  (OGPS), an esteemed institution dedicated to fostering excellence in advanced education and professional development. Established with a vision to be one of the leading institutions in graduate and professional studies, OGPS offers a diverse array of innovative and interdisciplinary programs tailored to meet the evolving needs of today\'s dynamic workforce. Our center is renowned for its commitment to academic rigor, practical application, and a global perspective, providing students with unparalleled opportunities for intellectual growth, career advancement, and personal enrichment. At OGPS, we pride ourselves on creating an inclusive and supportive learning environment, where students from various backgrounds engage with industry experts and thought leaders to shape their future and contribute meaningfully to their fields and communities.', '\"To Be a Global Beacon of Advanced Learning and Professional Development\"', '\"Empowering Future Leaders through Excellence in Graduate and Professional Education\"', 'active', 'uploads\\images\\9b111408-ba0b-4203-8138-b4e0a15124bd.png', 'ogps@plm.edu.ph', '123'),
+(11, 'Office of Guidance and Testing Services', 'The Office of Guidance and Testing Services (OGTS) is a safe haven that focuses on promoting the wellbeing of students and other stakeholders though the care and support afforded by the professional guidance counselors.\r\n\r\nA variety of guidance counseling programs and services are made available to help individuals reach their full potential and thrive in the areas of academic, personal, social and career. The heart of all the services is counseling which is provided individually or in groups. This enables individuals to experience catharsis, self-reflection and positive change.', 'A community within PLM campus where students are provided with developmental programs which will enable them to become excellent professionals that reflect integrity and social responsibility.', 'Deliver adequate and efficient guidance counseling programs and services that center on providing care and assistance to PLM students. “We care, we help, we serve.”', 'active', 'uploads\\images\\f37b6b3b-1a49-4370-b31d-898f3a2744f3.png', 'ogts@plm.edu.ph', '123'),
+(12, 'Office of NSTP', 'The ONSTP is primarily tasked to implement the provisions of Republic Act Number 9163 or the NSTP Act of 2001, its Implementing Rules and Regulations, and other pertinent laws, policies, guidelines, and issuances set forth by the university and other concerned agencies in NSTP Implementation, e.g., CHED, AFP, DND, etc.', 'The Pamantasan ng Lungsod ng Maynila – Office of the National Service Training Program shall be the university’s spearhead unit in the development of civic consciousness and defense preparedness among the students pursuing public interest and national development.', 'The Pamantasan ng Lungsod ng Maynila - Office of the National Service Training Program aims to develop and produce leaders that pursue public interest by designing and implementing a socially responsive NSTP curriculum that emphasizes citizenship training to develop service – oriented students with a high sense nationalism and socio-civic concern.', 'active', 'uploads\\images\\85f1e1c9-9090-484f-9d17-4ece933c99dd.png', 'nstp@plm.edu.ph', '123'),
+(13, 'Office of Student Development Services', 'The Office of Student Development and Services (OSDS) of PLM created by Board Resolution No. 2720 is the central student services agency, which administers and coordinates student services and represent student interest to various campus groups, the faculty, the staff and the administration. It assumes administrative responsibility over all student organizations, student co-curricular, co-curricular, and cultural activities in the University, and facilitates and follows theough student needs, growth and development in the context of the students social, cultural, intellectual, and moral spheres. Moreover, the OSDS also takes responsibility in ensuring that students uphold the established regulations related to appropriate behavior expected of a PLM students as prescribed in the PLM Student Handbook.\r\n\r\nThe Office of Student Development and Services (OSDS) is authorized under Article 127 of the Code of Pamantansan ng Lungsod ng Maynila which provides:\r\n\r\n\"There should be an Office of Student Development and Services, headed by the Director of Student Development and Services, which shall coordinate the operation of units provides in the following sections and such other units concerned with student personnel services as may be placed under the Office of the President. He shall submit an annual report, and such other reports as may be required, to the President of the University.\"', 'The OSDS is committed to lead the provision of personalised student experiences that foster a sense of belongingness and empowerment through critically engaging curricular and co-curricular opportunities that would enable students to realize their potential as catalyst of positive social change.', 'The OSDS is to promote, strengthen and provide curricular and co-curricular opportunities that would ensure the well-being, success, personal and professional development of students to aide in the realization of their full potential to create positive impact to the society.', 'active', 'uploads\\images\\4fa19a46-fdd6-43f7-af49-42123f0954d5.png', 'osds@plm.edu.ph', '123'),
+(14, 'Office of the University Legal Counsel', 'The OULC shall provide legal services, from drafting contracts and issuing opinions to handling disciplinary cases and representation in external litigation. It shall be headed by the University Legal Counsel (ULC).', 'To be recognized as a pillar of legal excellence, ensuring integrity and upholding justice in every facet of university governance.', 'To provide comprehensive legal services that empower the PLM community, safeguard its interests, and foster a culture of compliance and fairness. We strive to uphold the rule of law, navigate complexities with clarity, and champion the university\'s mission through proactive legal counsel and advocacy.', 'active', 'uploads\\images\\b739ec77-b5a5-4e23-8b8f-e0b119859056.png', 'oulc@plm.edu.ph', '123'),
+(15, 'Office of the University Registrar', 'The Pamantasan ng Lungsod ng Maynila was established on July 17, 1967 by virtue of RA No. 4196. Thus, the creation of the University automatically went with it the creation of the Office of the Registrar which takes charge of admissions, registration, scholastic records processing and management, and the commencement exercises of the students.\r\n\r\nThe Office of the University Registrar (OUR) is an academic support unit of the University which administers operations in the areas of student academic records, graduation and other related services. It serves as the main frontline service unit of the University on curricular and academic matters. This Office issues documents such as Transcript of Records, Diploma, Certification of Grades, Course Description, Course Syllabus, Authentication/Verification and other academic records/documents.', 'To become a leader in academic record management and service delivery by leveraging cutting-edge technology, such as cloud-based systems and self-service portals. We aim to continuously improve our processes to enhance the academic experience for PLM students and graduates. By adopting best practices, exceeding service excellence benchmarks, and fostering a data-driven approach to success, we strive to set the standard for registrar services and contribute significantly to the academic achievement of our community.', 'The University Registrar\'s Office protects the accuracy, integrity, and security of student records and academic data. We offer efficient and effective academic services to students, professors, staff, and external organizations. By practicing the values of integrity, innovation, responsiveness, professionalism, and accountability, we support the academic progression of students and graduates, contributing to the university\'s mission and goals.', 'active', 'uploads\\images\\cfea9d30-9284-46d5-8cf7-3b8b11cf0d9b.png', 'our@plm.edu.ph1', '123'),
+(16, 'Office of the University Secretary', 'The University Secretary (USEC) shall serve as the Secretary of the Board of Regents (BOR) and keeps such records of the University as the BOR may designate. The USEC shall be appointed by the BOR upon recommendation of the University President.\r\n\r\nThe OUSEC shall serve as the Secretariat of the BOR, manages the University\'s official mail and generally shall assist the USEC in the performance of official functions.', 'To be trusted and indispensable partner in the governance of PLM, upholding the highest standards of record-keeping and procedural integrity.', 'To provide exemplary secretarial and administrative support to the Board of Regents and the University President, ensuring the accurate documentation and secure management of all official records. We are committed to enhancing the efficiency and transparency of the University\'s governance process through diligent service and continuous improvement.', 'active', 'uploads\\images\\0504d7ba-459d-413c-9a1d-827ab3b7a8a1.png', 'ous@plm.edu.ph', '123'),
+(17, 'Office of the Vice President for Research, Academic, and Extension', 'The OVPRAES shall assist the VPRAES in the performance of official functions:\r\na.) Research Facilitation\r\nb.) Extension Programs\r\nc.) Supporting Innovation\r\nd.) Collaborations and Partnerships\r\ne.) Capacity Building\r\n\r\n', 'The Office of the Vice President for Research, Academic and Extension Services vision is to become a prominent that is known for its exceptional research, academic programs, and outreach efforts. We aspire to garner recognition on a local and international scale for our contributions to knowledge and society.', 'The Office of the Vice President for Research, Academic, and Extension Services is committed to creating an active and diverse educational atmosphere that encourages innovative research, excellent education, and meaningful community involvement.', 'active', 'uploads\\images\\e0e8a978-d719-4960-b346-b36b2238d24c.jpg', 'urc@plm.edu.ph', '123'),
+(18, 'Physical Facilities Management Office', 'Physical Facilities Management Office core functions involve the repair and maintenance of all the University facilities and the supervision of outsourced projects', 'The Physical Facilities Management Office shall be performing repair and maintenance of the learning environments.', 'Guided by this vision, we commit ourselves to provide a safe, conducive, well-maintained physical facilities for the University community by planning and delivering professional services that are sustainable  and supportive of academic excellence.', 'active', 'uploads\\images\\9af82367-585a-4ec0-a382-e61dc57cdac8.png', 'pfmo@plm.edu.ph', '123'),
+(19, 'Planning And Management Office', 'The Planning and Management Office helps ensure that the Vision and Mission of the University are fulfilled.  The office monitors the submission of OPCR Form and schedules the review/ evaluation of the Performance Management Team before the start of the performance period.  It consolidates, reviews, validates and evaluates the initial performance assessment of the Heads of Office based on reported Office accomplishments against the success indicators and the allotted budget against the actual expenses.\r\n\r\nPMO promotes effective and efficient planning of projects and activities such that the outcomes, resource requirements, technology changes, risks and budgetary requirements are clear, and the planned programs and activities are aligned with the strategic goals and programs of the University.', 'To be a major contributor in the accomplishment of the University’s Vision and Mission.', 'To provide the proper monitoring and professional development/ training opportunities to the offices and colleges and incorporate values formation and ethical standards to help ensure the timely accomplishment of their planned programs and activities.', 'active', 'uploads\\images\\90fef8ad-7adb-465d-ab06-ad6939b8061e.png', 'pmo@plm.edu.ph', '123'),
+(20, 'PLM Law Center', 'THE PLM LAW CENTER was created by PLM Board Resolution No. 2259, where the PLM Law Center is specifically mandated to:\r\n-Serve as an institute for continuing legal education\r\n-Conduct Legal research and publications\r\n-Promote barangay justice\r\n-Offer free legal aid services\r\n\r\nFUNCTIONS:\r\n- Serve as an institute for continuing legal education\r\n- Conduct Legal research and publications\r\n- Promote barangay justice\r\n- Offer free legal aid services', 'Non-partisan law and public policy center. Producing independent legal research, analysis, trainings / seminars and publication to help national and local government better serve their communities and the people.\r\n\r\nThe Center currently focuses on several core topics such as the youth, women, suffrage, overseas Filipino workers and immigration laws, public international law access to justice of informal settlers and police oversight.\r\n\r\nThe Center shall prepare law students for careers as attorneys in public service through the Legal Aid Program, a select opportunity for a small number of applicants from each class.\r\n\r\nCapitalizing on its location in the City of Manila, the Law Center shall explore emerging issues to shed light to the public and connect with government officials through consultations and other programs.', 'Bridging legal profession and public service.\r\n\r\nThe principal aim of the Center’s work is to serve as a point of resource for the government. While the Law Center has special expertise on the local government of Manila, its services aims to have a nationwide impact. The Center shall assist the local and national government in keeping its public servants abreast of the law and improve their ability to better serve the community through their in depth legal literacy.\r\n\r\nThe Center has a non-partisan identity and does not participate in advocacy on disputed policy issues.\r\n\r\nCentral to its mission is training, continuously educating skilled lawyers and future leaders in the legal profession as well as giving out relevant information through researches, symposiums and other extension services to the public. Connecting the law school to the community is a key part of the Center’s mission.', 'active', 'uploads\\images\\2da43458-2b5c-4acc-aa9f-8bc958cd890c.jpg', 'plmlc@plm.edu.ph', '123'),
+(21, 'Procurement Office', 'Efficient Procurement Management\r\nImplement efficient and effective procurement processes that optimize resources, minimize procurement lead times, and ensure the timely delivery of goods, infrastructure, and services to support the operations of the organization in compliance with the 2016 Revised Implementation Rules and Regulations of RA 9184', 'A transparent, efficient and accountable University procurement system.', 'In support of the University’s life purpose, we commit ourselves to the effective implementation of procurement procedures guided by the principles of transparency, efficiency and accountability, with the aim of delivering quality services and promoting public trust and integrity in government service.', 'active', 'uploads\\images\\eb1697cc-a2dc-49f9-843f-5363c76917cd.png', 'procurement@plm.edu.ph', '123'),
+(22, 'Property & Supply Office', 'The Property and Supply Office (PSO) is primarily responsible of the receiving, issuances, disposition, storage and inventory of all the properties of the University.', 'Shall be strong in integrity in safeguarding university assets and for its commitment in providing adequate resources in accordance with laws and regulations.', 'To be responsive to the needs of the different units that it serves and that operates with flexibility, reliability, timeliness and economical. It is in constant watch over the flow of supplies and equipment up to their final disposition.', 'active', 'uploads\\images\\79c80c5f-d78c-476b-bc50-344c811c9843.png', 'pso@plm.edu.ph', '123'),
+(23, 'Revenue Generation Office', 'The Resource Generation Office (RGO) is in charge of the Alumni Affairs Section, Scholarship Section, Public Information Section and External Partnership Section.  One of its major functions is to explore partnerships, grants, and commercial ventures to enhance the university\'s financial portfolio.', 'The Resource Generation Office (RGO) shall assist the Office of the University President on matters of external, public concerns and to maintain and promote the good image of PLM as an institution of academic excellence with integrity and social responsibility.', 'Guided by its mandate, the Resource Generation Office (RGO) will develop and implement strategies to diversity and maximize revenue streams aligning with the university\'s goals.', 'active', 'uploads\\images\\c4bb0217-748e-4e52-8c07-31f67ace9d2e.jpg', 'rgc@plm.edu.ph', '123'),
+(24, '  University Health Services', 'The UHS is mandated to provide basic health services to employees and students of the Pamantasan ng Lungsod ng Maynila.', 'A Healthy PLM Community.', 'To maintain a healthy employee and student population.', 'active', 'uploads\\images\\f2155ba4-91eb-4ad2-a289-40bff31ae10e.png', 'uhs@plm.edu.ph', '123'),
+(25, 'University Library', 'The Celso Al Carunungan Memorial Library came into being to serve our students and faculty as well as the community for reading materials and researchers who needed special reference materials for their studies. The collection is composed of foreign and Filipiniana books and periodicals (journals and professional magazines), unpublished resources (theses, dissertations, and research studies), and multimedia resources. The library has been subscribing to several online databases which are accessible 24/7.', 'The University Library is committed to its vision “to be the premier academic library among local colleges and universities in the country”.', 'The University Library shall provide a comprehensive collection and excellent library services in support of the PLM vision and mission.', 'active', 'uploads\\images\\e7ce163c-0984-409b-ae72-ef8e96527a74.png', 'library@plm.edu.ph', '123'),
+(26, 'University Research Center', 'URC has the following functions relative to research services:\r\na. Develop and implement a continuing program of research education for the University;\r\nb. Coordinate all research activities in the University, apart from those undertaken by the Center;\r\nc. Assists Faculty and students with request to conduct research in the University\r\nd. Establish linkages and appropriate working relationships with other units of the University, the City Government of Manila, and other research institutions here and abroad;\r\ne. Liaise with funding agencies for resource generation to support the research program of the University;\r\nf. Perform such other functions as the President may be assign.', 'A premier university center of quality and innovative researches of faculty, students and staff that geared towards the advancement of human knowledge.', 'URC takes the lead in developing and implementing relevant programs of research for the continuous development of the University and the City of Manila by facilitating the production, publication, presentation, and utilization of researches of faculty, students and staff as well as in outsourcing linkages and networks from other institutions and funding agencies.', 'active', 'uploads\\images\\4b0446c1-faab-4a37-b353-ca6213a81000.png', 'urc@plm.edu.ph', '123');
 
 -- --------------------------------------------------------
 
@@ -767,9 +883,17 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `description`, `image`, `status`) VALUES
-(13, 'Current President', 'Test\n\nTHIS HAS A LOT OF PARGRAPHS\n\nHERE IS ANOTHER PARAGRAPH', 'uploads\\images\\cf76f888-0590-4dbf-9053-602b13be0381.png', 'active'),
-(16, 'Test', 'asddsaasd', 'uploads\\images\\4c1dcd2b-909c-4bf2-b3ec-11ea0e962b49.png', 'inactive'),
-(17, 'New President', 'Desc', 'uploads\\images\\05bc5b5f-a78c-4197-87e0-ed17e54e5903.png', 'inactive');
+(13, 'Current President', 'Atty. Domingo Reyes Jr. elected as the New President of Pamantasan ng Lungsod ng Maynila\r\nPamantasan ng Lungsod Maynila is proud to announce Atty. Domingo Reyes, Jr. as the new President of the university. Atty. Reyes is poised to lead PLM to new heights in the years to come with his impressive background and a commitment to excellence in higher education. He is a writer, professor, lecturer, speaker, consultant and PAASCU accreditor, among others, and committed to public service.\r\n\r\nPresident Reyes, known as “Sir Sonny” to many, will bring a wealth of experience to PLM, having served in various leadership roles within academia, including as a special assistant to the Chancellor at De La Salle College of St. Benilde and special assistant to the Vice Chancellor for Academics. He is also a Correspondent Lawyer and Psychologist, and has worked as a Human Resource Manager in various private companies. He understands the challenges and opportunities that universities are confronted with today.\r\n\r\nPresident Reyes received his Doctor of Philosophy in Higher Education Management, with Highest Academic Distinction, from Centro Escolar University, his Juris Doctor from Manuel L. Quezon University, and his Master of Laws from Pamantasan ng Lungsod ng Maynila. Sir Sonny is clearly one of our own. His vision for the future of PLM aligns perfectly with our institution\'s mission and values.\r\nAs President Reyes takes the helm at PLM, together with the newly appointed Board of Regents, Dr. Joseph Berlin Juanzon, Dr. Neri Pescadera, and PLM’s new Board of Regents Chairperson Atty. Edward Serapio. With incumbent Board of Regents Wilma Galvante and Rita Riddle, they will work collaboratively with students, faculty, staff, and the broader community to continue building on the university\'s proud tradition of academic excellence and innovation. Their leadership will be instrumental in advancing our commitment to fostering a diverse and inclusive campus environment that embraces the full spectrum of human potential.\r\n\r\nPresident Reyes is set to officially assume the presidency on October 31, 2023, and the entire PLM community looks forward to working closely with them as we undertake on this exciting new chapter in the university\'s history.\r\nPlease join us in extending a warm welcome to President Domingo Reyes Jr. as they take on this pivotal role. We invite you to stay tuned for future updates and announcements as we embark on this new journey together.', 'uploads\\images\\3f03b5d3-1bc0-4870-9d57-b5f7fa8bdbc8.png', 'active'),
+(18, 'DR. BENITO REYES', '-', 'uploads\\images\\a50fea1b-35e1-4429-a69b-1b7094d5342f.png', 'inactive'),
+(19, 'DR. CONSUELO S. BLANCO', '-', 'uploads\\images\\625b83ab-63c9-4731-875b-5bd8914f76ce.png', 'inactive'),
+(20, 'HON. MAYOR RAMON BAGATSING', '-', 'uploads\\images\\40018f0f-1a81-4d4f-9af9-72dc62157da0.png', 'inactive'),
+(21, ' DR. JOSE D. VILLANUEVA', '-', 'uploads\\images\\5d5b4446-7127-4c27-84eb-7d27ed2283b4.png', 'inactive'),
+(22, 'DR. BENJAMIN D. TAYABAS', '-', 'uploads\\images\\689a8a07-5360-429b-aff6-d54b1ec5112a.png', 'inactive'),
+(23, 'DR. VIRSELY M. DELA CRUZ', '-', 'uploads\\images\\58486991-e60a-4bda-bf94-995769d3ba94.png', 'inactive'),
+(24, 'ATTY. ADEL A. TAMANO', '-', 'uploads\\images\\8aae175b-76c2-4c83-8e6f-e14399f75edd.png', 'inactive'),
+(25, 'JUSTICE ARTEMIO G. TUQUERO', '-', 'uploads\\images\\2d62a3b2-a0c3-4fd5-9654-b3e24bbc7072.png', 'inactive'),
+(26, ' DR. MA. LEONORA V. DE JESUS', '-', 'uploads\\images\\df5b5326-b2ed-40c0-987f-1997ac6cdac0.png', 'inactive'),
+(27, 'PROF. EMMANUEL A. LEYCO', '-', 'uploads\\images\\da5afd1f-455f-465c-8491-4a34d8f09381.jpg', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -854,7 +978,9 @@ CREATE TABLE `support_staff` (
 --
 
 INSERT INTO `support_staff` (`id`, `name`, `email`, `title`, `image`, `status`) VALUES
-(1, 'Test', 'test@gmail.com', 'Test', 'uploads\\images\\37f4cdd5-424a-4a32-b2fa-3aaec5a6bed1.png', 'active');
+(2, 'Atty. Relson P. Moral', 'rpmoral@plm.edu.ph', 'Chief Executive Staff', 'uploads\\images\\992ce8e7-c2ba-4ee7-80fe-8c1b6f6fc59f.png', 'active'),
+(3, ' Mr. Ryan Jay SM. Cruz', 'rjsmcruz@plm.edu.ph', ' Head, Executive Assistant', 'uploads\\images\\f9dfd04b-2ee9-4b05-9ac7-f34c0c1bd1dc.png', 'active'),
+(4, 'Ms. Lainna P. Ko', 'lpangyarihanko@plm.edu.ph', 'Executive Assistant', 'uploads\\images\\324dffb0-aaa3-4a66-ab02-d9815324924e.png', 'active');
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1189,7 @@ ALTER TABLE `bid_items`
 -- AUTO_INCREMENT for table `board`
 --
 ALTER TABLE `board`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `career`
@@ -1087,31 +1213,31 @@ ALTER TABLE `consolidated_updates`
 -- AUTO_INCREMENT for table `dean`
 --
 ALTER TABLE `dean`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `director_offices`
 --
 ALTER TABLE `director_offices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `management_committee`
 --
 ALTER TABLE `management_committee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `objectives`
@@ -1123,7 +1249,7 @@ ALTER TABLE `objectives`
 -- AUTO_INCREMENT for table `offices`
 --
 ALTER TABLE `offices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `partner`
@@ -1141,7 +1267,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `privacy_policy`
@@ -1165,7 +1291,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `support_staff`
 --
 ALTER TABLE `support_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

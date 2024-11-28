@@ -5,7 +5,7 @@ import Sidebar from './components/sidebar';
 import Login from './components/login';
 
 const Backend = () => {
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState('admin');
     const navigate = useNavigate();
 
     const handleLogout = () => {

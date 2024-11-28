@@ -57,7 +57,8 @@ const Directors = () => {
                   className="w-4/6 h-4/5 object-cover"
                 />
                 <p className="font-semibold mt-2">{member.name}</p>
-                <p className="text-gray-500">{member.title}</p>
+                <p className="text-gray-500 text-center">{member.title}</p>
+                <p className="text-blue-500">{member.email}</p>
               </div>
             ))}
           </div>
