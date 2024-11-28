@@ -89,10 +89,10 @@ const Downloads = () => {
     
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/other/downloads/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/other/downloads/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/other/downloads', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/other/downloads`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -106,7 +106,7 @@ const Downloads = () => {
     const fetchDownloads = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/other/downloads');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/downloads`);
             setDownloads({ items: res.data });
         } catch (err) {
             console.error(err);
@@ -118,7 +118,7 @@ const Downloads = () => {
 
     const fetchSections = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/other/sections');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/sections`);
             setSections(
                 res.data.map((section: { section: string }) => ({
                     label: section.section,
@@ -150,7 +150,7 @@ const Downloads = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this download?')) {
             try {
-                await axios.delete(`http://localhost:5000/other/downloads/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/other/downloads/${id}`);
                 alert('Download deleted successfully');
                 fetchDownloads();
             } catch (err) {
@@ -280,7 +280,7 @@ const Downloads = () => {
                                     <td className="p-2 border border-gray-200">{item.section}</td>
                                     <td className="p-2 border border-gray-200">
                                         <a
-                                            href={`http://localhost:5000/${item.file_path}`}
+                                            href={`${import.meta.env.VITE_API_ROOT}/${item.file_path}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-600"

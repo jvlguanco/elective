@@ -33,7 +33,7 @@ const Offices = ({ id }: { id: number }) => {
     useEffect(() => {
         const fetchOffice = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/office/information`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/office/information`, {
                     params: { id },
                 });
                 if (response.data.length > 0) {
@@ -62,7 +62,7 @@ const Offices = ({ id }: { id: number }) => {
             <div>
                 {officeItem.org_chart ? (
                     <img
-                        src={`http://localhost:5000/${officeItem.org_chart}`}
+                        src={`${import.meta.env.VITE_API_ROOT}/${officeItem.org_chart}`}
                         alt="Organizational Chart"
                         className="w-full h-[600px] object-contain border rounded"
                     />

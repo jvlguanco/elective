@@ -27,7 +27,7 @@ const HighlightedAnnouncements = () => {
 
     const fetchPostIds = () => {
         setIsLoadingPostIds(true);
-        axios.get('http://localhost:5000/facebook/highlighted-post')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/highlighted-post`)
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);

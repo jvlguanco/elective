@@ -28,7 +28,7 @@ const Partners = ({location}) => {
     useEffect(() => {
         const fetchPartner = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/other/partner`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/partner`);
                 setPartnerData(data);
                 setLoading(false);
             } catch (err) {

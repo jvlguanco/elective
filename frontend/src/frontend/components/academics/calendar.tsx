@@ -20,8 +20,8 @@ const Calendar = () => {
         setError(null);
 
         try {
-            const semestralResponse = await axios.get(`http://localhost:5000/academic/calendar/semestral`);
-            const trimestralResponse = await axios.get(`http://localhost:5000/academic/calendar/trimestral`);
+            const semestralResponse = await axios.get(`${import.meta.env.VITE_API_ROOT}/academic/calendar/semestral`);
+            const trimestralResponse = await axios.get(`${import.meta.env.VITE_API_ROOT}/academic/calendar/trimestral`);
 
             const formatDate = (start: string | null, end: string | null) => {
                 if (start && end) {

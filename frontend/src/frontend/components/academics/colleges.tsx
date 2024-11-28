@@ -31,7 +31,7 @@ const CollegeTemplate = ({ id }: { id: string }) => {
         setLoading(true);
     
         axios
-            .get('http://localhost:5000/about/college')
+            .get(`${import.meta.env.VITE_API_ROOT}/about/college`)
             .then((response) => {
                 const { active, inactive } = response.data;
                 const allColleges = [...active, ...inactive];
@@ -61,7 +61,7 @@ const CollegeTemplate = ({ id }: { id: string }) => {
     const fetchCourses = async (collegeId: string) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5000/academic/courses?college_id=${collegeId}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/academic/courses?college_id=${collegeId}`);
             setCourses(response.data);
         } catch (error) {
             console.error("Error fetching courses:", error);

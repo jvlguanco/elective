@@ -54,7 +54,7 @@ const Colleges = () => {
         formData.append('image', newDean.image);
         formData.append('office_id', selectedCollegeId);
 
-        axios.post('http://localhost:5000/about/deans', formData, {
+        axios.post(`${import.meta.env.VITE_API_ROOT}/about/deans`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
             .then(response => {
@@ -80,7 +80,7 @@ const Colleges = () => {
 
     const fetchColleges = () => {
         setLoading(true);
-        axios.get('http://localhost:5000/about/college')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/about/college`)
             .then(response => {
                 setActiveColleges(response.data.active);
                 setInactiveColleges(response.data.inactive);
@@ -187,7 +187,7 @@ const Colleges = () => {
             objectives: objectiveInputs.filter(input => input.trim() !== '')
         };
 
-        axios.post('http://localhost:5000/about/college', collegeData)
+        axios.post(`${import.meta.env.VITE_API_ROOT}/about/college`, collegeData)
             .then(response => {
                 alert(response.data.message);
                 fetchColleges();
@@ -214,7 +214,7 @@ const Colleges = () => {
             objectives: objectiveInputs.filter(input => input.trim() !== '')
         };
 
-        axios.put(`http://localhost:5000/about/college/${editCollege.college_id}`, updatedCollege)
+        axios.put(`${import.meta.env.VITE_API_ROOT}/about/college/${editCollege.college_id}`, updatedCollege)
             .then(response => {
                 alert(response.data.message);
                 fetchColleges();
@@ -229,7 +229,7 @@ const Colleges = () => {
     const handleDeleteCollege = (collegeId) => {
         const isConfirmed = window.confirm("Are you sure you want to delete this college?");
         if (isConfirmed) {
-            axios.delete(`http://localhost:5000/about/college/${collegeId}`)
+            axios.delete(`${import.meta.env.VITE_API_ROOT}/about/college/${collegeId}`)
                 .then(() => {
                     alert("College deleted successfully");
                     fetchColleges();
@@ -240,7 +240,7 @@ const Colleges = () => {
 
     const fetchDean = (collegeId) => {
         setLoading(true);
-        axios.get(`http://localhost:5000/about/deans?office_id=${collegeId}`)
+        axios.get(`${import.meta.env.VITE_API_ROOT}/about/deans?office_id=${collegeId}`)
             .then(response => {
                 setDeans(response.data);
             })
@@ -278,7 +278,7 @@ const Colleges = () => {
             formData.append('image', editDean.image);
         }
 
-        axios.put(`http://localhost:5000/about/deans/${editDean.id}?office_id=${collegeId}`, formData, {
+        axios.put(`${import.meta.env.VITE_API_ROOT}/about/deans/${editDean.id}?office_id=${collegeId}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {
@@ -294,7 +294,7 @@ const Colleges = () => {
 
     const handleDeleteDean = (memberId) => {
         if (window.confirm('Are you sure you want to delete this member?')) {
-            axios.delete(`http://localhost:5000/about/deans/${memberId}`)
+            axios.delete(`${import.meta.env.VITE_API_ROOT}/about/deans/${memberId}`)
             .then(response => {
                 alert(response.data.message);
                 fetchDean(selectedCollegeId);
@@ -638,7 +638,7 @@ const Colleges = () => {
                                 {displayMembers(deans[status], status === 'active' ? activePage : inactivePage).map(member => (
                                     <li key={member.id} className="border p-2 rounded flex justify-between items-center">
                                         <div className="flex items-center gap-4">
-                                            <img src={`http://localhost:5000/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
+                                            <img src={`${import.meta.env.VITE_API_ROOT}/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
                                             <div>
                                                 <p className="font-semibold">{member.name}</p>
                                                 <p className="text-sm text-gray-600">{member.title}</p>

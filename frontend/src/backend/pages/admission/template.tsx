@@ -18,7 +18,7 @@ const Admission = ({ id }) => {
     useEffect(() => {
         const fetchAdmission = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/admission/information/${id}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_ROOT}/admission/information/${id}`);
                 setAdmissionData(data);
                 setLoading(false);
             } catch (err) {
@@ -54,7 +54,7 @@ const Admission = ({ id }) => {
     const handleStatusChange = async () => {
         try {
             const updatedStatus = admissionData.status === "open" ? "close" : "open";
-            await axios.patch(`http://localhost:5000/admission/information/${id}/status`, { status: updatedStatus });
+            await axios.patch(`${import.meta.env.VITE_API_ROOT}/admission/information/${id}/status`, { status: updatedStatus });
             setAdmissionData((prev) => ({ ...prev, status: updatedStatus }));
             alert("Status Changed");
         } catch (err) {
@@ -65,7 +65,7 @@ const Admission = ({ id }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/admission/information/${id}`, admissionData);
+            await axios.put(`${import.meta.env.VITE_API_ROOT}/admission/information/${id}`, admissionData);
             alert("Admission updated successfully.");
         } catch (err) {
             console.error(err);

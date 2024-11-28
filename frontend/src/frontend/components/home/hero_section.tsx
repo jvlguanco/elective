@@ -6,7 +6,7 @@ const Hero = () => {
 
     useEffect(() => {
         axios
-        .get('http://localhost:5000/image/background')
+        .get(`${import.meta.env.VITE_API_ROOT}/image/background`)
         .then((response) => {
             setImage(response.data);
         })

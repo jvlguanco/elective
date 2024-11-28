@@ -71,10 +71,10 @@ const ConsolidatedUpdates = () => {
 
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/bid/consolidated-updates/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/bid/consolidated-updates/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/bid/consolidated-updates', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/bid/consolidated-updates`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -88,7 +88,7 @@ const ConsolidatedUpdates = () => {
     const fetchUpdates = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/bid/consolidated-updates');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/bid/consolidated-updates`);
             setUpdates({ items: res.data });
         } catch (err) {
             console.error(err);
@@ -101,7 +101,7 @@ const ConsolidatedUpdates = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this update?')) {
             try {
-                await axios.delete(`http://localhost:5000/bid/consolidated-updates/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/bid/consolidated-updates/${id}`);
                 alert('Update deleted successfully');
                 fetchUpdates();
             } catch (err) {
@@ -228,7 +228,7 @@ const ConsolidatedUpdates = () => {
                                     <td className="p-2 border border-gray-200">{item.title}</td>
                                     <td className="p-2 border border-gray-200">
                                         <a
-                                            href={`http://localhost:5000/${item.file}`}
+                                            href={`${import.meta.env.VITE_API_ROOT}/${item.file}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-600"

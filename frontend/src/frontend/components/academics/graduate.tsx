@@ -9,14 +9,14 @@ const Graduate = () => {
         try {
             setLoading(true);
 
-            const collegeResponse = await axios.get("http://localhost:5000/about/college");
+            const collegeResponse = await axios.get("${import.meta.env.VITE_API_ROOT}/about/college");
             const allColleges = collegeResponse.data.active;
 
             const filteredColleges = [];
 
             for (const college of allColleges) {
                 const courseResponse = await axios.get(
-                    `http://localhost:5000/academic/courses?college_id=${college.college_id}`
+                    `${import.meta.env.VITE_API_ROOT}/academic/courses?college_id=${college.college_id}`
                 );
 
                 const graduateCourses = courseResponse.data.filter(course => course.is_graduate === 1);

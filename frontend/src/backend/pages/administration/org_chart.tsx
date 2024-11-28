@@ -11,7 +11,7 @@ const OrganizationalChart = () => {
     useEffect(() => {
         const fetchChart = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/home/photos/${location}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/home/photos/${location}`);
                 if (response.data[0]?.file_path) {
                     setChartPath(response.data[0].file_path);
                 } else {
@@ -43,7 +43,7 @@ const OrganizationalChart = () => {
 
             try {
                 const res = await axios.post(
-                    `http://localhost:5000/home/collection?maxFiles=1`,
+                    `${import.meta.env.VITE_API_ROOT}/home/collection?maxFiles=1`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
@@ -75,7 +75,7 @@ const OrganizationalChart = () => {
             <div className="mb-8">
                 {chartPath ? (
                     <img
-                        src={`http://localhost:5000/${chartPath}`}
+                        src={`${import.meta.env.VITE_API_ROOT}/${chartPath}`}
                         alt="Organizational Chart"
                         className="w-full h-[625px] object-contain border rounded"
                     />

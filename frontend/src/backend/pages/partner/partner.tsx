@@ -17,7 +17,7 @@ const Partner = () => {
     useEffect(() => {
         const fetchPartner = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/other/partner`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/partner`);
                 setPartnerData(data);
                 setLoading(false);
             } catch (err) {
@@ -45,7 +45,7 @@ const Partner = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/other/partner`, partnerData);
+            await axios.put(`${import.meta.env.VITE_API_ROOT}/other/partner`, partnerData);
             setSuccess("Partner updated successfully.");
             setErrors({});
         } catch (err) {

@@ -27,7 +27,7 @@ const JobTable = () => {
 
     const fetchCareers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/career/all");
+            const response = await axios.get("${import.meta.env.VITE_API_ROOT}/career/all");
             setCareers(response.data);
             setLoading(false);
         } catch (error) {
@@ -38,7 +38,7 @@ const JobTable = () => {
 
     const deleteCareer = async (id: number) => {
         try {
-            await axios.delete(`http://localhost:5000/career/delete/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_ROOT}/career/delete/${id}`);
             fetchCareers();
         } catch (error) {
             setError('Failed to delete the career listing');
@@ -67,7 +67,7 @@ const JobTable = () => {
         }
 
         try {
-            await axios.put(`http://localhost:5000/career/update/${editingCareer.id}`, formData, {
+            await axios.put(`${import.meta.env.VITE_API_ROOT}/career/update/${editingCareer.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -121,7 +121,7 @@ const JobTable = () => {
                                 <td className="px-4 py-2 border">{career.department}</td>
                                 <td className="px-4 py-2 border">
                                     <a
-                                        href={`http://localhost:5000/${career.file}`}
+                                        href={`${import.meta.env.VITE_API_ROOT}/${career.file}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-blue-500 underline"

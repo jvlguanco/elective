@@ -20,11 +20,11 @@ const Contact = ({ location }: { location: string }) => {
 
             try {
                 if (location === 'PLM Colleges') {
-                    const response = await axios.get('http://localhost:5000/about/college');
+                    const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/college`);
                     const { active } = response.data;
                     setData(active);
                 } else if (location === 'PLM Offices') {
-                    const response = await axios.get('http://localhost:5000/office/information');
+                    const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/office/information`);
                     setData(response.data);
                 } else {
                     setData([]);

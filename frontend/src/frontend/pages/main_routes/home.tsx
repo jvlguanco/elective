@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/home/videos/HeroVideo');
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/home/videos/HeroVideo`);
                 setVideos(response.data.data);
             } catch (err) {
                 setError('Failed to load videos.');
@@ -35,7 +35,7 @@ const Home = () => {
             ) : error ? (
                 <p className="text-center text-red-500">{error}</p>
             ) : (
-                <video src={`http://localhost:5000/${videos[0].file_path}`} autoPlay muted loop controls={false} className="w-full h-[610px] object-cover"></video>
+                <video src={`${import.meta.env.VITE_API_ROOT}/${videos[0].file_path}`} autoPlay muted loop controls={false} className="w-full h-[610px] object-cover"></video>
             )}
 
             <div className="flex w-full mt-10">

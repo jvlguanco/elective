@@ -29,7 +29,7 @@ const TimePostTable = () => {
 
     const fetchPostIds = () => {
         setIsLoadingPostIds(true);
-        axios.get('http://localhost:5000/facebook/time-post')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/time-post`)
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);
@@ -87,7 +87,7 @@ const TimePostTable = () => {
         setIsDeletingPost(true);
 
         try {
-            await axios.delete(`http://localhost:5000/facebook/delete/${postId}`);
+            await axios.delete(`${import.meta.env.VITE_API_ROOT}/facebook/delete/${postId}`);
             alert("Post deleted successfully.");
             fetchPostIds(); // Re-fetch the posts to update the list
         } catch (error) {

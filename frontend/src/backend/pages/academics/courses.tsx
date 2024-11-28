@@ -31,7 +31,7 @@ const Courses: React.FC = () => {
 
     const fetchColleges = async () => {
         try {
-        const response = await axios.get("http://localhost:5000/about/college");
+        const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/college`);
         setColleges(response.data.active);
         } catch (error) {
         console.error("Error fetching colleges:", error);
@@ -42,7 +42,7 @@ const Courses: React.FC = () => {
 
     const fetchCourses = async (collegeId: string) => {
         try {
-            const response = await axios.get(`http://localhost:5000/academic/courses?college_id=${collegeId}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/academic/courses?college_id=${collegeId}`);
             const transformedData = response.data.map((course: any) => ({
                 ...course,
                 is_graduate: course.is_graduate === 1 ? "1" : "0",
@@ -89,9 +89,9 @@ const Courses: React.FC = () => {
             const payload = { ...formData, college_id: selectedCollegeId };
 
             if (editingCourse) {
-                await axios.put(`http://localhost:5000/academic/courses/${formData.course_id}`, payload);
+                await axios.put(`${import.meta.env.VITE_API_ROOT}/academic/courses/${formData.course_id}`, payload);
             } else {
-                await axios.post(`http://localhost:5000/academic/courses`, payload);
+                await axios.post(`${import.meta.env.VITE_API_ROOT}/academic/courses`, payload);
             }
 
             fetchCourses(selectedCollegeId);
@@ -104,7 +104,7 @@ const Courses: React.FC = () => {
     const handleDelete = async (courseId: string) => {
         if (window.confirm("Are you sure you want to delete this course?")) {
         try {
-            await axios.delete(`http://localhost:5000/academic/courses/${courseId}`);
+            await axios.delete(`${import.meta.env.VITE_API_ROOT}/academic/courses/${courseId}`);
             fetchCourses(selectedCollegeId);
         } catch (error) {
             console.error("Error deleting course:", error);

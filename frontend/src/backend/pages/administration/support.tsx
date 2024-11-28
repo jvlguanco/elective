@@ -38,7 +38,7 @@ const SupportStaff = () => {
     const fetchSupportStaff = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/about/support-staff');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/support-staff`);
             setSupportStaff({ active: res.data.active, inactive: res.data.inactive });
         } catch (err) {
             console.error(err);
@@ -82,10 +82,10 @@ const SupportStaff = () => {
 
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/about/support-staff/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/about/support-staff/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/about/support-staff', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/about/support-staff`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -104,7 +104,7 @@ const SupportStaff = () => {
                 email: member.email,
                 title: member.title,
                 image: null,
-                imagePreview: `http://localhost:5000/${member.image}`,
+                imagePreview: `${import.meta.env.VITE_API_ROOT}/${member.image}`,
                 status: member.status
             });
             setIsEditing(true);
@@ -123,7 +123,7 @@ const SupportStaff = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this staff member?')) {
             try {
-                await axios.delete(`http://localhost:5000/about/support-staff/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/about/support-staff/${id}`);
                 alert('Staff member deleted successfully');
                 fetchSupportStaff();
             } catch (err) {
@@ -221,7 +221,7 @@ const SupportStaff = () => {
                                     {displayMembers(supportStaff[status], status === 'active' ? activePage : inactivePage).map(member => (
                                         <li key={member.id} className="border p-2 rounded flex justify-between items-center">
                                             <div className="flex items-center gap-4">
-                                                <img src={`http://localhost:5000/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
+                                                <img src={`${import.meta.env.VITE_API_ROOT}/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
                                                 <div>
                                                     <p className="font-semibold">{member.name}</p>
                                                     <p className="text-sm text-gray-600">{member.title}</p>

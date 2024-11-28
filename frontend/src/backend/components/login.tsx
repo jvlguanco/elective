@@ -11,7 +11,7 @@ const Login = ({ setRole }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/user/login', { email, password });
+            const response = await axios.post(`${import.meta.env.VITE_API_ROOT}/user/login`, { email, password });
             const { token, role } = response.data;
             localStorage.setItem('token', token);
             setRole(role);

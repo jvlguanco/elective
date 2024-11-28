@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
     useEffect(() => {
         const fetchPolicy = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/other/policy`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/policy`);
                 setPolicyData(data);
                 setLoading(false);
             } catch (err) {
@@ -31,7 +31,7 @@ const PrivacyPolicy = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/other/policy`, policyData);
+            await axios.put(`${import.meta.env.VITE_API_ROOT}/other/policy`, policyData);
             setSuccess("Partner updated successfully.");
             setErrors({});
         } catch (err) {

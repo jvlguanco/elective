@@ -7,7 +7,7 @@ const BoardOfRegents = () => {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/about/board-of-regents');
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/board-of-regents`);
                 setActiveMembers(response.data.active);
             } catch (error) {
                 console.error('Error fetching members:', error);
@@ -33,7 +33,7 @@ const BoardOfRegents = () => {
             <div className="grid grid-cols-3 gap-6 mt-12">
                 {activeMembers.map((member) => (
                     <div key={member.id} className="flex flex-col items-center">
-                        <img src={`http://localhost:5000/${member.image}` || "/images/temp.png"} alt={`${member.name}`} className="w-4/6 h-4/5 object-cover" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${member.image}` || "/images/temp.png"} alt={`${member.name}`} className="w-4/6 h-4/5 object-cover" />
                         <p className="font-semibold mt-2">{member.name}</p>
                         <p className="text-gray-500">{member.title}</p>
                     </div>

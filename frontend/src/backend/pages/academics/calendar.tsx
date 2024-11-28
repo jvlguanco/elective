@@ -22,7 +22,7 @@ const Calendar: React.FC<EditableTableProps> = ({ type }) => {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`http://localhost:5000/academic/calendar/${type}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/academic/calendar/${type}`);
             const formattedRows = response.data.map((row: CalendarRow) => ({
                 ...row,
                 start_date: row.start_date ? new Date(row.start_date).toLocaleDateString('en-CA') : null,
@@ -49,7 +49,7 @@ const Calendar: React.FC<EditableTableProps> = ({ type }) => {
 
     const saveAllRows = async () => {
         try {
-            await axios.put(`http://localhost:5000/academic/calendar`, rows);
+            await axios.put(`${import.meta.env.VITE_API_ROOT}/academic/calendar`, rows);
             alert("All rows updated successfully!");
         } catch (err) {
             console.error("Failed to save rows:", err);

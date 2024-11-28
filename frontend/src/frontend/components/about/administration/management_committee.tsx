@@ -8,7 +8,7 @@ const ManagementCommittee = () => {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/about/management-committee');
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/management-committee`);
                 setActiveMembers(response.data.active);
             } catch (error) {
                 console.error('Error fetching members:', error);
@@ -34,7 +34,7 @@ const ManagementCommittee = () => {
                     {activeMembers.map((member) => (
                         <div key={member.id} className="flex flex-col items-center">
                             <img
-                                src={`http://localhost:5000/${member.image}` || "/images/temp.png"}
+                                src={`${import.meta.env.VITE_API_ROOT}/${member.image}` || "/images/temp.png"}
                                 alt={`${member.name}`}
                                 className="w-4/6 h-4/5 object-cover"
                             />

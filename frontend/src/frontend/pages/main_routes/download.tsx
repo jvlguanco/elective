@@ -16,7 +16,7 @@ const Download = () => {
     const fetchDownloads = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/other/downloads');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/downloads`);
             setDownloads(res.data);
         } catch (err) {
             console.error(err);
@@ -28,7 +28,7 @@ const Download = () => {
 
     const fetchSections = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/other/sections');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/other/sections`);
             setSections(
                 res.data.map((section: { section: string }) => ({
                     label: section.section,

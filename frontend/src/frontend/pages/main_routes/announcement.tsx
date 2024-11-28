@@ -19,7 +19,7 @@ const Announcement = () => {
 
     const checkSpecialPost = () => {
         setIsLoading(true);
-        axios.get('http://localhost:5000/announcement/check-time-post')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/announcement/check-time-post`)
             .then((response) => {
                 setHasTimePost(response.data.success);
                 setIsLoading(false);

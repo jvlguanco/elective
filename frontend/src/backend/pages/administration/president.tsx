@@ -35,7 +35,7 @@ function Presidents() {
 
     const fetchPresidents = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/about/presidents');
+            const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/presidents`);
             setActivePresident(response.data.activePresident);
             setFormerPresidents(response.data.formerPresidents);
         } catch (error) {
@@ -100,9 +100,9 @@ function Presidents() {
 
         try {
             if (isEditing && selectedPresidentId) {
-                await axios.put(`http://localhost:5000/about/presidents/${selectedPresidentId}`, data);
+                await axios.put(`${import.meta.env.VITE_API_ROOT}/about/presidents/${selectedPresidentId}`, data);
             } else {
-                await axios.post('http://localhost:5000/about/presidents', data);
+                await axios.post(`${import.meta.env.VITE_API_ROOT}/about/presidents`, data);
             }
             closeModal();
             fetchPresidents();
@@ -115,7 +115,7 @@ function Presidents() {
         if (!window.confirm("Are you sure you want to delete this president?")) return;
 
         try {
-            await axios.delete(`http://localhost:5000/about/presidents/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_ROOT}/about/presidents/${id}`);
             fetchPresidents();
         } catch (error) {
             console.error("Error deleting president:", error);
@@ -138,7 +138,7 @@ function Presidents() {
                 <div className="bg-white shadow rounded-lg p-6 mb-8 flex items-center gap-6">
                     <img
                         className="w-40 h-48 object-cover rounded-lg"
-                        src={`http://localhost:5000/${activePresident.image}`}
+                        src={`${import.meta.env.VITE_API_ROOT}/${activePresident.image}`}
                         alt={activePresident.name}
                     />
                     <div>
@@ -161,7 +161,7 @@ function Presidents() {
                     <div key={president.id} className="bg-white shadow rounded-lg p-6 flex gap-4 items-start">
                         <img
                             className="w-20 h-20 object-cover rounded-full"
-                            src={`http://localhost:5000/${president.image}`}
+                            src={`${import.meta.env.VITE_API_ROOT}/${president.image}`}
                             alt={president.name}
                         />
                         <div>

@@ -7,7 +7,7 @@ const Compilation = () => {
     useEffect(() => {
         const fetchPhotos = async () => {
           try {
-            const response = await fetch(`http://localhost:5000/home/photos/${location}`);
+            const response = await fetch(`${import.meta.env.VITE_API_ROOT}/home/photos/${location}`);
             const data = await response.json();
             setFilePaths(data.map((item: { file_path: string }) => item.file_path));
           } catch (error) {
@@ -26,19 +26,19 @@ const Compilation = () => {
             <div className="flex flex-col gap-1">
                 <div className="flex gap-1 h-56">
                     <div className="w-2/3">
-                        <img src={`http://localhost:5000/${filePaths[0]}`} alt="description" className="object-cover h-full w-full" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${filePaths[0]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                     <div className="w-1/3">
-                        <img src={`http://localhost:5000/${filePaths[1]}`} alt="description" className="object-cover h-full w-full" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${filePaths[1]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                 </div>
 
                 <div className="flex gap-1 h-56">
                     <div className="w-1/2">
-                        <img src={`http://localhost:5000/${filePaths[2]}`} alt="description" className="object-cover h-full w-full" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${filePaths[2]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                     <div className="w-1/2">
-                        <img src={`http://localhost:5000/${filePaths[3]}`} alt="description" className="object-cover h-full w-full" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${filePaths[3]}`} alt="description" className="object-cover h-full w-full" />
                     </div>
                 </div>
             </div>

@@ -9,14 +9,14 @@ const Directors = () => {
   useEffect(() => {
     const fetchOffices = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/about/dc-offices");
+        const response = await axios.get("${import.meta.env.VITE_API_ROOT}/about/dc-offices");
         const activeOffices = response.data.active;
 
         setOffices(activeOffices);
 
         const membersData = {};
         for (const office of activeOffices) {
-          const res = await axios.get("http://localhost:5000/about/dc-members", {
+          const res = await axios.get("${import.meta.env.VITE_API_ROOT}/about/dc-members", {
             params: { office_id: office.id },
           });
           membersData[office.id] = res.data.active;
@@ -52,7 +52,7 @@ const Directors = () => {
             {members[office.id]?.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
                 <img
-                  src={`http://localhost:5000/${member.image}` || "/images/temp.png"}
+                  src={`${import.meta.env.VITE_API_ROOT}/${member.image}` || "/images/temp.png"}
                   alt={`${member.name}`}
                   className="w-4/6 h-4/5 object-cover"
                 />

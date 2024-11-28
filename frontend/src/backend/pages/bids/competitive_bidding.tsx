@@ -59,13 +59,13 @@ const CompetitiveBidding = () => {
         try {
             if (isEditing && formData.id) {
                 const res = await axios.put(
-                    `http://localhost:5000/bid/competitive-bidding/${formData.id}`,
+                    `${import.meta.env.VITE_API_ROOT}/bid/competitive-bidding/${formData.id}`,
                     formData
                 );
                 alert(res.data.message);
             } else {
                 const res = await axios.post(
-                    'http://localhost:5000/bid/competitive-bidding',
+                    `${import.meta.env.VITE_API_ROOT}/bid/competitive-bidding`,
                     formData
                 );
                 alert(res.data.message);
@@ -81,7 +81,7 @@ const CompetitiveBidding = () => {
     const fetchBidItems = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/bid/competitive-bidding');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/bid/competitive-bidding`);
             const items = res.data.map((item: any) => ({
                 ...item,
                 budget: parseFloat(item.budget), // Convert budget to a number
@@ -98,7 +98,7 @@ const CompetitiveBidding = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             try {
-                await axios.delete(`http://localhost:5000/bid/competitive-bidding/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/bid/competitive-bidding/${id}`);
                 alert('Item deleted successfully');
                 fetchBidItems();
             } catch (err) {

@@ -21,7 +21,7 @@ const Career = () => {
 
     const fetchCareers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/career/all");
+            const response = await axios.get("${import.meta.env.VITE_API_ROOT}/career/all");
             setCareers(response.data);
             setLoading(false);
         } catch (error) {
@@ -73,7 +73,7 @@ const Career = () => {
                     
                     <span className="cursor-pointer mt-4">
                         <a
-                            href={`http://localhost:5000/${career.file}`}
+                            href={`${import.meta.env.VITE_API_ROOT}/${career.file}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-red-700 underline"

@@ -28,8 +28,8 @@ const AnnouncementSection = () => {
         try {
             setIsLoading(true);
             const [allPostsResponse, announcementPostsResponse] = await Promise.all([
-                axios.get('http://localhost:5000/facebook/all-post'),
-                axios.get('http://localhost:5000/facebook/announcement-post')
+                axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/all-post`),
+                axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/announcement-post`)
             ]);
 
             if (allPostsResponse.data.data[0] && announcementPostsResponse.data.data) {

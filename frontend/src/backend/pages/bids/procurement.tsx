@@ -71,10 +71,10 @@ const Procurement = () => {
 
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/bid/procurement/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/bid/procurement/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/bid/procurement', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/bid/procurement`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -88,7 +88,7 @@ const Procurement = () => {
     const fetchProcurementPlans = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/bid/procurement');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/bid/procurement`);
             setProcurementPlans({ items: res.data });
         } catch (err) {
             console.error(err);
@@ -101,7 +101,7 @@ const Procurement = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this plan?')) {
             try {
-                await axios.delete(`http://localhost:5000/bid/procurement/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/bid/procurement/${id}`);
                 alert('Plan deleted successfully');
                 fetchProcurementPlans();
             } catch (err) {
@@ -218,7 +218,7 @@ const Procurement = () => {
                                     <td className="p-2 border border-gray-200">{item.title}</td>
                                     <td className="p-2 border border-gray-200">
                                         <a
-                                            href={`http://localhost:5000/${item.file}`}
+                                            href={`${import.meta.env.VITE_API_ROOT}/${item.file}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-600"

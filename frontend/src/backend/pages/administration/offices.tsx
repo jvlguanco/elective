@@ -105,10 +105,10 @@ const Offices = () => {
 
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/office/information/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/office/information/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/office/information', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/office/information`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -122,7 +122,7 @@ const Offices = () => {
     const fetchOfficeItems = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/office/information');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/office/information`);
             const sortedItems = res.data.sort((a: OfficeItem, b: OfficeItem) =>
                 a.status === 'inactive' && b.status === 'active' ? 1 : -1
             );
@@ -138,7 +138,7 @@ const Offices = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this office?')) {
             try {
-                await axios.delete(`http://localhost:5000/office/information/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/office/information/${id}`);
                 alert('Office deleted successfully');
                 fetchOfficeItems();
             } catch (err) {
@@ -322,7 +322,7 @@ const Offices = () => {
                                     </td>
                                     <td className="p-2 border border-gray-200">
                                         <a
-                                            href={`http://localhost:5000/${item.org_chart}`}
+                                            href={`${import.meta.env.VITE_API_ROOT}/${item.org_chart}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-600"

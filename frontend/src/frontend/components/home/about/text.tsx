@@ -18,7 +18,7 @@ const AboutText = () => {
     const [data, setData] = useState<string>('');
 
     useEffect(() => {
-        axios.get('http://localhost:5000/home/about')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/home/about`)
           .then(response => {
             setData(response.data[0]['message']);
           })

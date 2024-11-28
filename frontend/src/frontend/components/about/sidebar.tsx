@@ -51,7 +51,7 @@ const AboutSidebar = () => {
         if (routeKey === 'offices') {
             const fetchOffices = async () => {
                 try {
-                    const response = await fetch('http://localhost:5000/office/information');
+                    const response = await fetch(`${import.meta.env.VITE_API_ROOT}/office/information`);
                     const officeData: SidebarItem[] = await response.json();
 
                     const activeOffices = officeData

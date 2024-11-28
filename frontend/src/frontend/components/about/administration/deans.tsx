@@ -9,14 +9,14 @@ const Deans = () => {
   useEffect(() => {
     const fetchCollegesAndDeans = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/about/college");
+        const response = await axios.get("${import.meta.env.VITE_API_ROOT}/about/college");
         const activeColleges = response.data.active;
 
         setColleges(activeColleges);
 
         const deansData = {};
         for (const college of activeColleges) {
-          const res = await axios.get("http://localhost:5000/about/deans", {
+          const res = await axios.get("${import.meta.env.VITE_API_ROOT}/about/deans", {
             params: { office_id: college.college_id },
           });
           deansData[college.college_id] = res.data.active;
@@ -52,7 +52,7 @@ const Deans = () => {
             {deans[college.college_id]?.map((dean) => (
               <div key={dean.id} className="flex flex-col items-center">
                 <img
-                  src={`http://localhost:5000/${dean.image}` || "/images/temp.png"}
+                  src={`${import.meta.env.VITE_API_ROOT}/${dean.image}` || "/images/temp.png"}
                   alt={`${dean.name}`}
                   className="w-4/6 h-4/5 object-cover"
                 />

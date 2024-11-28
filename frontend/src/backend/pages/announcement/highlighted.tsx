@@ -25,7 +25,7 @@ const HighlightedPostTable = () => {
 
     const fetchPostIds = () => {
         setIsLoadingPostIds(true);
-        axios.get('http://localhost:5000/facebook/highlighted-post')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/highlighted-post`)
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);
@@ -81,7 +81,7 @@ const HighlightedPostTable = () => {
         setIsDeletingPost(true);
 
         try {
-            await axios.delete(`http://localhost:5000/facebook/delete/${postId}`);
+            await axios.delete(`${import.meta.env.VITE_API_ROOT}/facebook/delete/${postId}`);
             alert("Post deleted successfully.");
             fetchPostIds();
         } catch (error) {

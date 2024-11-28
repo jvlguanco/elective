@@ -27,7 +27,7 @@ const LatestAnnouncements = () => {
 
     const fetchPostIds = () => {
         setIsLoadingPostIds(true);
-        axios.get('http://localhost:5000/facebook/normal-post')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/normal-post`)
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);

@@ -23,7 +23,7 @@ const President = () => {
     useEffect(() => {
         const fetchPresident = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/about/presidents');
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/presidents`);
                 setActivePresident(response.data.activePresident);
                 setInactivePresident(response.data.formerPresidents);
             } catch (error) {
@@ -59,7 +59,7 @@ const President = () => {
             </h1>
             
             <img
-                src={`http://localhost:5000/${activePresident?.image || "/images/temp.png"}`}
+                src={`${import.meta.env.VITE_API_ROOT}/${activePresident?.image || "/images/temp.png"}`}
                 alt={activePresident?.name || "Default President"}
                 className="w-80 h-96 object-cover mt-6"
             />
@@ -75,7 +75,7 @@ const President = () => {
             <div className="grid grid-cols-3 gap-6 mt-12">
                 {inactivePresident.map((president) => (
                     <div key={president.id} className="flex flex-col items-center">
-                        <img src={`http://localhost:5000/${president.image}` || "/images/temp.png"} alt={`${president.name}`} className="w-4/6 h-4/5 object-cover" />
+                        <img src={`${import.meta.env.VITE_API_ROOT}/${president.image}` || "/images/temp.png"} alt={`${president.name}`} className="w-4/6 h-4/5 object-cover" />
                         <p className="font-semibold mt-2">{president.name}</p>
                     </div>
                 ))}

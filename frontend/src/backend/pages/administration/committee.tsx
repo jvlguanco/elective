@@ -38,7 +38,7 @@ const ManagementCommittee = () => {
     const fetchCommitteeMembers = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/about/management-committee');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/management-committee`);
             setCommitteeMembers({ active: res.data.active, inactive: res.data.inactive });
         } catch (err) {
             console.error(err);
@@ -82,10 +82,10 @@ const ManagementCommittee = () => {
 
         try {
             if (isEditing && formData.id) {
-                const res = await axios.put(`http://localhost:5000/about/management-committee/${formData.id}`, data);
+                const res = await axios.put(`${import.meta.env.VITE_API_ROOT}/about/management-committee/${formData.id}`, data);
                 alert(res.data.message);
             } else {
-                const res = await axios.post('http://localhost:5000/about/management-committee', data);
+                const res = await axios.post(`${import.meta.env.VITE_API_ROOT}/about/management-committee`, data);
                 alert(res.data.message);
             }
             closeModal();
@@ -104,7 +104,7 @@ const ManagementCommittee = () => {
                 email: member.email,
                 title: member.title,
                 image: null,
-                imagePreview: `http://localhost:5000/${member.image}`,
+                imagePreview: `${import.meta.env.VITE_API_ROOT}/${member.image}`,
                 status: member.status
             });
             setIsEditing(true);
@@ -123,7 +123,7 @@ const ManagementCommittee = () => {
     const handleDelete = async (id: number) => {
         if (window.confirm('Are you sure you want to delete this member?')) {
             try {
-                await axios.delete(`http://localhost:5000/about/management-committee/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_ROOT}/about/management-committee/${id}`);
                 alert('Member deleted successfully');
                 fetchCommitteeMembers();
             } catch (err) {
@@ -221,7 +221,7 @@ const ManagementCommittee = () => {
                                     {displayMembers(committeeMembers[status], status === 'active' ? activePage : inactivePage).map(member => (
                                         <li key={member.id} className="border p-2 rounded flex justify-between items-center">
                                             <div className="flex items-center gap-4">
-                                                <img src={`http://localhost:5000/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
+                                                <img src={`${import.meta.env.VITE_API_ROOT}/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
                                                 <div>
                                                     <p className="font-semibold">{member.name}</p>
                                                     <p className="text-sm text-gray-600">{member.title}</p>

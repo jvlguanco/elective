@@ -32,7 +32,7 @@ const AcademicSidebar: React.FC<VariableProps> = ({ route }) => {
             if (routeKey === 'colleges') {
                 setLoading(true);
                 try {
-                    const response = await fetch('http://localhost:5000/about/college');
+                    const response = await fetch(`${import.meta.env.VITE_API_ROOT}/about/college`);
                     const { active } = await response.json();
 
                     const formattedData = active.map((college: any) => ({

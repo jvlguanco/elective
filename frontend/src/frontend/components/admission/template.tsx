@@ -45,7 +45,7 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
     useEffect(() => {
         const fetchAdmissionData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/admission/information/${id}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/admission/information/${id}`);
                 setAdmissionData(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || "An error occurred");

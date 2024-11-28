@@ -10,7 +10,7 @@ const AboutEdit = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/home/about')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/home/about`)
             .then(response => {
                 setContent(response.data[0].message);
             })
@@ -22,7 +22,7 @@ const AboutEdit = () => {
     useEffect(() => {
         const fetchPhotos = async () => {
           try {
-            const response = await fetch(`http://localhost:5000/home/photos/${location}`);
+            const response = await fetch(`${import.meta.env.VITE_API_ROOT}/home/photos/${location}`);
             const data = await response.json();
             setFilePaths(data.map((item: { file_path: string }) => item.file_path));
           } catch (error) {
@@ -48,7 +48,7 @@ const AboutEdit = () => {
     
           try {
             const res = await axios.post(
-              `http://localhost:5000/home/collection?maxFiles=${photos.length}`, 
+              `${import.meta.env.VITE_API_ROOT}/home/collection?maxFiles=${photos.length}`, 
               formData, 
               {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -70,7 +70,7 @@ const AboutEdit = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        axios.put('http://localhost:5000/home/about', { content })
+        axios.put(`${import.meta.env.VITE_API_ROOT}/home/about`, { content })
             .then(response => {
                 setMessage('Paragraph updated successfully.');
             })
@@ -119,7 +119,7 @@ const AboutEdit = () => {
                     filePaths.map((photo, index) => (
                         <img
                           key={index}
-                          src={`http://localhost:5000/${photo}`}
+                          src={`${import.meta.env.VITE_API_ROOT}/${photo}`}
                           alt={`Uploaded Photo ${index + 1}`}
                           className="w-1/4 h-full object-cover"
                         />

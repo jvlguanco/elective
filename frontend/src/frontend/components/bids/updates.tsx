@@ -20,7 +20,7 @@ const Updates = () => {
     const fetchUpdates = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/bid/consolidated-updates');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/bid/consolidated-updates`);
             setUpdates({ items: res.data });
         } catch (err) {
             console.error(err);
@@ -66,7 +66,7 @@ const Updates = () => {
                                     <td className="p-2 border border-gray-200">{item.title}</td>
                                     <td className="p-2 border border-gray-200">
                                         <a
-                                            href={`http://localhost:5000/${item.file}`}
+                                            href={`${import.meta.env.VITE_API_ROOT}/${item.file}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-blue-500 hover:text-blue-600"

@@ -27,7 +27,7 @@ const DirectorsAndChiefs = () => {
     }, []);
 
     const fetchOffices = () => {
-        axios.get('http://localhost:5000/about/dc-offices')
+        axios.get(`${import.meta.env.VITE_API_ROOT}/about/dc-offices`)
             .then(response => {
                 setActiveOffices(response.data.active);
                 setInactiveOffices(response.data.inactive);
@@ -38,7 +38,7 @@ const DirectorsAndChiefs = () => {
 
     const fetchMembers = (officeId) => {
         setLoading(true);
-        axios.get(`http://localhost:5000/about/dc-members?office_id=${officeId}`)
+        axios.get(`${import.meta.env.VITE_API_ROOT}/about/dc-members?office_id=${officeId}`)
             .then(response => {
                 setBoardMembers(response.data);
             })
@@ -73,7 +73,7 @@ const DirectorsAndChiefs = () => {
     };
 
     const handleAddNewOffice = () => {
-        axios.post('http://localhost:5000/about/dc-offices', {
+        axios.post(`${import.meta.env.VITE_API_ROOT}/about/dc-offices`, {
             office_name: newOfficeName,
             status: newOfficeStatus,
         })
@@ -97,7 +97,7 @@ const DirectorsAndChiefs = () => {
     const handleEditClick = (office) => setEditOffice(office);
     const handleSaveEdit = () => {
         if (editOffice) {
-            axios.put(`http://localhost:5000/about/dc-offices/${editOffice.id}`, {
+            axios.put(`${import.meta.env.VITE_API_ROOT}/about/dc-offices/${editOffice.id}`, {
                 office_name: editOffice.office_name,
                 status: editOffice.status,
             })
@@ -115,7 +115,7 @@ const DirectorsAndChiefs = () => {
 
     const handleDeleteOffice = (id) => {
         if (window.confirm('Are you sure you want to delete this office?')) {
-            axios.delete(`http://localhost:5000/about/dc-offices/${id}`)
+            axios.delete(`${import.meta.env.VITE_API_ROOT}/about/dc-offices/${id}`)
                 .then(response => {
                     alert(response.data.message);
                     fetchOffices();
@@ -142,7 +142,7 @@ const DirectorsAndChiefs = () => {
         formData.append('image', newMember.image);
         formData.append('office_id', selectedOfficeId);
 
-        axios.post('http://localhost:5000/about/dc-members', formData, {
+        axios.post(`${import.meta.env.VITE_API_ROOT}/about/dc-members`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
             .then(response => {
@@ -190,7 +190,7 @@ const DirectorsAndChiefs = () => {
             formData.append('image', editMember.image);
         }
 
-        axios.put(`http://localhost:5000/about/dc-members/${editMember.id}`, formData, {
+        axios.put(`${import.meta.env.VITE_API_ROOT}/about/dc-members/${editMember.id}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {
@@ -206,7 +206,7 @@ const DirectorsAndChiefs = () => {
 
     const handleDeleteMember = (memberId) => {
         if (window.confirm('Are you sure you want to delete this member?')) {
-            axios.delete(`http://localhost:5000/about/dc-members/${memberId}`)
+            axios.delete(`${import.meta.env.VITE_API_ROOT}/about/dc-members/${memberId}`)
             .then(response => {
                 alert(response.data.message);
                 fetchMembers(selectedOfficeId);
@@ -478,7 +478,7 @@ const DirectorsAndChiefs = () => {
                                 {displayMembers(boardMembers[status], status === 'active' ? activePage : inactivePage).map(member => (
                                     <li key={member.id} className="border p-2 rounded flex justify-between items-center">
                                         <div className="flex items-center gap-4">
-                                            <img src={`http://localhost:5000/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
+                                            <img src={`${import.meta.env.VITE_API_ROOT}/${member.image}`} alt={member.name} className="w-12 h-12 rounded-full object-cover" />
                                             <div>
                                                 <p className="font-semibold">{member.name}</p>
                                                 <p className="text-sm text-gray-600">{member.title}</p>

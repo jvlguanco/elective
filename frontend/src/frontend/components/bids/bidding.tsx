@@ -20,7 +20,7 @@ const Bidding = () => {
     const fetchBidItems = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/bid/competitive-bidding');
+            const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/bid/competitive-bidding`);
             const items = res.data.map((item: any) => ({
                 ...item,
                 budget: parseFloat(item.budget), // Convert budget to a number
