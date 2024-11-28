@@ -12,7 +12,6 @@ const OrganizationalChart = () => {
         const fetchChart = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/home/photos/${location}`);
-                console.log(response)
                 if (response.data[0]?.file_path) {
                     setChartPath(response.data[0].file_path);
                 } else {
@@ -68,8 +67,6 @@ const OrganizationalChart = () => {
             setMessage('');
         }
     }, [message]);
-
-    console.log(chartFile)
 
     return (
         <div className="w-full flex flex-col">

@@ -214,7 +214,6 @@ const Colleges = () => {
             objectives: objectiveInputs.filter(input => input.trim() !== '')
         };
 
-        console.log('Updating college:', updatedCollege);
         axios.put(`http://localhost:5000/about/college/${editCollege.college_id}`, updatedCollege)
             .then(response => {
                 alert(response.data.message);

@@ -27,7 +27,6 @@ const AnnouncementSection = () => {
     const fetchPostIds = async () => {
         try {
             setIsLoading(true);
-            console.log('Fetching post IDs...');
             const [allPostsResponse, announcementPostsResponse] = await Promise.all([
                 axios.get('http://localhost:5000/facebook/all-post'),
                 axios.get('http://localhost:5000/facebook/announcement-post')
@@ -40,7 +39,6 @@ const AnnouncementSection = () => {
             } else {
                 setErrorMessage('No posts available.');
             }
-            console.log('Post IDs retrieved');
         } catch (error) {
             console.error('Error fetching post IDs:', error);
             setErrorMessage('Failed to fetch posts. Please try again later.');
@@ -53,7 +51,6 @@ const AnnouncementSection = () => {
         if (!postIds || !highlightIds || !accessToken) return;
 
         try {
-            console.log('Fetching post details...');
             const mainPostResponse = await axios.get(
                 `https://graph.facebook.com/v21.0/${postIds.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
             );
@@ -68,7 +65,6 @@ const AnnouncementSection = () => {
 
             const highlightResponses = await Promise.all(highlightRequests);
             setHighlightDetails(highlightResponses.map((response) => response.data));
-            console.log('Post details retrieved');
         } catch (error) {
             console.error('Error fetching posts:', error);
             setErrorMessage('Failed to fetch posts from Facebook API. Please try again later.');

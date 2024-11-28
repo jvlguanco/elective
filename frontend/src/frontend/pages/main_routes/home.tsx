@@ -25,8 +25,6 @@ const Home = () => {
         fetchVideos();
     }, []);
 
-    console.log(videos)
-
     return (
         <div>
             {loading ? (

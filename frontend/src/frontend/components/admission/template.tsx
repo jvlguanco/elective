@@ -55,8 +55,6 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
         fetchAdmissionData();
     }, [id]);
 
-    console.log(admissionData)
-
     if (error) {
         return (
             <div className="w-full pt-8 px-12">

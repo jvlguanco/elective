@@ -29,8 +29,6 @@ const Graduate = () => {
                 }
             }
 
-            console.log(filteredColleges)
-
             setColleges(filteredColleges);
         } catch (error) {
             console.error("Error fetching colleges or courses:", error);

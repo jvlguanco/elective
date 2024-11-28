@@ -70,8 +70,6 @@ const TimePostTable = () => {
         }
     }, [postIds, accessToken]);
 
-    console.log(postDetails)
-
     const handlePageClick = (selectedItem: { selected: number }) => {
         setCurrentPage(selectedItem.selected);
     };
