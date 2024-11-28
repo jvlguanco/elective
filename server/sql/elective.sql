@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2024 at 11:10 AM
+-- Generation Time: Nov 28, 2024 at 12:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -407,10 +407,16 @@ INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) V
 ('BS Bio 2', 'Bachelor of Science in Biology major in Ecology', 'CS', 0),
 ('BS Bio 3', 'Bachelor of Science in Biology major in Medical Biology', 'CS', 1),
 ('BS Chem', 'Bachelor of Science in Chemistry', 'CS', 0),
+('BS Entrepreneur', 'Bachelor of Science in Entrepreneurship', 'CBA', 0),
 ('BS Math', 'Bachelor of Science in Mathematics', 'CS', 0),
 ('BS Psych', 'Bachelor of Science in Psychology', 'CS', 0),
 ('BSA', 'BS in Accountancy', 'CA', 0),
 ('BSArchi', 'BS in Architecture ', '001', 0),
+('BSBA - HRM', 'Bachelor of Science in Business Administration major in Human Resource Management', 'CBA', 0),
+('BSBA - OM', 'Bachelor of Science in Business Administration major in Operations Management', 'CBA', 0),
+('BSBA-BE', 'Bachelor of Science in Business Administration Major in Business Economics', 'CBA', 0),
+('BSBA-FM', 'Bachelor of Science in Business Administration major in Financial Management', 'CBA', 0),
+('BSBA-MM', 'Bachelor of Science in Business Administration major in Marketing Management', 'CBA', 0),
 ('BSBio', 'Bachelor of Science in Biology major in Cell and Molecular Biology', 'CS', 0),
 ('BSC', 'BS Communications', 'CHASS', 0),
 ('BSC2', 'BS Communications with Specialization in Public Relations', 'CHASS', 0),
@@ -434,22 +440,24 @@ INSERT INTO `course` (`course_id`, `course_name`, `college_id`, `is_graduate`) V
 ('BSPT', 'BS in Physical Therapy ', 'cpt', 0),
 ('BSSW', 'BS Social Work', 'CHASS', 0),
 ('BSTM', 'Bachelor of Science in Tourism Management', 'CTHM', 0),
-('DM', 'Doctor of Medicine', 'cm', 0),
-('EDD-EML', 'Doctor of Education major in Educational Management and Leadership ', 'CEduc', 0),
-('JD', 'Juris Doctor', 'cl', 0),
-('MACM', 'MA Communication Management', 'CHASS', 0),
-('MAEd-BS', 'Master of Arts in Education major in Biological Science', 'CEduc', 0),
-('MAEd-Chem', 'Master of Arts in Education major in Chemistry', 'CEduc', 0),
-('MAEd-EML', 'Master of Arts in Education major in Educational Management and Leadership', 'CEduc', 0),
-('MAEd-SS', 'Master of Arts in Education major in Social Sciences', 'CEduc', 0),
-('MASPED', 'Master Arts in Special Education with Specialization in Developmental Delays', 'CEduc', 0),
-('MEM-CM', 'Master of Engineering Management with Specialization in Construction Management', 'CE', 0),
-('MEng-CoE', 'Master of Engineering with Specialization in Computer Engineering', 'CE', 0),
-('MEng-SE', ' Master of Engineering with Specialization in Structural Engineering ', 'CE', 0),
-('MSManEng', 'Master of Science in Management Engineering', 'CE', 0),
-('MSMEd', 'Master of Science in Mathematics Education', 'CEduc', 0),
-('MSW', 'Master of Social Work', 'CHASS', 0),
-('Test', 'TEst', '001', 1);
+('DBA', 'Doctor of Business Administration', 'CBA', 1),
+('DM', 'Doctor of Medicine', 'cm', 1),
+('EDD-EML', 'Doctor of Education major in Educational Management and Leadership ', 'CEduc', 1),
+('JD', 'Juris Doctor', 'cl', 1),
+('LLM', 'Master of Law', 'cl', 1),
+('MACM', 'MA Communication Management', 'CHASS', 1),
+('MAEd-BS', 'Master of Arts in Education major in Biological Science', 'CEduc', 1),
+('MAEd-Chem', 'Master of Arts in Education major in Chemistry', 'CEduc', 1),
+('MAEd-EML', 'Master of Arts in Education major in Educational Management and Leadership', 'CEduc', 1),
+('MAEd-SS', 'Master of Arts in Education major in Social Sciences', 'CEduc', 1),
+('MASPED', 'Master Arts in Special Education with Specialization in Developmental Delays', 'CEduc', 1),
+('MBA', 'Master in Business Administration ', 'CBA', 1),
+('MEM-CM', 'Master of Engineering Management with Specialization in Construction Management', 'CE', 1),
+('MEng-CoE', 'Master of Engineering with Specialization in Computer Engineering', 'CE', 1),
+('MEng-SE', ' Master of Engineering with Specialization in Structural Engineering ', 'CE', 1),
+('MSManEng', 'Master of Science in Management Engineering', 'CE', 1),
+('MSMEd', 'Master of Science in Mathematics Education', 'CEduc', 1),
+('MSW', 'Master of Social Work', 'CHASS', 1);
 
 -- --------------------------------------------------------
 
@@ -589,8 +597,6 @@ CREATE TABLE `objectives` (
 
 INSERT INTO `objectives` (`id`, `college_id`, `objective`) VALUES
 (51, '001', 'Guided by the college\'s vision and mission, we commit ourselves to: 1. The College is committed to educate and nurture competent future architects and built environment professionals as partners to nation building in producing excellence- oriented and morally upright students and future professionals prepared for leadership role in the industry. 2. The College is dedicated to instill the values of critical thinking and academic excellence while training future professionals to understand sustainable practices anchored to protect the built- environment, for the common welfare, and for benefit of the City of Manila. 3. To imbue upon graduates a direction towards a genuine socially- responsive and highly- innovative mindset that are well-grounded on the technical aspects, and updated on the technology and prevailing conditions 4. To provide in-depth understanding of the profession and the role of built environment professionals in the society and nation building.'),
-(52, 'CBA', 'Guided by the college\'s vision and mission, we commit ourselves to: To provide excellent undergraduate and graduate degree programs that will prepare students to become successful business professionals in an increasingly various and interrelated workplace. To conduct and disseminate research that improves the practice of business, providing practical learning opportunities for students, and reinforcement of strong academic reputation for purposes of student recruitment and placement. To develop a strong, inclusive family values, a diverse and well-qualified number of students, a faculty committed to high-quality research and teaching, dedicated support staff, and strong support from alumni and the business partners. To produce quality and globally competitive business professionals and entrepreneurs who are equipped with skills, knowledge and values necessary for professionals.'),
-(53, 'CBA', 'Bachelor of Science in Business Administration major in Marketing Management (BSBA-MM) The BSBA in Marketing Management is a program designed to equip students with the knowledge and skills effective for marketing and sales strategies; how a company determines what product or service to sell, how customers and markets are delineated into target demographics and the methods of reaching them.  Career and Profession • Marketing Executive • Sales Account Executive • Market Researcher • Digital Marketing Executive • Market Analyst • Brand Executive • Marketing Communication Officer  Bachelor of Science in Business Administration Major in Business Economics (BSBA-BE) • BSBA Major in Business Economics is a program design to provide students with a strong foundation and understanding of the field of economics, covering local and global economic conditions, as well as the methods and application of economic analysis in business decision making and overall operations. • The program focuses on the relationship between business operations and the economy. It integrates economic principles and strategies into standard business practices so that the student can have both the micro view of how the business can acquire capital, generate profit and efficiently produce goods and services, as well as the macro view of how external factors such as government regulation can affect, and should influence business decisions. • It is an interdisciplinary and problem-focused program comprising three integrated elements: core business and management education courses, business administration core and major courses.  Career and Profession • Lawyers • Prosecutors • Vice Presidents in the Corporate Industries • CEO of a franchising company • Professors • Senior Corporate Analyst • Financial Analyst • Business Development Managers • Stockbrokers • Operations Managers • Finance Managers • Businessmen • Researchers • Comptroller • Economists  Bachelor of Science in Business Administration major in Financial Management (BSBA-FM) Bachelor of Science in Business Administration, Major in Financial Management is a program that provides students with a strong foundation on theories, principles, and concepts that equip them with relevant technical and analytical skills necessary in financial decision-making, cognizant of a dynamic domestic and global business environment, and mindful of their role in nation-building. The students’ terminal outputs are research undertakings that are geared toward both application of learned concepts and/or theory development.  The program is anchored on its three-item agenda: (1) a competency-based curriculum; (2) a mix of faculty who have relevant industry practice and years of teaching experience; and (3) student-centered co-curricular and extra-curricular activities.  Career and Profession • Financial Analyst Investment • Researcher • FOREX Specialist • Fund Manager • Trust/Treasury Assistant • Equity Analyst/Bond Analyst • Stocks/Bonds/Derivatives Trader or Broker • Bank Management Trainee • Financial Consultant • Finance Supervisor • Risk Management Associate  Bachelor of Science in Business Administration major in Human Resource Management (BSBA - HRM) The Bachelor of Science in Business Administration, major in Human Resource Management is a program that develops the necessary skills and competencies to enable the effective management of an organization’s human capital. Students are expected to be capable of performing human resources functions and to gain an understanding in enabling personnel to pursue organizational objectives.  The program prepares the graduate for a career in the Human Resources Department of any organization, handling the many diverse human capital requirements of that organization.  Career and Profession • Human Resource Generalist • Recruitment Specialist • Compensation and Benefits Specialist • Training and Development Specialist  Bachelor of Science in Business Administration major in Operations Management (BSBA - OM) The Bachelor of Science in Business Administration, major in Operations Management is program that studies the interrelationships among the different functional areas of a business and examine how effective orchestration of these different components of business operations can lead to organizational success.  The program prepares students to manage the operations of manufacturing and service enterprises with a focus on the need to effectively and efficiently produce and deliver products within budget and on time. It develops practical skills for students to become a business efficiency expert in a wide range of industries.  Career and Profession • Career and Profession: • Operations/Production Management Specialist • Inventory Specialist • Logistics Management Personnel • Project Specialist • Entrepreneur  Bachelor of Science in Entrepreneurship (BS Entrepreneurship) The Bachelor of Science in Entrepreneurship is a program which focuses on the education of students in seeing opportunities, seizing them and creating values for themselves and others in a sustainable manner. Furthermore, it promotes entrepreneurship opportunities for the student, by providing them knowledge and guide them to create their own small business and become an efficient binding force of a nationwide chain of entrepreneurship and encourage students in the advocacy of the development in business and industry.  Career and Profession • Entrepreneur • Business consultant • Financial Adviser • Business Analyst • Management consultant  Bachelor of Science in Real Estate Management (BS-REM) The Bachelor of Science in Real Estate Management (BS-REM) program aims to produce technically competent, responsible, and respected real estate professionals. The BS-REM curriculum includes general education courses, real estate management fundamentals, and business management theories. The course focuses on understanding real estate principles, knowledge, and practice in brokerage, assessment, and consulting. Completing the BS-REM course allows you to become a PRC duly licensed Real Estate Broker, Appraiser, or Consultant. Financial abundance awaits duly licensed Real Estate Professional practitioners.  Career and Profession • Real Estate Broker • Real Estate Appraiser • Real Estate Consultant'),
 (55, 'CA', 'Guided by the college\'s vision and mission, we commit ourselves:'),
 (56, 'CA', 'Deliver a rigorous and relevant curriculum that meets the highest academic and professional standards.'),
 (57, 'CA', 'Engage in impactful research and extension services that address contemporary issues in the field of accountancy.'),
@@ -654,7 +660,8 @@ INSERT INTO `objectives` (`id`, `college_id`, `objective`) VALUES
 (122, 'CE', 'Strengthen our ties with our alumni and industry partners, helping us establish a distinct place in the industry.'),
 (123, 'CTHM', 'To establish academic achievement, competency, collaboration and ethical values in every student in order for them to be competent individuals.'),
 (124, 'CTHM', 'To improve faculty expertise while also strengthening work ethics and values through continuing faculty development programs that will contribute to the college\'s efficient and effective education.'),
-(125, 'CTHM', 'To build strong industry partnerships to provide Tourism management and Hospitality Management students with hands-on training and practical knowledge, preparing and equipped them with skills for employment in tourism and hospitality management.');
+(125, 'CTHM', 'To build strong industry partnerships to provide Tourism management and Hospitality Management students with hands-on training and practical knowledge, preparing and equipped them with skills for employment in tourism and hospitality management.'),
+(126, 'CBA', 'Guided by the college\'s vision and mission, we commit ourselves to: To provide excellent undergraduate and graduate degree programs that will prepare students to become successful business professionals in an increasingly various and interrelated workplace. To conduct and disseminate research that improves the practice of business, providing practical learning opportunities for students, and reinforcement of strong academic reputation for purposes of student recruitment and placement. To develop a strong, inclusive family values, a diverse and well-qualified number of students, a faculty committed to high-quality research and teaching, dedicated support staff, and strong support from alumni and the business partners. To produce quality and globally competitive business professionals and entrepreneurs who are equipped with skills, knowledge and values necessary for professionals.');
 
 -- --------------------------------------------------------
 
@@ -1110,7 +1117,7 @@ ALTER TABLE `management_committee`
 -- AUTO_INCREMENT for table `objectives`
 --
 ALTER TABLE `objectives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `offices`
