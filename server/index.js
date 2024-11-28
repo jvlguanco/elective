@@ -1,5 +1,4 @@
 const express = require('express');
-const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const home_api = require('./routes/home');
@@ -13,6 +12,7 @@ const academic_api = require('./routes/academic')
 const office_api = require('./routes/offices')
 const admission_api = require('./routes/admission')
 const other_api = require('./routes/other')
+const chat_api = require('./routes/chat')
 const path = require('path');
 
 const app = express();
@@ -36,6 +36,7 @@ app.use('/academic', academic_api)
 app.use('/office', office_api)
 app.use('/admission', admission_api)
 app.use('/other', other_api)
+app.use('/chat', chat_api)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

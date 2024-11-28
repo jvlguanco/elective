@@ -15,6 +15,7 @@ import Bids from './pages/main_routes/bids.tsx';
 import Download from './pages/main_routes/download.tsx';
 import CRS from './pages/main_routes/crs.tsx';
 import Partners from './pages/main_routes/partner.tsx';
+import Chatbot from './components/chat/chatbot.tsx';
 
 function Frontend() {
   return (
@@ -52,6 +53,7 @@ function Frontend() {
         <Route path="/scholarship" element={<Partners location={'scholarship'}/>} />
       </Routes>
       <Footer />
+      <Chatbot/>
     </>
   )
 }
