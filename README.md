@@ -87,3 +87,22 @@ The following are the prerequisites to use the repository:
 - Replace the details enclosed in curly braces ({}) to retrieve your long lived access token
 - This has at most 60 days life span, so every 2 months the access code needs to be renewed in order to be used again.
 
+### ADMIN ACCOUNTS
+- For admin accounts, use [Bycrypt Generator](https://bcrypt.online/) to generate a password since this doesnt have an account creation yet
+
+### SERVER SETUP
+- if using apache, uncomment the following in the `httpd.conf` file:
+    - `LoadModule proxy_http_module modules/mod_proxy_http.so`
+    - `LoadModule proxy_http_module modules/mod_proxy.so`
+- add the following lines to ProxyPass the node server
+    - `ProxyPass /api/ http://localhost:5000/`
+    - `/api/` will serve as the route in order to access the api from the given server url
+    - note that the `:5000` can be any port based on the initialization on express. Do not use ports `80` and `443`
+- in order to use the server after doing the prior steps, run the command `node index.js` on the server folder
+    - with this, you can now use `localhost/api` for all of you api within 
+    the server
+
+### AI CHATBOT
+- [Cohere](https://cohere.com/) was used for the ai chatbot of the website
+- Create an account and retrieve your own API Key
+- insert the API key in the `.env` folder of the `frontend` with the name `VITE_API_KEY`
