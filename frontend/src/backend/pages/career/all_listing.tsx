@@ -27,7 +27,7 @@ const JobTable = () => {
 
     const fetchCareers = async () => {
         try {
-            const response = await axios.get("${import.meta.env.VITE_API_ROOT}/career/all");
+            const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/career/all`);
             setCareers(response.data);
             setLoading(false);
         } catch (error) {

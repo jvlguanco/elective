@@ -9,14 +9,14 @@ const Directors = () => {
   useEffect(() => {
     const fetchOffices = async () => {
       try {
-        const response = await axios.get("${import.meta.env.VITE_API_ROOT}/about/dc-offices");
+        const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/dc-offices`);
         const activeOffices = response.data.active;
 
         setOffices(activeOffices);
 
         const membersData = {};
         for (const office of activeOffices) {
-          const res = await axios.get("${import.meta.env.VITE_API_ROOT}/about/dc-members", {
+          const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/dc-members`, {
             params: { office_id: office.id },
           });
           membersData[office.id] = res.data.active;

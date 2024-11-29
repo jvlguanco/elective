@@ -36,7 +36,7 @@ const JobForm = () => {
     formData.append("pdfFile", pdfFile);
 
     try {
-      const response = await axios.post("${import.meta.env.VITE_API_ROOT}/career/create", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_ROOT}/career/create`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

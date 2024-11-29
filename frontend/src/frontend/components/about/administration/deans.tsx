@@ -9,14 +9,14 @@ const Deans = () => {
   useEffect(() => {
     const fetchCollegesAndDeans = async () => {
       try {
-        const response = await axios.get("${import.meta.env.VITE_API_ROOT}/about/college");
+        const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/college`);
         const activeColleges = response.data.active;
 
         setColleges(activeColleges);
 
         const deansData = {};
         for (const college of activeColleges) {
-          const res = await axios.get("${import.meta.env.VITE_API_ROOT}/about/deans", {
+          const res = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/deans`, {
             params: { office_id: college.college_id },
           });
           deansData[college.college_id] = res.data.active;

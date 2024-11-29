@@ -9,7 +9,7 @@ const Graduate = () => {
         try {
             setLoading(true);
 
-            const collegeResponse = await axios.get("${import.meta.env.VITE_API_ROOT}/about/college");
+            const collegeResponse = await axios.get(`${import.meta.env.VITE_API_ROOT}/about/college`);
             const allColleges = collegeResponse.data.active;
 
             const filteredColleges = [];
