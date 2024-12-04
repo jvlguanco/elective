@@ -9,13 +9,13 @@ interface SidebarItem {
 }
 
 const staticSidebarData: Record<string, SidebarItem[]> = {
-    'profile': [
+    profile: [
         { name: 'Vision/Mission', component: 'vission_mission' },
         { name: 'Seal and Symbols', component: 'seal' },
         { name: 'PLM History', component: 'history' },
         { name: 'University Hymn', component: 'hymn' },
     ],
-    'administration': [
+    administration: [
         { name: 'Board of Regents', component: 'board_of_regents' },
         { name: 'The President', component: 'president' },
         { name: 'Management Committee', component: 'management_committee' },
@@ -24,7 +24,7 @@ const staticSidebarData: Record<string, SidebarItem[]> = {
         { name: 'Organizational Chart', component: 'org_chart' },
         { name: 'Presidential Support Staff', component: 'support_staff' },
     ],
-    'contact': [
+    contact: [
         { name: 'PLM Colleges', component: 'template' },
         { name: 'PLM Offices', component: 'template' },
     ],
@@ -41,11 +41,12 @@ const loadComponent = (componentName: string, location: string) => {
 const AboutSidebar = () => {
     const location = useLocation();
     const routeKey = location.pathname.split('/')[2] ?? 'profile';
-    
+
     const [sidebarData, setSidebarData] = useState(staticSidebarData);
     const [selectedItem, setSelectedItem] = useState<string>('');
     const [activeItem, setActiveItem] = useState<string>('');
     const [loading, setLoading] = useState(true);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     useEffect(() => {
         if (routeKey === 'offices') {
@@ -90,6 +91,7 @@ const AboutSidebar = () => {
     const handleItemClick = (itemName: string) => {
         setActiveItem(itemName);
         setSelectedItem(itemName);
+        setDropdownOpen(false); // Close dropdown on selection
     };
 
     const selectedComponent = items.find((item) => item.name === selectedItem);
@@ -102,8 +104,34 @@ const AboutSidebar = () => {
     }
 
     return (
-        <div className="w-full flex">
-            <div className="w-1/5 px-16 pt-8">
+        <div className="w-full flex flex-col md:flex-row">
+            <div className="md:hidden w-full p-4 border-b">
+                <button
+                    onClick={() => setDropdownOpen((prev) => !prev)}
+                    className="w-full text-left p-2 bg-yellow-500 text-white rounded-md"
+                >
+                    {activeItem || 'Select an Option'}
+                </button>
+                {dropdownOpen && (
+                    <ul className="mt-2 bg-white shadow-lg rounded-md">
+                        {items.map((item, index) => (
+                            <li
+                                key={item.id ?? index}
+                                className={`p-4 cursor-pointer ${
+                                    activeItem === item.name
+                                        ? 'text-yellow-600 font-bold'
+                                        : 'text-black hover:text-yellow-600'
+                                }`}
+                                onClick={() => handleItemClick(item.name)}
+                            >
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            <div className="hidden md:block w-1/5 px-16 pt-8">
                 <ul>
                     {items.map((item, index) => (
                         <li
@@ -121,7 +149,7 @@ const AboutSidebar = () => {
                 </ul>
             </div>
 
-            <div className="w-4/5">
+            <div className="w-full md:w-4/5">
                 <Suspense fallback={<div>Loading...</div>}>
                     {SelectedComponent ? (
                         routeKey === 'offices' && selectedComponent?.id ? (
