@@ -23,25 +23,25 @@ const OrganizationalChart = () => {
         fetchChart();
     }, [location]);
 
-    return(
-        <div className="w-full pt-8 pr-12">
-            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue mb-4">
+    return (
+        <div className="w-full pt-8 px-4 md:pr-12 md:pl-0">
+            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue mb-4">
                 ORGANIZATIONAL CHART
             </h1>
 
-            <div>
+            <div className="flex justify-center items-center">
                 {chartPath ? (
                     <img
                         src={`${import.meta.env.VITE_API_ROOT}/${chartPath}`}
                         alt="Organizational Chart"
-                        className="w-full h-[1000px] object-contain border rounded"
+                        className="w-full max-h-[400px] md:max-h-[800px] object-contain border rounded"
                     />
                 ) : (
-                    <p>No organizational chart found</p>
+                    <p className="text-gray-500 text-center">No organizational chart found</p>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default OrganizationalChart;  
+export default OrganizationalChart;

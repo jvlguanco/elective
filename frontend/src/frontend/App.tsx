@@ -49,11 +49,11 @@ function Frontend() {
         <Route path="/downloads" element={<Download />} />
         <Route path="/student/crs" element={<CRS />} />
         <Route path="/faculty/crs" element={<CRS />} />
-        <Route path="/partner" element={<Partners location={'partners'} />} />
+        <Route path="/partner" element={<Partners location={'partner'} />} />
         <Route path="/scholarship" element={<Partners location={'scholarship'}/>} />
       </Routes>
       <Footer />
-      {/* <Chatbot/> */}
+      <Chatbot/>
     </>
   )
 }

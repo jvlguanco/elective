@@ -43,9 +43,9 @@ const Career = () => {
     if (loading) return <p className="text-center text-gray-600">Loading...</p>;
     if (error) return <p className="text-center text-red-500">{error}</p>;
 
-    return(
+    return (
         <div className="w-full">
-            <div className="relative w-full h-72 md:h-96">
+            <div className="relative w-full h-56 md:h-80">
                 <img 
                     src="/images/background.jpg"  
                     alt="Background" 
@@ -53,43 +53,47 @@ const Career = () => {
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-65"></div>
                 <span 
-                    className="absolute bottom-4 left-6 md:bottom-10 md:left-24 font-inter text-white font-bold text-[24px] md:text-[36px] pl-4 md:pl-9 border-l-4 border-yellow-500"
+                    className="absolute bottom-4 left-4 md:bottom-10 md:left-16 font-inter text-white font-bold text-2xl md:text-4xl border-l-4 pl-3 md:pl-6 border-yellow-500"
                 >
                     CAREERS
                 </span>
             </div>
 
-            {displayCareers.map((career) => (
-                <div className="w-full border border-gray-400 border-l-8 border-l-navy-blue py-4 px-6 flex flex-col mb-2 mx-36">
-                    <h2 className="font-inter font-bold text-[20px] text-navy-blue mb-4">
-                        {career.title}
-                    </h2>
+            <div className="px-4 sm:px-8 md:px-16 mt-4">
+                {displayCareers.map((career) => (
+                    <div 
+                        key={career.id}
+                        className="w-full border border-gray-300 rounded-lg p-4 mb-4 shadow-sm bg-white"
+                    >
+                        <h2 className="font-inter font-bold text-lg text-navy-blue mb-2">
+                            {career.title}
+                        </h2>
 
-                    <p>
-                        <b>Position/s:</b> {career.position}
-                    </p>
+                        <p className="text-sm text-gray-700">
+                            <b>Position/s:</b> {career.position}
+                        </p>
 
-                    <p>
-                        <b>Estimated Salary:</b> ₱{career.min_salary} - ₱{career.max_salary}
-                    </p>
+                        <p className="text-sm text-gray-700">
+                            <b>Estimated Salary:</b> ₱{career.min_salary} - ₱{career.max_salary}
+                        </p>
 
-                    <p>
-                        <b>Requesting Department:</b> {career.department}
-                    </p>
-                    
-                    <span className="cursor-pointer mt-4">
+                        <p className="text-sm text-gray-700">
+                            <b>Requesting Department:</b> {career.department}
+                        </p>
+                        
                         <a
                             href={`${import.meta.env.VITE_API_ROOT}/${career.file}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-red-700 underline"
+                            className="mt-4 inline-block text-blue-600 underline text-sm"
                         >
                             View Details
                         </a>
-                    </span>
-                </div>
-            ))}
+                    </div>
+                ))}
+            </div>
 
+            {/* Pagination */}
             {careers.length > itemsPerPage && (
                 <div className="mt-6 flex justify-center">
                     <ReactPaginate
@@ -98,20 +102,20 @@ const Career = () => {
                         breakLabel={'...'}
                         pageCount={Math.ceil(careers.length / itemsPerPage)}
                         marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
+                        pageRangeDisplayed={3}
                         onPageChange={handlePageClick}
-                        containerClassName={'flex items-center space-x-1'}
-                        activeClassName={'font-bold text-blue-600'}
-                        pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+                        containerClassName={'flex items-center space-x-2'}
+                        activeClassName={'text-white bg-blue-600'}
+                        pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100 text-sm"
                         pageLinkClassName="text-gray-700"
-                        activeLinkClassName="text-blue-600 font-semibold"
-                        previousClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
-                        nextClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+                        activeLinkClassName="text-white font-semibold"
+                        previousClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100 text-sm"
+                        nextClassName="px-3 py-1 border rounded cursor-pointer hover:bg-gray-100 text-sm"
                     />
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default Career;  
+export default Career;

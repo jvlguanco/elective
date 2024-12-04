@@ -33,32 +33,36 @@ const Directors = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full flex justify-center items-center pt-8">
+        <p className="text-gray-500 font-semibold">Loading...</p>
+      </div>
+    );
   }
 
   return (
-    <div className="w-full pt-8 pr-12">
-      <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue">
+    <div className="w-full pt-8 px-4 md:pr-12 md:pl-0">
+      <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue">
         DIRECTORS AND CHIEFS
       </h1>
 
       {offices.map((office) => (
-        <div key={office.id} className="pb-2 border-b-2 border-gray-400">
-          <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-2">
+        <div key={office.id} className="pb-6 border-b-2 border-gray-400 mt-6">
+          <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue">
             {office.office_name}
           </h2>
 
-          <div className="grid grid-cols-3 gap-6 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
             {members[office.id]?.map((member) => (
               <div key={member.id} className="flex flex-col items-center">
                 <img
                   src={`${import.meta.env.VITE_API_ROOT}/${member.image}` || "/images/temp.png"}
                   alt={`${member.name}`}
-                  className="w-4/6 h-4/5 object-cover"
+                  className="w-32 h-40 md:w-48 md:h-60 object-cover"
                 />
-                <p className="font-semibold mt-2">{member.name}</p>
-                <p className="text-gray-500 text-center">{member.title}</p>
-                <p className="text-blue-500">{member.email}</p>
+                <p className="font-semibold mt-2 text-center">{member.name}</p>
+                <p className="text-gray-500 text-sm md:text-base text-center">{member.title}</p>
+                <p className="text-blue-500 text-sm md:text-base text-center">{member.email}</p>
               </div>
             ))}
           </div>

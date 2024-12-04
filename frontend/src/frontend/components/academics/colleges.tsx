@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ParagraphWithNewlines = ({ text }: { text: string }) => {
+interface ParagraphWithNewlinesProps {
+    text: string;
+}
+
+const ParagraphWithNewlines = ({ text }: ParagraphWithNewlinesProps) => {
     return (
-        <p className="font-istok">
+        <p className="font-istok text-sm md:text-base">
             {text.split('\n').map((line, index) => (
                 <span key={index}>
                     {line}
@@ -26,17 +30,17 @@ const CollegeTemplate = ({ id }: { id: string }) => {
             setCollegeData(null);
             return;
         }
-    
+
         setError(null);
         setLoading(true);
-    
+
         axios
             .get(`${import.meta.env.VITE_API_ROOT}/about/college`)
             .then((response) => {
                 const { active, inactive } = response.data;
                 const allColleges = [...active, ...inactive];
                 const selectedCollege = allColleges.find(college => college.college_id === id);
-    
+
                 if (selectedCollege) {
                     setCollegeData(selectedCollege);
                 } else {
@@ -71,22 +75,34 @@ const CollegeTemplate = ({ id }: { id: string }) => {
     };
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-gray-500 font-semibold">Loading...</p>
+            </div>
+        );
     }
 
     if (!id) {
-        return <p>Please select a college from the sidebar.</p>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-gray-500 font-semibold">Please select a college from the sidebar.</p>
+            </div>
+        );
     }
 
     if (error) {
-        return <p>{error}</p>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-red-500 font-semibold">{error}</p>
+            </div>
+        );
     }
 
     const { college_name, description, history, vision, mission, objectives } = collegeData;
 
     return (
-        <div className="w-full pt-8 pr-12">
-            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue">
+        <div className="w-full pt-8 px-4 md:pr-12 md:pl-0">
+            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue">
                 {college_name}
             </h1>
 
@@ -94,31 +110,31 @@ const CollegeTemplate = ({ id }: { id: string }) => {
                 <ParagraphWithNewlines text={description || "No description provided"} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 History
             </h2>
             <div className="mt-4">
                 <ParagraphWithNewlines text={history || "No history provided"} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Vision
             </h2>
             <div className="mt-4">
                 <ParagraphWithNewlines text={vision || "No vision provided"} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Mission
             </h2>
             <div className="mt-4">
                 <ParagraphWithNewlines text={mission || "No mission provided"} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Objectives
             </h2>
-            <ul className="mt-4 list-disc pl-6">
+            <ul className="mt-4 list-disc pl-6 text-sm md:text-base">
                 {objectives && objectives.length > 0 ? (
                     objectives.map((objective: string, index: number) => (
                         <li key={index}>{objective}</li>
@@ -128,10 +144,10 @@ const CollegeTemplate = ({ id }: { id: string }) => {
                 )}
             </ul>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Offered Courses
             </h2>
-            <ul className="mt-4 list-disc pl-6">
+            <ul className="mt-4 list-disc pl-6 text-sm md:text-base">
                 {courses && courses.length > 0 ? (
                     courses.map((course: any, index: number) => (
                         <li key={index}>{course.course_name}</li>

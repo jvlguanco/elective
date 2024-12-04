@@ -76,9 +76,9 @@ const TimeAnnouncements = () => {
         );
     }
 
-    const displayPosts = postDetails 
+    const displayPosts = postDetails
         ? postDetails
-            .filter(post => post.end_date >= new Date()) 
+            .filter((post) => post.end_date >= new Date())
             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
         : [];
 
@@ -91,47 +91,43 @@ const TimeAnnouncements = () => {
     };
 
     return (
-        <div className='w-full flex justify-center items-center flex-col'>
-            <div className="grid grid-cols-3 gap-20 p-4 w-fit">
-            {displayPosts?.map((post, index) => {
-                const [title, ...restSections] = post.message.split('\n\n');
-                const remainingText = restSections.join('\n\n');
-                const image = post.attachments.data[0].media.image.src;
-                
-                return(
-                    <div key={index} className="shadow-xl rounded-lg w-[375px] h-[425px] overflow-hidden flex flex-col">
-                        <img src={image} alt="" className='h-[200px] w-full object-cover'/>
-
-                        <div className='w-full h-[225px] p-4 flex flex-col justify-between'>
-                            <div className='flex flex-col gap-2'>
-                                <h1 className='font-inter font-semibold text-[16px]'>{title}</h1>
-
-                                <p className='text-[14px] line-clamp-4 overflow-hidden text-ellipsis'>
-                                    {remainingText}
-                                </p>
-                            </div>
-
-                            <div className='flex justify-between'>
-                                <span
-                                    className="text-red-600 cursor-pointer hover:underline font-inter font-semibold text-[14px]"
-                                    onClick={() => handleView(post.permalink_url)}
-                                >
-                                    View Post
-                                </span>
-                
-                                <div className='flex gap-4 items-center justify-center'>
-                                    <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                                    <p className="text-[14px] font-inter">{format(post.created_time, "MMMM d, yyyy")}</p>
+        <div className="w-full flex justify-center items-center flex-col">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 w-full">
+                {displayPosts?.map((post, index) => {
+                    const [title, ...restSections] = post.message.split('\n\n');
+                    const remainingText = restSections.join('\n\n');
+                    const image = post.attachments.data[0].media.image.src;
+    
+                    return (
+                        <div key={index} className="shadow-xl rounded-lg w-full h-auto overflow-hidden flex flex-col">
+                            <img src={image} alt="" className="h-[200px] w-full object-cover" />
+                            <div className="p-4 flex flex-col justify-between">
+                                <div className="flex flex-col gap-2">
+                                    <h1 className="font-inter font-semibold text-[16px]">{title}</h1>
+                                    <p className="text-[14px] line-clamp-4 overflow-hidden text-ellipsis">
+                                        {remainingText}
+                                    </p>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span
+                                        className="text-red-600 cursor-pointer hover:underline font-inter font-semibold text-[14px]"
+                                        onClick={() => handleView(post.permalink_url)}
+                                    >
+                                        View Post
+                                    </span>
+                                    <div className="flex gap-2 items-center">
+                                        <EventIcon style={{ fontSize: 20, color: 'black' }} />
+                                        <p className="text-[14px] font-inter">
+                                            {format(post.created_time, 'MMMM d, yyyy')}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
-                    </div>
-                )
-            })}
+                    );
+                })}
             </div>
-
-            {postDetails.length > itemsPerPage && (
+            {postDetails && postDetails.length > itemsPerPage && (
                 <div className="mt-6 flex justify-center">
                     <ReactPaginate
                         previousLabel={'Previous'}
@@ -152,7 +148,7 @@ const TimeAnnouncements = () => {
                 </div>
             )}
         </div>
-      );
+    );
 }
 
 export default TimeAnnouncements;

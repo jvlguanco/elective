@@ -72,44 +72,48 @@ const Calendar = () => {
 
         return sortedEvents.map(event => (
             <tr key={event} className="hover:bg-gray-100">
-                <td className="p-4 border border-gray-300 text-left">{event}</td>
+                <td className="p-4 border border-gray-300 text-left text-sm md:text-base">{event}</td>
                 {terms.map(term => (
-                    <td key={term} className="p-4 border border-gray-300 text-left">{grouped[event][term] || ''}</td>
+                    <td key={term} className="p-4 border border-gray-300 text-left text-sm md:text-base">{grouped[event][term] || ''}</td>
                 ))}
             </tr>
         ));
     };
 
     return (
-        <div className="w-full pt-8 px-12">
-            {error && <p className="text-red-500">{error}</p>}
-            {isLoading && <p>Loading...</p>}
+        <div className="w-full pt-8 px-4 md:px-12">
+            {error && <p className="text-red-500 font-semibold">{error}</p>}
+            {isLoading && <p className="text-gray-500 font-semibold">Loading...</p>}
 
             {!isLoading && (
                 <>
-                    <table className="w-full table-auto border-collapse border border-gray-300 shadow-lg mb-8">
-                        <thead>
-                            <tr className="bg-gray-200 text-gray-700">
-                                <th className="p-4 border border-gray-300 text-left w-2/6">Semestral</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">First Semester</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">Second Semester</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">Midyear Term</th>
-                            </tr>
-                        </thead>
-                        <tbody>{groupByEvent(semestralRows, ['First Semester', 'Second Semester', 'Midyear Term'])}</tbody>
-                    </table>
+                    <div className="overflow-x-auto mb-8">
+                        <table className="w-full table-auto border-collapse border border-gray-300 shadow-lg">
+                            <thead>
+                                <tr className="bg-gray-200 text-gray-700">
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Semestral</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">First Semester</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Second Semester</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Midyear Term</th>
+                                </tr>
+                            </thead>
+                            <tbody>{groupByEvent(semestralRows, ['First Semester', 'Second Semester', 'Midyear Term'])}</tbody>
+                        </table>
+                    </div>
 
-                    <table className="w-full table-auto border-collapse border border-gray-300 shadow-lg">
-                        <thead>
-                            <tr className="bg-gray-200 text-gray-700">
-                                <th className="p-4 border border-gray-300 text-left w-2/6">Trimestral</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">First Semester</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">Second Semester</th>
-                                <th className="p-4 border border-gray-300 text-left w-1/6">Third Semester</th>
-                            </tr>
-                        </thead>
-                        <tbody>{groupByEvent(trimestralRows, ['First Semester', 'Second Semester', 'Third Semester'])}</tbody>
-                    </table>
+                    <div className="overflow-x-auto">
+                        <table className="w-full table-auto border-collapse border border-gray-300 shadow-lg">
+                            <thead>
+                                <tr className="bg-gray-200 text-gray-700">
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Trimestral</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">First Semester</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Second Semester</th>
+                                    <th className="p-4 border border-gray-300 text-left text-sm md:text-base">Third Semester</th>
+                                </tr>
+                            </thead>
+                            <tbody>{groupByEvent(trimestralRows, ['First Semester', 'Second Semester', 'Third Semester'])}</tbody>
+                        </table>
+                    </div>
                 </>
             )}
         </div>

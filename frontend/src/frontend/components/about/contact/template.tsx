@@ -41,39 +41,57 @@ const Contact = ({ location }: { location: string }) => {
     }, [location]);
 
     if (loading) {
-        return <div>Loading data...</div>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-gray-500 font-semibold">Loading data...</p>
+            </div>
+        );
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-red-500 font-semibold">{error}</p>
+            </div>
+        );
     }
 
     if (!data.length) {
-        return <div>No data available</div>;
+        return (
+            <div className="w-full flex justify-center items-center pt-8">
+                <p className="text-gray-500 font-semibold">No data available</p>
+            </div>
+        );
     }
 
     return (
-        <div className="w-full pt-8 pr-12">
-            <table className="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr>
-                        <th className="border border-gray-300 p-2">Office</th>
-                        <th className="border border-gray-300 p-2">Email</th>
-                        <th className="border border-gray-300 p-2">Contact Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td className="border border-gray-300 p-2">
-                                {item.college_name || item.office_name}
-                            </td>
-                            <td className="border border-gray-300 p-2">{item.email}</td>
-                            <td className="border border-gray-300 p-2">{item.contact_number}</td>
+        <div className="w-full pt-8 px-4 md:pr-12 md:pl-0">
+            <div className="overflow-x-auto">
+                <table className="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border border-gray-300 p-2 text-left text-sm md:text-base">Office</th>
+                            <th className="border border-gray-300 p-2 text-left text-sm md:text-base">Email</th>
+                            <th className="border border-gray-300 p-2 text-left text-sm md:text-base">Contact Number</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index} className="hover:bg-gray-50">
+                                <td className="border border-gray-300 p-2 text-sm md:text-base">
+                                    {item.college_name || item.office_name}
+                                </td>
+                                <td className="border border-gray-300 p-2 text-sm md:text-base">
+                                    {item.email}
+                                </td>
+                                <td className="border border-gray-300 p-2 text-sm md:text-base">
+                                    {item.contact_number}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const SupportStaff = () => {
     const [activeMembers, setActiveMembers] = useState([]);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -19,9 +19,9 @@ const SupportStaff = () => {
         fetchMembers();
     }, []);
 
-    return(
-        <div className="w-full pt-8 pr-12">
-            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue mb-4">
+    return (
+        <div className="w-full pt-8 px-4 md:pr-12 md:pl-0">
+            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue mb-4">
                 PRESIDENTIAL SUPPORT STAFF
             </h1>
 
@@ -30,23 +30,23 @@ const SupportStaff = () => {
                     <p className="text-gray-500 font-semibold">Loading...</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-3 gap-6 mt-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                     {activeMembers.map((member) => (
                         <div key={member.id} className="flex flex-col items-center">
                             <img
                                 src={`${import.meta.env.VITE_API_ROOT}/${member.image}` || "/images/temp.png"}
                                 alt={`${member.name}`}
-                                className="w-4/6 h-4/5 object-cover"
+                                className="w-32 h-40 md:w-48 md:h-60 object-cover"
                             />
-                            <p className="font-semibold mt-2">{member.name}</p>
-                            <p className="text-gray-500 text-center">{member.title}</p>
-                            <p className="text-blue-500">{member.email}</p>
+                            <p className="font-semibold mt-2 text-center">{member.name}</p>
+                            <p className="text-gray-500 text-sm md:text-base text-center">{member.title}</p>
+                            <p className="text-blue-500 text-sm md:text-base text-center">{member.email}</p>
                         </div>
                     ))}
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default SupportStaff;  
+export default SupportStaff;

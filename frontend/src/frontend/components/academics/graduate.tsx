@@ -42,23 +42,27 @@ const Graduate = () => {
     }, []);
 
     return (
-        <div className="w-full pt-8 px-12">
-            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue">
+        <div className="w-full pt-8 px-4 md:px-12">
+            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue">
                 Office for Graduates and Professional Studies
             </h1>
             {loading ? (
-                <p>Loading...</p>
+                <div className="flex justify-center items-center pt-8">
+                    <p className="text-gray-500 font-semibold">Loading...</p>
+                </div>
             ) : (
-                <div className="space-y-8">
+                <div className="space-y-8 mt-6">
                     {colleges.length === 0 ? (
-                        <p>No graduate colleges found.</p>
+                        <p className="text-gray-500 font-semibold">No graduate colleges found.</p>
                     ) : (
                         colleges.map(college => (
                             <div key={college.college_id} className="border-b pb-4">
-                                <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">{college.college_name}</h2>
-                                <ul className="list-disc pl-8 mt-2 space-y-1">
+                                <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-6">
+                                    {college.college_name}
+                                </h2>
+                                <ul className="list-disc pl-6 md:pl-8 mt-2 space-y-1">
                                     {college.courses.map(course => (
-                                        <li key={course.course_id} className="text-gray-700">
+                                        <li key={course.course_id} className="text-gray-700 text-sm md:text-base">
                                             <span className="font-medium">{course.course_name}</span>
                                         </li>
                                     ))}

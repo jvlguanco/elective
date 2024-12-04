@@ -56,7 +56,7 @@ const Chatbot: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4">
       {isOpen ? (
-        <div className="bg-white shadow-xl rounded-lg w-96 border border-gray-300">
+        <div className="bg-white shadow-xl rounded-lg border border-gray-300">
           <div className="p-4 bg-blue-600 text-white flex justify-between items-center rounded-t-lg">
             <h2 className="text-lg font-semibold">PLM Chatbot</h2>
             <button onClick={toggleChatbot} className="text-xl font-bold">

@@ -5,7 +5,7 @@ const ParagraphWithNewlines = ({ text }: { text: string }) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
 
     return (
-        <p className="font-istok">
+        <p className="font-istok text-sm md:text-base">
             {text.split('\n').map((line, index) => (
                 <span key={index}>
                     {line.split(urlRegex).map((segment, subIndex) => {
@@ -33,12 +33,12 @@ const ParagraphWithNewlines = ({ text }: { text: string }) => {
 
 const AdmissionTemplate = ({ id }: { id: string }) => {
     const [admissionData, setAdmissionData] = useState<{
-        name: string,
+        name: string;
         description: string;
         requirements: string;
         qualifications: string;
         process: string;
-        status: string
+        status: string;
     } | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
                 const response = await axios.get(`${import.meta.env.VITE_API_ROOT}/admission/information/${id}`);
                 setAdmissionData(response.data);
             } catch (err) {
-                setError(err.response?.data?.error || "An error occurred");
+                setError(err.response?.data?.error || 'An error occurred');
             }
         };
 
@@ -57,7 +57,7 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
 
     if (error) {
         return (
-            <div className="w-full pt-8 px-12">
+            <div className="w-full pt-8 px-4 md:px-12">
                 <p className="text-red-500 mt-4">{error}</p>
             </div>
         );
@@ -65,20 +65,20 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
 
     if (!admissionData) {
         return (
-            <div className="w-full pt-8 px-12">
+            <div className="w-full pt-8 px-4 md:px-12">
                 <p className="text-gray-500 mt-4">Loading...</p>
             </div>
         );
     }
 
     return (
-        <div className="w-full pt-8 px-12">
-            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[32px] text-navy-blue flex items-center gap-2">
-                {admissionData.name} : 
-                <span 
-                    className={`
-                    ${admissionData.status.toLowerCase() === 'open' ? 'text-green-500' : 'text-red-500'}
-                    `}
+        <div className="w-full pt-8 px-4 md:px-12">
+            <h1 className="pb-2 border-b-2 border-gray-400 font-inter font-semibold text-[24px] md:text-[32px] text-navy-blue flex items-center gap-2">
+                {admissionData.name} :{' '}
+                <span
+                    className={`${
+                        admissionData.status.toLowerCase() === 'open' ? 'text-green-500' : 'text-red-500'
+                    }`}
                 >
                     {admissionData.status.toUpperCase()}
                 </span>
@@ -88,7 +88,7 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
                 <ParagraphWithNewlines text={admissionData.description} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Requirements
             </h2>
 
@@ -96,15 +96,15 @@ const AdmissionTemplate = ({ id }: { id: string }) => {
                 <ParagraphWithNewlines text={admissionData.requirements} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
-                Qualification
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
+                Qualifications
             </h2>
 
             <div className="mt-4">
                 <ParagraphWithNewlines text={admissionData.qualifications} />
             </div>
 
-            <h2 className="font-inter font-semibold text-[24px] text-navy-blue mt-8">
+            <h2 className="font-inter font-semibold text-[20px] md:text-[24px] text-navy-blue mt-8">
                 Process
             </h2>
 

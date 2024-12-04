@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { format } from 'date-fns';
 import ReactPaginate from 'react-paginate';
 import EventIcon from '@mui/icons-material/Event';
@@ -27,7 +27,8 @@ const LatestAnnouncements = () => {
 
     const fetchPostIds = () => {
         setIsLoadingPostIds(true);
-        axios.get(`${import.meta.env.VITE_API_ROOT}/facebook/normal-post`)
+        axios
+            .get(`${import.meta.env.VITE_API_ROOT}/facebook/normal-post`)
             .then((response) => {
                 setPostIds(response.data.data);
                 setAccessToken(response.data.token);
@@ -46,16 +47,16 @@ const LatestAnnouncements = () => {
     useEffect(() => {
         if (postIds && accessToken) {
             const fetchPosts = async () => {
-                const requests = postIds.map((post) => {
-                    return axios.get(
+                const requests = postIds.map((post) =>
+                    axios.get(
                         `https://graph.facebook.com/v21.0/${post.post_id}?fields=id,message,attachments,permalink_url,created_time&access_token=${accessToken}`
-                    );
-                });
+                    )
+                );
 
                 try {
                     const responses = await Promise.all(requests);
                     const postData = responses.map((response) => response.data);
-                    
+
                     const thirtyDaysAgo = new Date();
                     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
@@ -83,12 +84,12 @@ const LatestAnnouncements = () => {
     }, [postIds, accessToken]);
 
     if (isLoadingPostIds || isLoadingPostDetails) {
-        return (
-            <div className="text-center py-6 w-full">Loading...</div>
-        );
+        return <div className="text-center py-6 w-full">Loading...</div>;
     }
 
-    const displayPosts = postDetails ? postDetails.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) : [];
+    const displayPosts = postDetails
+        ? postDetails.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+        : [];
 
     const handleView = (post_url: string) => {
         window.open(post_url, '_blank');
@@ -99,47 +100,43 @@ const LatestAnnouncements = () => {
     };
 
     return (
-        <div className='w-full flex justify-center items-center flex-col'>
-            <div className="grid grid-cols-3 gap-20 p-4 w-fit">
-            {displayPosts?.map((post, index) => {
-                const [title, ...restSections] = post.message.split('\n\n');
-                const remainingText = restSections.join('\n\n');
-                const image = post.attachments.data[0].media.image.src;
-                
-                return(
-                    <div key={index} className="shadow-xl rounded-lg w-[375px] h-[425px] overflow-hidden flex flex-col">
-                        <img src={image} alt="" className='h-[200px] w-full object-cover'/>
+        <div className="w-full flex justify-center items-center flex-col">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 w-full">
+                {displayPosts?.map((post, index) => {
+                    const [title, ...restSections] = post.message.split('\n\n');
+                    const remainingText = restSections.join('\n\n');
+                    const image = post.attachments.data[0].media.image.src;
 
-                        <div className='w-full h-[225px] p-4 flex flex-col justify-between'>
-                            <div className='flex flex-col gap-2'>
-                                <h1 className='font-inter font-semibold text-[16px]'>{title}</h1>
-
-                                <p className='text-[14px] line-clamp-4 overflow-hidden text-ellipsis'>
-                                    {remainingText}
-                                </p>
-                            </div>
-
-                            <div className='flex justify-between'>
-                                <span
-                                    className="text-red-600 cursor-pointer hover:underline font-inter font-semibold text-[14px]"
-                                    onClick={() => handleView(post.permalink_url)}
-                                >
-                                    View Post
-                                </span>
-                
-                                <div className='flex gap-4 items-center justify-center'>
-                                    <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                                    <p className="text-[14px] font-inter">{format(post.created_time, "MMMM d, yyyy")}</p>
+                    return (
+                        <div key={index} className="shadow-xl rounded-lg w-full h-auto overflow-hidden flex flex-col">
+                            <img src={image} alt="" className="h-[200px] w-full object-cover" />
+                            <div className="p-4 flex flex-col justify-between">
+                                <div className="flex flex-col gap-2">
+                                    <h1 className="font-inter font-semibold text-[16px]">{title}</h1>
+                                    <p className="text-[14px] line-clamp-4 overflow-hidden text-ellipsis">
+                                        {remainingText}
+                                    </p>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span
+                                        className="text-red-600 cursor-pointer hover:underline font-inter font-semibold text-[14px]"
+                                        onClick={() => handleView(post.permalink_url)}
+                                    >
+                                        View Post
+                                    </span>
+                                    <div className="flex gap-2 items-center">
+                                        <EventIcon style={{ fontSize: 20, color: 'black' }} />
+                                        <p className="text-[14px] font-inter">
+                                            {format(post.created_time, 'MMMM d, yyyy')}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
-                    </div>
-                )
-            })}
+                    );
+                })}
             </div>
-
-            {postDetails.length > itemsPerPage && (
+            {postDetails && postDetails.length > itemsPerPage && (
                 <div className="mt-6 flex justify-center">
                     <ReactPaginate
                         previousLabel={'Previous'}
@@ -160,7 +157,7 @@ const LatestAnnouncements = () => {
                 </div>
             )}
         </div>
-      );
-}
+    );
+};
 
 export default LatestAnnouncements;
