@@ -53,7 +53,6 @@ const Announcement = () => {
 
     return (
         <div className="flex flex-col w-full">
-            {/* Dropdown for Mobile */}
             <div className="mt-4 w-full px-4 md:px-24 lg:px-96 py-4 flex flex-col md:flex-row justify-evenly items-center">
                 <div className="md:hidden w-full">
                     <select
@@ -69,7 +68,6 @@ const Announcement = () => {
                     </select>
                 </div>
 
-                {/* Tabs for Desktop */}
                 <div className="hidden md:flex w-full justify-evenly">
                     {navTitles.map((item, index) => (
                         <span
