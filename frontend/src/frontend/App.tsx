@@ -53,7 +53,7 @@ function Frontend() {
         <Route path="/scholarship" element={<Partners location={'scholarship'}/>} />
       </Routes>
       <Footer />
-      <Chatbot/>
+      {/* <Chatbot/> */}
     </>
   )
 }

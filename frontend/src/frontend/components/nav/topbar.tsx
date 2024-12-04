@@ -6,7 +6,7 @@ const TopBar = () => {
     const [isFacultyDropdownOpen, setIsFacultyDropdownOpen] = useState(false);
 
     return (
-        <div className='w-full h-fit bg-red-700 py-1 px-8'>
+        <div className='w-full h-fit bg-red-700 py-1 px-8 hidden md:block'>
             <ul className="flex list-none justify-end font-inter font-medium ">
                 <li
                     className="mr-6 relative"

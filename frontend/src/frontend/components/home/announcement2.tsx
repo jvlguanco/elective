@@ -115,85 +115,95 @@ const AnnouncementSection = () => {
     };
 
     return (
-        <div className="px-12 mt-10 flex gap-12 justify-between h-auto">
-            <div className="w-1/2 flex flex-col">
-                <h1 className="font-inter text-navy-blue font-bold text-[28px] mb-2">
+        <div className="px-4 sm:px-12 mt-10 flex flex-col gap-6 sm:gap-10 sm:flex-row">
+            {/* Latest News Section */}
+            <div className="flex flex-col w-full sm:w-1/2">
+                <h1 className="font-inter text-navy-blue font-bold text-[22px] sm:text-[28px] mb-2">
                     LATEST NEWS
                 </h1>
-
-                <img src={postDetails[0].attachments.data[0].media.image.src} alt="" className="w-full h-[450px] object-cover" />
-
-                <h3 className="font-inter font-bold text-[22px]">
+                <img
+                    src={postDetails[0].attachments.data[0].media.image.src}
+                    alt=""
+                    className="w-full h-[200px] sm:h-[450px] object-cover"
+                />
+                <h3 className="font-inter font-bold text-[16px] sm:text-[22px]">
                     {firstSection}
                 </h3>
-
-                <p className='text-[15px] line-clamp-4 overflow-hidden text-ellipsis'>
+                <p className="text-[12px] sm:text-[15px] line-clamp-4 overflow-hidden text-ellipsis">
                     {remainingText}
                 </p>
-
-                <div className="w-full flex justify-between mt-8">
+                <div className="w-full flex justify-between mt-4 sm:mt-8">
                     <span
-                        className="text-red-600 cursor-pointer hover:underline font-inter font-semibold"
+                        className="text-red-600 cursor-pointer hover:underline font-inter font-semibold text-sm sm:text-base"
                         onClick={() => handleView(postDetails[0].permalink_url)}
                     >
                         View Post
                     </span>
-
-                    <div className='flex gap-4 items-center justify-center'>
-                        <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                        <p className="text-[15px]">{format(postDetails[0].created_time, "MMMM d, yyyy")}</p>
+                    <div className="flex gap-4 items-center justify-center">
+                        <EventIcon style={{ fontSize: 16, color: 'black' }} />
+                        <p className="text-[12px] sm:text-[15px]">
+                            {format(postDetails[0].created_time, 'MMMM d, yyyy')}
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div className="w-1/2 flex flex-col">
-                <h1 className="font-inter text-navy-blue font-bold text-[28px] mb-2">
+            {/* Highlighted News Section */}
+            <div className="flex flex-col w-full sm:w-1/2">
+                <h1 className="font-inter text-navy-blue font-bold text-[22px] sm:text-[28px] mb-2">
                     HIGHLIGHTED NEWS
                 </h1>
+                <div className="flex flex-col gap-4">
+                    {highlightDetails.map((post, index) => {
+                        const [firstSection, ...restSections] = post.message.split('\n\n');
+                        const remainingText = restSections.join('\n\n');
 
-                {highlightDetails?.map((post, index) => {
-                    const [firstSection, ...restSections] = post.message.split('\n\n');
-                    const remainingText = restSections.join('\n\n');
-
-                    return (
-                        <div key={index} className="w-full flex mb-4 gap-6 pb-4 border-b-2 border-black">
-                            <img src={post.attachments.data[0].media.image.src} className="w-2/5 h-[165px] object-cover" />
-
-                            <div className="flex flex-col justify-between w-full">
-                                <div>
-                                    <h3 className="font-inter font-bold text-[18px]">
-                                        {firstSection || "Title of the Latest Article Here"}
-                                    </h3>
-
-                                    <p className='text-[15px] line-clamp-4 overflow-hidden text-ellipsis'>
-                                        {remainingText || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magnam impedit nesciunt optio quidem? Enim consequatur dolorum..."}
-                                    </p>
-                                </div>
-
-                                <div className='flex justify-between w-full'>
-                                    <span
-                                        className="text-red-600 cursor-pointer hover:underline font-inter font-semibold"
-                                        onClick={() => handleView(post.permalink_url)}
-                                    >
-                                        View Post
-                                    </span>
-
-                                    <div className="flex justify-end items-center gap-2">
-                                        <EventIcon style={{ fontSize: 20, color: 'black' }} />
-                                        <p className="text-[16px]">{format(post.created_time, "MMMM d, yyyy")}</p>
+                        return (
+                            <div
+                                key={index}
+                                className="flex flex-col sm:flex-row gap-4 pb-4 border-b-2 border-black"
+                            >
+                                <img
+                                    src={post.attachments.data[0].media.image.src}
+                                    className="w-full sm:w-2/5 h-[150px] sm:h-[165px] object-cover"
+                                />
+                                <div className="flex flex-col justify-between w-full">
+                                    <div>
+                                        <h3 className="font-inter font-bold text-[16px] sm:text-[18px]">
+                                            {firstSection}
+                                        </h3>
+                                        <p className="text-[12px] sm:text-[15px] line-clamp-4">
+                                            {remainingText}
+                                        </p>
+                                    </div>
+                                    <div className="flex justify-between items-center mt-2">
+                                        <span
+                                            className="text-red-600 cursor-pointer hover:underline font-inter font-semibold"
+                                            onClick={() => handleView(post.permalink_url)}
+                                        >
+                                            View Post
+                                        </span>
+                                        <div className="flex gap-2 items-center">
+                                            <EventIcon style={{ fontSize: 16, color: 'black' }} />
+                                            <p className="text-[12px] sm:text-[15px]">
+                                                {format(post.created_time, 'MMMM d, yyyy')}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })}
-
-                <NavLink to="/announcement" className="bg-navy-blue px-4 py-2 rounded-full flex items-center justify-center w-fit font-inter font-semibold text-yellow-500">
+                        );
+                    })}
+                </div>
+                <NavLink
+                    to="/announcement"
+                    className="bg-navy-blue px-4 py-2 rounded-full flex items-center justify-center w-fit font-inter font-semibold text-yellow-500 mt-4"
+                >
                     View All Announcements
                 </NavLink>
             </div>
         </div>
     );
-}
+};
 
-export default AnnouncementSection
+export default AnnouncementSection;

@@ -5,6 +5,7 @@ const MainNav = () => {
     const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
     const [isAdmissionDropdownOpen, setIsAdmissionDropdownOpen] = useState(false);
     const [isAcademicDropdownOpen, setIsAcademicDropdownOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const aboutDropdownRef = useRef(null);
     const admissionDropdownRef = useRef(null);
@@ -31,6 +32,8 @@ const MainNav = () => {
         if (isAcademicDropdownOpen) adjustDropdownPosition(academicDropdownRef);
     }, [isAboutDropdownOpen, isAdmissionDropdownOpen, isAcademicDropdownOpen]);
 
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+
     return (
         <div className="w-full h-fit flex justify-between items-center bg-white border-b-2 border-gray-500">
             <div className="flex gap-4 items-center px-8 py-2">
@@ -41,7 +44,17 @@ const MainNav = () => {
                 </div>
             </div>
 
-            <ul className="flex list-none m-0 p-0">
+            <button
+                className="md:hidden block px-4"
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+            >
+                <span className="block w-6 h-1 bg-black mb-1"></span>
+                <span className="block w-6 h-1 bg-black mb-1"></span>
+                <span className="block w-6 h-1 bg-black"></span>
+            </button>
+
+            <ul className="hidden md:flex list-none m-0 p-0">
                 <li className="mr-6 relative group">
                     <NavLink to="/" className={currentLocation === "/" ? 'text-red-500 font-bold' : 'text-black'} end>
                         Home
@@ -182,6 +195,172 @@ const MainNav = () => {
                     </NavLink>
                 </li>
             </ul>
+
+            {menuOpen && (
+                <div className="fixed top-0 right-0 h-full w-3/4 bg-white shadow-lg z-50 p-6">
+                    <button
+                        className="absolute top-4 right-4 text-black text-xl"
+                        onClick={toggleMenu}
+                        aria-label="Close menu"
+                    >
+                        &times;
+                    </button>
+                    <ul className="list-none">
+                        <li>
+                            <NavLink to="/" className="block py-2" onClick={toggleMenu}>
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <div className="py-2">
+                                <button
+                                    className="w-full text-left"
+                                    onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+                                >
+                                    About
+                                </button>
+                                {isAboutDropdownOpen && (
+                                    <ul className="ml-4 mt-2 space-y-2">
+                                        <li>
+                                            <NavLink
+                                                to="/about/profile"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                University Profile
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/about/administration"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Administration
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/about/offices"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Offices
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/about/contact"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Contact
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                        <li>
+                            <div className="py-2">
+                                <button
+                                    className="w-full text-left"
+                                    onClick={() => setIsAcademicDropdownOpen(!isAcademicDropdownOpen)}
+                                >
+                                    Academics
+                                </button>
+                                {isAcademicDropdownOpen && (
+                                    <ul className="ml-4 mt-2 space-y-2">
+                                        <li>
+                                            <NavLink
+                                                to="/academic/colleges"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Colleges
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/academic/graduate"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Graduate and Professional Studies
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/academic/calendar"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Academic Calendar
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/academic/obe"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                Outcome-Based Education
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                        <li>
+                            <div className="py-2">
+                                <button
+                                    className="w-full text-left"
+                                    onClick={() => setIsAdmissionDropdownOpen(!isAdmissionDropdownOpen)}
+                                >
+                                    Admissions
+                                </button>
+                                {isAdmissionDropdownOpen && (
+                                    <ul className="ml-4 mt-2 space-y-2">
+                                        <li>
+                                            <NavLink
+                                                to="/admission/PLMAT"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                PLM Admission Test (PLMAT)
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/admission/CMAT"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                College of Medicine Admission Test
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                to="/admission/CLAT"
+                                                className="block py-2"
+                                                onClick={toggleMenu}
+                                            >
+                                                College of Law Admission Test (CLAT)
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                        <li>
+                            <NavLink to="/announcement" className="block py-2" onClick={toggleMenu}>
+                                Announcements
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+                
+            )}
         </div>
     );
 };
