@@ -94,8 +94,10 @@ The following are the prerequisites to use the repository:
 - if using apache, uncomment the following in the `httpd.conf` file:
     - `LoadModule proxy_http_module modules/mod_proxy_http.so`
     - `LoadModule proxy_http_module modules/mod_proxy.so`
-- add the following lines to ProxyPass the node server
+- add the following lines to ProxyPass the node server, insert this before `Define SRVROOT`
     - `ProxyPass /api/ http://localhost:5000/`
+    - `ProxyPassReverse /api/ http://localhost:5000/`
+    - `ProxyPreserveHost On`
     - `/api/` will serve as the route in order to access the api from the given server url
     - note that the `:5000` can be any port based on the initialization on express. Do not use ports `80` and `443`
 - in order to use the server after doing the prior steps, run the command `node index.js` on the server folder
